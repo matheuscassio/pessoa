@@ -36,7 +36,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="101" y="61" name="tb_Pessoa">
+</datatypes><table x="8" y="90" name="tb_Pessoa">
 <row name="id_Pessoa" null="1" autoincrement="1">
 <datatype>INT</datatype>
 <default>NULL</default></row>
@@ -88,9 +88,10 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
+<part>id_Pessoa_Documento</part>
 </key>
 </table>
-<table x="1262" y="116" name="tb_TipoGeral">
+<table x="1364" y="289" name="tb_TipoGeral">
 <row name="id_TipoGeral" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -102,6 +103,47 @@
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id_TipoGeral</part>
+</key>
+</table>
+<table x="239" y="358" name="tb_Pessoa_Nome">
+<row name="id_pessoa_Nome" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Id_Pessoa" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
+</row>
+<row name="id_Pessoa_Documento" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="tb_Pessoa_Documento" row="id_Pessoa_Documento" />
+</row>
+<row name="nm_Pessoa" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_pessoa_Nome</part>
+</key>
+</table>
+<table x="854" y="477.5454559326172" name="tb_Pessoa_Contatos">
+<row name="id_Pessoa_Contato" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_Pessoa" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
+</row>
+<row name="id_TipoContato" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="tb_TipoGeral" row="id_TipoGeral" />
+</row>
+<row name="nm_Contato" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="ds_Contato" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_Pessoa_Contato</part>
 </key>
 </table>
 </sql>
