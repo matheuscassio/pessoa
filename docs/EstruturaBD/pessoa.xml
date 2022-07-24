@@ -36,61 +36,70 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="101" y="61" name="tb_Pessoa">
+</datatypes><table x="33" y="266" name="tb_Pessoa">
 <row name="id_Pessoa" null="1" autoincrement="1">
 <datatype>INT</datatype>
-<default>NULL</default></row>
+<default>NULL</default><comment>Identificação sequêncial de Pessoa.</comment>
+</row>
 <row name="tx_Hash" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="dt_Cadastro" null="1" autoincrement="0">
-<datatype>INT</datatype>
-<default>NULL</default></row>
-<row name="us_Castro" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><comment>Algoritmo utilizado para garantir a integridade dos dados da Pessoa e sua identificação.</comment>
+</row>
 <key type="PRIMARY" name="">
 <part>id_Pessoa</part>
 </key>
+<key type="UNIQUE" name="">
+<part>tx_Hash</part>
+</key>
+<comment>Tabela para o cadastro de Pessoa Física e Jurídica </comment>
 </table>
-<table x="845" y="258" name="tb_Pessoa_Endereco">
+<table x="854" y="417" name="tb_Pessoa_Endereco">
 <row name="id_Pessoa_Endereco" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="id_Pessoa" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
+<comment>Chave Estrangeira com tb_Pessoa</comment>
 </row>
 <row name="id_TipoLogadouro" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="tb_TipoGeral" row="id_TipoGeral" />
+<comment>Chave-Estrangera de filtro tb_TipoGeral</comment>
 </row>
 <row name="nm_Logadouro" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><comment>Chave-Estrangera de filtro tb_TipoGeral</comment>
+</row>
 <key type="PRIMARY" name="">
 <part>id_Pessoa_Endereco</part>
 </key>
+<comment>Vinculação com tb_Pessoa</comment>
 </table>
-<table x="838" y="51" name="tb_Pessoa_Documento">
+<table x="857" y="230" name="tb_Pessoa_Documento">
 <row name="id_Pessoa_Documento" null="1" autoincrement="1">
 <datatype>INT</datatype>
-<default>NULL</default></row>
+<default>NULL</default><comment>Conecção de chave com a tabela tb_Pessoa_Nome</comment>
+</row>
 <row name="id_Pessoa" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
+<comment>Chave-Estrangera de tb_Pessoa</comment>
 </row>
 <row name="id_TipoDocumento" null="1" autoincrement="0">
 <datatype>INT</datatype>
 <default>NULL</default><relation table="tb_TipoGeral" row="id_TipoGeral" />
+<comment>Chave-Estrangera de filtro tb_TipoGeral</comment>
 </row>
 <row name="vr_Documento" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
+<part>id_Pessoa_Documento</part>
 </key>
+<comment>Vinculação com Tabela tb_Pessoa</comment>
 </table>
-<table x="1262" y="116" name="tb_TipoGeral">
+<table x="1363" y="397" name="tb_TipoGeral">
 <row name="id_TipoGeral" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -103,5 +112,56 @@
 <key type="PRIMARY" name="">
 <part>id_TipoGeral</part>
 </key>
+<comment>Filtro de Geral </comment>
+</table>
+<table x="407" y="76" name="tb_Pessoa_Nome">
+<row name="id_pessoa_Nome" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default><comment>Chave-Estrangera da pessoa Nome</comment>
+</row>
+<row name="Id_Pessoa" null="1" autoincrement="1">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
+<comment>Chave-Estrangera de tb_Pessoa</comment>
+</row>
+<row name="id_Pessoa_Documento" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="tb_Pessoa_Documento" row="id_Pessoa_Documento" />
+<comment>Chave-Estrangera de tb_Pessoa_Documento</comment>
+</row>
+<row name="nm_Pessoa" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><comment>Nome Pessoa</comment>
+</row>
+<key type="PRIMARY" name="">
+<part>id_pessoa_Nome</part>
+</key>
+<comment>Nome de Pessoa Física ou Jurídica.</comment>
+</table>
+<table x="854" y="608" name="tb_Pessoa_Contatos">
+<row name="id_Pessoa_Contato" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_Pessoa" null="1" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
+<comment>Chave-Estrangera de tb_Pessoa</comment>
+</row>
+<row name="id_TipoContato" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="tb_TipoGeral" row="id_TipoGeral" />
+<comment>Chave-Estrangera de filtro tb_TipoGeral</comment>
+</row>
+<row name="nm_Contato" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><comment>Chave-Estrangera de filtro tb_TipoGeral</comment>
+</row>
+<row name="ds_Contato" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_Pessoa_Contato</part>
+</key>
+<comment>Vinculação com chave pessoa tb_Pessoa</comment>
 </table>
 </sql>
