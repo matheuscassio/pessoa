@@ -39,26 +39,23 @@
 </datatypes><table x="8" y="90" name="tb_Pessoa">
 <row name="id_Pessoa" null="1" autoincrement="1">
 <datatype>INT</datatype>
-<default>NULL</default></row>
+<default>NULL</default><comment>Identificação sequêncial de Pessoa</comment>
+</row>
 <row name="tx_Hash" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="dt_Cadastro" null="1" autoincrement="0">
-<datatype>INT</datatype>
-<default>NULL</default></row>
-<row name="us_Castro" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><comment>algoritmo utilizado para garantir a integridade dos dados da Pessoa</comment>
+</row>
 <key type="PRIMARY" name="">
 <part>id_Pessoa</part>
 </key>
+<comment>Tabela para o cadastro de Pessoa Física e Jurídica </comment>
 </table>
 <table x="845" y="258" name="tb_Pessoa_Endereco">
 <row name="id_Pessoa_Endereco" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="id_Pessoa" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
 </row>
 <row name="id_TipoLogadouro" null="1" autoincrement="0">
@@ -71,13 +68,14 @@
 <key type="PRIMARY" name="">
 <part>id_Pessoa_Endereco</part>
 </key>
+<comment>Vinculação com tb_Pessoa</comment>
 </table>
 <table x="838" y="51" name="tb_Pessoa_Documento">
 <row name="id_Pessoa_Documento" null="1" autoincrement="1">
 <datatype>INT</datatype>
 <default>NULL</default></row>
 <row name="id_Pessoa" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
 </row>
 <row name="id_TipoDocumento" null="1" autoincrement="0">
@@ -90,6 +88,7 @@
 <key type="PRIMARY" name="">
 <part>id_Pessoa_Documento</part>
 </key>
+<comment>Vinculação com Tabela tb_Pessoa</comment>
 </table>
 <table x="1364" y="289" name="tb_TipoGeral">
 <row name="id_TipoGeral" null="1" autoincrement="1">
@@ -105,16 +104,17 @@
 <part>id_TipoGeral</part>
 </key>
 </table>
-<table x="239" y="358" name="tb_Pessoa_Nome">
+<table x="155" y="419" name="tb_Pessoa_Nome">
 <row name="id_pessoa_Nome" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><comment>Chave-Estramgera da pessoa Nome</comment>
+</row>
 <row name="Id_Pessoa" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
 </row>
 <row name="id_Pessoa_Documento" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <default>NULL</default><relation table="tb_Pessoa_Documento" row="id_Pessoa_Documento" />
 </row>
 <row name="nm_Pessoa" null="1" autoincrement="0">
@@ -123,13 +123,14 @@
 <key type="PRIMARY" name="">
 <part>id_pessoa_Nome</part>
 </key>
+<comment>Nome de Pessoa Física e Jurídica </comment>
 </table>
 <table x="854" y="477.5454559326172" name="tb_Pessoa_Contatos">
 <row name="id_Pessoa_Contato" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="id_Pessoa" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>INT</datatype>
 <default>NULL</default><relation table="tb_Pessoa" row="id_Pessoa" />
 </row>
 <row name="id_TipoContato" null="1" autoincrement="0">
@@ -145,5 +146,6 @@
 <key type="PRIMARY" name="">
 <part>id_Pessoa_Contato</part>
 </key>
+<comment>Vinculação com chave pessoa tb_Pessoa</comment>
 </table>
 </sql>
