@@ -11,10 +11,11 @@
 -- ---
 
 DROP TABLE IF EXISTS `tb_Pessoa`;
+
 		
 CREATE TABLE `tb_Pessoa` (
-  `id_Pessoa` INT NULL AUTO_INCREMENT DEFAULT NULL COMMENT 'Identificação sequêncial de Pessoa.',
-  `tx_Hash` VARCHAR NULL DEFAULT NULL COMMENT 'Algoritmo utilizado para garantir a integridade dos dados da',
+  `id_Pessoa` INT NOT NULL AUTO_INCREMENT COMMENT 'Identificação sequêncial de Pessoa.',
+  `tx_Hash` VARCHAR(50) NULL DEFAULT NULL COMMENT 'Algoritmo utilizado para garantir a integridade dos dados da',
   PRIMARY KEY (`id_Pessoa`),
   UNIQUE KEY (`tx_Hash`)
 ) COMMENT 'Tabela para o cadastro de Pessoa Física e Jurídica ';
@@ -27,10 +28,10 @@ CREATE TABLE `tb_Pessoa` (
 DROP TABLE IF EXISTS `tb_Pessoa_Endereco`;
 		
 CREATE TABLE `tb_Pessoa_Endereco` (
-  `id_Pessoa_Endereco` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `id_Pessoa_Endereco` INTEGER NOT NULL AUTO_INCREMENT ,
   `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave Estrangeira com tb_Pessoa',
   `id_TipoLogadouro` INTEGER NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Logadouro` INTEGER NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
+  `nm_Logadouro` VARCHAR(250) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
   PRIMARY KEY (`id_Pessoa_Endereco`)
 ) COMMENT 'Vinculação com tb_Pessoa';
 
@@ -42,7 +43,7 @@ CREATE TABLE `tb_Pessoa_Endereco` (
 DROP TABLE IF EXISTS `tb_Pessoa_Documento`;
 		
 CREATE TABLE `tb_Pessoa_Documento` (
-  `id_Pessoa_Documento` INT NULL AUTO_INCREMENT DEFAULT NULL COMMENT 'Conecção de chave com a tabela tb_Pessoa_Nome',
+  `id_Pessoa_Documento` INT NOT NULL AUTO_INCREMENT COMMENT 'Conecção de chave com a tabela tb_Pessoa_Nome',
   `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de tb_Pessoa',
   `id_TipoDocumento` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
   `vr_Documento` INTEGER NULL DEFAULT NULL,
@@ -57,9 +58,9 @@ CREATE TABLE `tb_Pessoa_Documento` (
 DROP TABLE IF EXISTS `tb_TipoGeral`;
 		
 CREATE TABLE `tb_TipoGeral` (
-  `id_TipoGeral` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `nm_TipoGeral` INTEGER NULL DEFAULT NULL,
-  `nm_Filtro` INTEGER NULL DEFAULT NULL,
+  `id_TipoGeral` INTEGER NOT NULL AUTO_INCREMENT ,
+  `nm_TipoGeral` VARCHAR(100) NULL DEFAULT NULL,
+  `nm_Filtro` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id_TipoGeral`)
 ) COMMENT 'Filtro de Geral ';
 
@@ -71,10 +72,10 @@ CREATE TABLE `tb_TipoGeral` (
 DROP TABLE IF EXISTS `tb_Pessoa_Nome`;
 		
 CREATE TABLE `tb_Pessoa_Nome` (
-  `id_pessoa_Nome` INTEGER NULL AUTO_INCREMENT DEFAULT NULL COMMENT 'Chave-Estrangera da pessoa Nome',
-  `Id_Pessoa` INT NULL AUTO_INCREMENT DEFAULT NULL COMMENT 'Chave-Estrangera de tb_Pessoa',
-  `id_Pessoa_Documento` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de tb_Pessoa_Documento',
-  `nm_Pessoa` INTEGER NULL DEFAULT NULL COMMENT 'Nome Pessoa',
+  `id_pessoa_Nome` INTEGER NOT NULL AUTO_INCREMENT COMMENT 'Chave-Estrangera da pessoa Nome',
+  `id_Pessoa` INT NOT NULL  COMMENT 'Chave-Estrangera de tb_Pessoa',
+  `id_Pessoa_Documento` INT NOT NULL COMMENT 'Chave-Estrangera de tb_Pessoa_Documento',
+  `nm_Pessoa` VARCHAR(250) NOT NULL COMMENT 'Nome Pessoa',
   PRIMARY KEY (`id_pessoa_Nome`)
 ) COMMENT 'Nome de Pessoa Física ou Jurídica.';
 
@@ -86,11 +87,11 @@ CREATE TABLE `tb_Pessoa_Nome` (
 DROP TABLE IF EXISTS `tb_Pessoa_Contatos`;
 		
 CREATE TABLE `tb_Pessoa_Contatos` (
-  `id_Pessoa_Contato` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de tb_Pessoa',
-  `id_TipoContato` INTEGER NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Contato` INTEGER NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `ds_Contato` INTEGER NULL DEFAULT NULL,
+  `id_Pessoa_Contato` INTEGER NOT NULL AUTO_INCREMENT,
+  `id_Pessoa` INT NOT NULL COMMENT 'Chave-Estrangera de tb_Pessoa',
+  `id_TipoContato` INTEGER NOT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
+  `nm_Contato` VARCHAR(250) NOT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
+  `ds_Contato` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id_Pessoa_Contato`)
 ) COMMENT 'Vinculação com chave pessoa tb_Pessoa';
 
@@ -106,6 +107,10 @@ ALTER TABLE `tb_Pessoa_Nome` ADD FOREIGN KEY (Id_Pessoa) REFERENCES `tb_Pessoa` 
 ALTER TABLE `tb_Pessoa_Nome` ADD FOREIGN KEY (id_Pessoa_Documento) REFERENCES `tb_Pessoa_Documento` (`id_Pessoa_Documento`);
 ALTER TABLE `tb_Pessoa_Contatos` ADD FOREIGN KEY (id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
 ALTER TABLE `tb_Pessoa_Contatos` ADD FOREIGN KEY (id_TipoContato) REFERENCES `tb_TipoGeral` (`id_TipoGeral`);
+
+
+
+ALTER TABLE pessoa.tb_Pessoa_Endereco DROP FOREIGN KEY tb_Pessoa_Endereco_ibfk_2;
 
 -- ---
 -- Table Properties
@@ -134,3 +139,4 @@ ALTER TABLE `tb_Pessoa_Contatos` ADD FOREIGN KEY (id_TipoContato) REFERENCES `tb
 -- ('','','','');
 -- INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
 -- ('','','','','');
+
