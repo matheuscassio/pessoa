@@ -52,11 +52,11 @@ CREATE TABLE `tb_Pessoa_Endereco` (
   `id_Pessoa_Endereco` INT NOT NULL AUTO_INCREMENT ,
   `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave Estrangeira com tb_Pessoa',
   `id_TipoLogadouro` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Logadouro` VARCHAR(250) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Complemento` VARCHAR(30) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Numero` VARCHAR(20) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Bairro` VARCHAR(100) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_CEP` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
+  `nm_Logadouro` VARCHAR(250) NULL DEFAULT NULL COMMENT 'Nome logadouro',
+  `nm_Complemento` VARCHAR(30) NULL DEFAULT NULL COMMENT 'Complemento do endereco',
+  `nm_Numero` VARCHAR(20) NULL DEFAULT NULL COMMENT 'Numero do Endereco',
+  `nm_Bairro` VARCHAR(100) NULL DEFAULT NULL COMMENT 'Nome Bairro',
+  `nm_CEP` INT NULL DEFAULT NULL COMMENT 'Numero do Cep',
   PRIMARY KEY (`id_Pessoa_Endereco`)
 ) COMMENT 'Vinculação com tb_Pessoa';
 
@@ -166,4 +166,48 @@ ALTER TABLE `tb_Pessoa_Contatos` ADD FOREIGN KEY (id_TipoContato) REFERENCES `tb
 -- ('','','','');
 -- INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
 -- ('','','','','');
+
+
+
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
+ ('','cncn34n34nf34');
+ INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
+('','','','7217133233','Sao Paulo','01','Ibatuba','');
+ INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDocumento`,`vr_Documento`,`dt_Emissao`,  `nm_OrgaoEmissor`,  `ds_Serie`) VALUES
+ ('','','','34','12-12-1929','sespDf','certidao');
+ INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
+ ('','enderco','quadra');
+ INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
+ ('','','','Sebastião Barbosa');
+ INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
+ ('','','','instagram','sebastibarbosa');
+
+
+ INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
+ ('','');
+ INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
+('','','','7217171717','brasilia','23','taguatinga','239384920');
+ INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDocumento`,`vr_Documento`,`dt_Emissao`,  `nm_OrgaoEmissor`,  `ds_Serie`) VALUES
+ ('','','','34','12-12-1929','sespDf','certidao');
+ INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
+ ('','enderco','quadra');
+ INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
+ ('','','','Sebastião Barbosa');
+ INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
+ ('','','','instagram','sebastibarbosa');
+
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
+ ('','fgj4g484gh4');
+ INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
+('','','','7217154545','Rio de Janero','223','taguatinga norte','2393444343');
+ INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDocumento`,`vr_Documento`,`dt_Emissao`,  `nm_OrgaoEmissor`,  `ds_Serie`) VALUES
+ ('','','','12','14-09-1999','sespRJ','certidao de casamento');
+ INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
+ ('','enderco','rua');
+ INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
+ ('','','','José Afonso');
+ INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
+ ('','','','Facebbok','Jose afons'');
+
+
 
