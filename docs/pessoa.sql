@@ -9,7 +9,6 @@
 -- Table 'tb_Pessoa'
 -- Tabela para o cadastro de Pessoa Física e Jurídica 
 
--- ---
 ALTER TABLE pessoa.tb_Pessoa_Endereco DROP FOREIGN KEY fkPessoa_Endereco_tbPessoa_idPessoa;
 ALTER TABLE pessoa.tb_Pessoa_Endereco DROP FOREIGN KEY fkPessoa_Endereco_tbTipoGeral_idTipoGeral;
 ALTER TABLE pessoa.tb_Pessoa_Endereco DROP FOREIGN KEY fkPessoa_Endereco_tbMunicipio_idMunicipio;
@@ -20,7 +19,6 @@ ALTER TABLE pessoa.tb_Pessoa_Nome DROP FOREIGN KEY fkPessoa_Nome_tbPessoaDocumen
 ALTER TABLE pessoa.tb_Pessoa_Contatos DROP FOREIGN KEY fkPessoa_Contatos_tbPessoa_idPessoa;
 ALTER TABLE pessoa.tb_Pessoa_Contatos DROP FOREIGN KEY fkPessoa_Contatos_tbTipoGeral_idTipoGeral;
 
-
 DROP TABLE IF EXISTS `tb_Pessoa_Endereco`;
 DROP TABLE IF EXISTS `tb_Pessoa_Documento`;
 DROP TABLE IF EXISTS `tb_TipoGeral`;
@@ -29,20 +27,23 @@ DROP TABLE IF EXISTS `tb_Pessoa_Contatos`;
 DROP TABLE IF EXISTS `tb_Pessoa`;
 DROP TABLE IF EXISTS `tb_Municipio`;	
 
-
+-- data de nascimento , nome da mae tudo varchar 100
 CREATE TABLE `tb_Pessoa` (
-  `id_Pessoa` INT NOT NULL AUTO_INCREMENT COMMENT 'Identificação sequêncial de Pessoa.',
+  `id_Pessoa`INT NOT NULL AUTO_INCREMENT COMMENT 'Identificação sequêncial de Pessoa.',
   `tx_Hash` VARCHAR(50) NULL DEFAULT NULL COMMENT 'Algoritmo utilizado para garantir a integridade dos dados da',
+  `dt_Nascimento` DATE NOT NULL COMMENT 'Data de nascimento pra criação do Hash',
+  `nm_Mae` VARCHAR (100) NOT NULL COMMENT 'Nome da Mae pra criação do Hash',
   PRIMARY KEY (`id_Pessoa`),
   UNIQUE KEY (`tx_Hash`)
 ) COMMENT 'Tabela para o cadastro de Pessoa Física e Jurídica ';
 
 
+
 CREATE TABLE `tb_Municipio` (
   `id_Municipio` INT NOT NULL AUTO_INCREMENT COMMENT 'Identificação sequêncial de Municipio',
-  `nm_municipio` VARCHAR(50) NULL DEFAULT NULL COMMENT 'Nome do Municipio',
+  `nm_Municipio` VARCHAR(50) NULL DEFAULT NULL COMMENT 'Nome do Municipio',
   PRIMARY KEY (`id_Municipio`),
-  UNIQUE KEY (`nm_municipio`)
+  UNIQUE KEY (`nm_Municipio`)
 ) COMMENT 'Municipio ';
 
 -- ---
@@ -126,7 +127,6 @@ CREATE TABLE `tb_Pessoa_Contatos` (
 -- ---
 -- Foreign Keys 
 -- ---
-
 ALTER TABLE `tb_Pessoa_Endereco` ADD CONSTRAINT fkPessoa_Endereco_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
 ALTER TABLE `tb_Pessoa_Endereco` ADD CONSTRAINT fkPessoa_Endereco_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoLogadouro) REFERENCES `tb_TipoGeral` (`id_TipoGeral`);
 ALTER TABLE `tb_Pessoa_Endereco` ADD CONSTRAINT fkPessoa_Endereco_tbMunicipio_idMunicipio FOREIGN KEY fkPessoa_Endereco_tbMunicipio_idMunicipio(id_Municipio) REFERENCES `tb_Municipio` (`id_Municipio`);
@@ -137,21 +137,19 @@ ALTER TABLE `tb_Pessoa_Nome` ADD CONSTRAINT fkPessoa_Nome_tbPessoaDocumento_idPe
 ALTER TABLE `tb_Pessoa_Contatos` ADD CONSTRAINT fkPessoa_Contatos_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
 ALTER TABLE `tb_Pessoa_Contatos` ADD CONSTRAINT fkPessoa_Contatos_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoContato) REFERENCES `tb_TipoGeral` (`id_TipoGeral`);
 
-
 DELETE FROM tb_Pessoa;
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
- ('1','45ufnfeu43');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
- ('2','345ufnfeu43');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
- ('3','434hjb34b3');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
- ('4','354jn34jn3n3');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
- ('5','34jr434j3j4bj3');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`) VALUES
- ('6','345u4ehhds');
-
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
+ ('1','1a45ufnfeu43','1989-09-10','Kasandra Abadinel');
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`)VALUES
+ ('2','1b345ufnfeu43','1996-03-08','Judite Siqueira');
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
+ ('3','1c434hjb34b3','2019-09-09','Carla Figuereiro');
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
+ ('4','1d354jn34jn3n3','2009-01-07','Juliana Abratinel');
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
+ ('5','1e34jr434j3j4bj3','2022-01-01','Sirley Pereira');
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
+ ('6','1f345u4ehhds','1978-06-02','Maria de Aparecida');
 
 DELETE FROM tb_TipoGeral;
 INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
@@ -175,6 +173,15 @@ INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
 INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
  ('9','Intagram','TIPO_CONTATO');
 
+INSERT INTO `tb_Municipio` (`id_Municipio`,`nm_Municipio`) VALUES
+ ('1','Sao Paulo');
+INSERT INTO `tb_Municipio` (`id_Municipio`,`nm_Municipio`) VALUES
+ ('2','Brasilia');
+INSERT INTO `tb_Municipio` (`id_Municipio`,`nm_Municipio`) VALUES
+ ('3','Rio de Janeiro');
+INSERT INTO `tb_Municipio` (`id_Municipio`,`nm_Municipio`) VALUES
+ ('4','Rio Grande do Sul');
+
 
 DELETE FROM tb_Pessoa_Documento;
 INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDocumento`,`vr_Documento`,`dt_Emissao`,  `nm_OrgaoEmissor`,  `ds_Serie`) VALUES
@@ -192,20 +199,20 @@ INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDoc
 
 DELETE FROM tb_Pessoa_Endereco ;
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
-('1','1','1','1','Rua','dos coqueiros','101','Taguatinga','19020015');
+('1','1','1','2','Rua','dos coqueiros','101','Taguatinga','19020015');
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
 ('2','2','2','2','Quadra','villa mathias','102','Guara','34929123');
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
-('3','3','3','3','Avenida','Dois Irmaos','103','Ibatuba','45929519');
+('3','3','3','1','Avenida','Dois Irmaos','103','Ibatuba','45929519');
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
-('4','4','2','4','Quadra','dos Poderes','104','Ipanema','Sao paulo','45021380');
+('4','4','2','3','Quadra','dos Poderes','104','Ipanema','45021380');
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
-('5','5','3','5','Avenida','EPNB','105','Aguas Claras','47570813');
+('5','5','3','2','Avenida','EPNB','105','Aguas Claras','47570813');
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
-('6','6','2','6','quadra','Dos Pombos','106','34043028');
+('6','6','2','3','quadra','Dos Pombos','106','Pelotas','34043028');
 
 
- 
+ DELETE FROM tb_Pessoa_Nome ;
  INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
  ('1','1','1','Joao');
 INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
@@ -219,7 +226,7 @@ INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`
 INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
  ('6','6','6','Rodrigo');
  
-
+DELETE FROM tb_Pessoa_Contatos ;
 INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
  ('1','1','7','email','joaao13@gmail.com');
 INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
