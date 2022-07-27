@@ -27,129 +27,32 @@ DROP TABLE IF EXISTS `tb_Pessoa_Contatos`;
 DROP TABLE IF EXISTS `tb_Pessoa`;
 DROP TABLE IF EXISTS `tb_Municipio`;	
 
--- data de nascimento , nome da mae tudo varchar 100
-CREATE TABLE `tb_Pessoa` (
-  `id_Pessoa`INT NOT NULL AUTO_INCREMENT COMMENT 'Identificação sequêncial de Pessoa.',
-  `tx_Hash` VARCHAR(50) NULL DEFAULT NULL COMMENT 'Algoritmo utilizado para garantir a integridade dos dados da',
-  `dt_Nascimento` DATE NOT NULL COMMENT 'Data de nascimento pra criação do Hash',
-  `nm_Mae` VARCHAR (100) NOT NULL COMMENT 'Nome da Mae pra criação do Hash',
-  PRIMARY KEY (`id_Pessoa`),
-  UNIQUE KEY (`tx_Hash`)
-) COMMENT 'Tabela para o cadastro de Pessoa Física e Jurídica ';
-
-
-
-CREATE TABLE `tb_Municipio` (
-  `id_Municipio` INT NOT NULL AUTO_INCREMENT COMMENT 'Identificação sequêncial de Municipio',
-  `nm_Municipio` VARCHAR(50) NULL DEFAULT NULL COMMENT 'Nome do Municipio',
-  PRIMARY KEY (`id_Municipio`),
-  UNIQUE KEY (`nm_Municipio`)
-) COMMENT 'Municipio ';
 
 -- ---
--- Table 'tb_Pessoa_Endereco'
--- Vinculação com tb_Pessoa
--- ---
+-- criação da Tigger Hash apos inserir que tb_pessoa 
+CREATE TRIGGER TgrPreenchimentoHash 
+AFTER INSERT ON `tb_Pessoa_Nome` 
+FOR EACH ROW
+BEGIN
+ SET @dt_Nascimento = (SELECT dt_Nascgeimento FROM tb_Pessoa WHERE id_Pessoa);
+ SET @nm_Mae = (SELECT nm_Mae FROM tb_Pessoa WHERE id_Pessoa);
+    UPDATE tb_Pessoa set tx_Hash= MD5('nm_Mae') WHERE id_Pessoa = NEW.id_Pessoa;
+END;
 
-		
-CREATE TABLE `tb_Pessoa_Endereco` (
-  `id_Pessoa_Endereco` INT NOT NULL AUTO_INCREMENT ,
-  `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave Estrangeira com tb_Pessoa',
-  `id_TipoLogadouro` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `id_Municipio` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera para Municipios',
-  `nm_Logadouro` VARCHAR(250) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Complemento` VARCHAR(30) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Numero` VARCHAR(20) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Bairro` VARCHAR(100) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_CEP` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  PRIMARY KEY (`id_Pessoa_Endereco`)
-) COMMENT 'Vinculação com tb_Pessoa';
-
--- ---
--- Table 'tb_Pessoa_Documento'
--- Vinculação com Tabela tb_Pessoa
--- ---
-
-		
-CREATE TABLE `tb_Pessoa_Documento` (
-  `id_Pessoa_Documento` INT NOT NULL AUTO_INCREMENT COMMENT 'Conecção de chave com a tabela tb_Pessoa_Nome',
-  `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de tb_Pessoa',
-  `id_TipoDocumento` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `vr_Documento` VARCHAR (100) NULL DEFAULT NULL  COMMENT 'Numero do Documento',
-  `dt_Emissao` DATE NULL DEFAULT NULL  COMMENT 'Data de Emissao do Documento',
-  `nm_OrgaoEmissor` VARCHAR (100) NULL DEFAULT NULL  COMMENT 'Numero do Orgao emissor',
-  `ds_Serie` VARCHAR (50) NULL DEFAULT NULL  COMMENT 'Descriçao da Serie do Documento',
-  PRIMARY KEY (`id_Pessoa_Documento`)
-) COMMENT 'Vinculação com Tabela tb_Pessoa';
-
--- ---
--- Table 'tb_TipoGeral'
--- Filtro de Geral 
--- ---
-
-		
-CREATE TABLE `tb_TipoGeral` (
-  `id_TipoGeral` INTEGER NOT NULL AUTO_INCREMENT ,
-  `nm_TipoGeral` VARCHAR(100) NOT NULL COMMENT 'Nome do tipo Geral',
-  `nm_Filtro` VARCHAR(100) NOT NULL COMMENT 'nome do Filtro',
-  PRIMARY KEY (`id_TipoGeral`)
-) COMMENT 'Filtro de Geral ';
-
--- ---
--- Table 'tb_Pessoa_Nome'
--- Nome de Pessoa Física ou Jurídica.
--- ---
-
-		
-CREATE TABLE `tb_Pessoa_Nome` (
-  `id_pessoa_Nome` INTEGER NOT NULL AUTO_INCREMENT COMMENT 'Chave-Estrangera da pessoa Nome',
-  `id_Pessoa` INT NOT NULL  COMMENT 'Chave-Estrangera de tb_Pessoa',
-  `id_Pessoa_Documento` INT NOT NULL COMMENT 'Chave-Estrangera de tb_Pessoa_Documento',
-  `nm_Pessoa` VARCHAR(250) NOT NULL COMMENT 'Nome Pessoa',
-  PRIMARY KEY (`id_pessoa_Nome`)
-) COMMENT 'Nome de Pessoa Física ou Jurídica.';
-
--- ---
--- Table 'tb_Pessoa_Contatos'
--- Vinculação com chave pessoa tb_Pessoa
--- ---
-
-		
-CREATE TABLE `tb_Pessoa_Contatos` (
-  `id_Pessoa_Contato` INTEGER NOT NULL AUTO_INCREMENT,
-  `id_Pessoa` INT NOT NULL COMMENT 'Chave-Estrangera de tb_Pessoa',
-  `id_TipoContato` INTEGER NOT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `nm_Contato` VARCHAR(250) NOT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
-  `ds_Contato` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id_Pessoa_Contato`)
-) COMMENT 'Vinculação com chave pessoa tb_Pessoa';
-
--- ---
--- Foreign Keys 
--- ---
-ALTER TABLE `tb_Pessoa_Endereco` ADD CONSTRAINT fkPessoa_Endereco_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_Pessoa_Endereco` ADD CONSTRAINT fkPessoa_Endereco_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoLogadouro) REFERENCES `tb_TipoGeral` (`id_TipoGeral`);
-ALTER TABLE `tb_Pessoa_Endereco` ADD CONSTRAINT fkPessoa_Endereco_tbMunicipio_idMunicipio FOREIGN KEY fkPessoa_Endereco_tbMunicipio_idMunicipio(id_Municipio) REFERENCES `tb_Municipio` (`id_Municipio`);
-ALTER TABLE `tb_Pessoa_Documento`ADD CONSTRAINT fkPessoa_Documento_tbTipoGeral_idTipoGeral FOREIGN KEY (id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_Pessoa_Documento`ADD CONSTRAINT fkPessoa_Documento_tbPessoa_idPessoa FOREIGN KEY (id_TipoDocumento) REFERENCES `tb_TipoGeral` (`id_TipoGeral`);
-ALTER TABLE `tb_Pessoa_Nome` ADD CONSTRAINT fkPessoa_Nome_tbPessoa_idPessoa FOREIGN KEY (Id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_Pessoa_Nome` ADD CONSTRAINT fkPessoa_Nome_tbPessoaDocumento_idPessoaDocumento FOREIGN KEY (id_Pessoa_Documento) REFERENCES `tb_Pessoa_Documento` (`id_Pessoa_Documento`);
-ALTER TABLE `tb_Pessoa_Contatos` ADD CONSTRAINT fkPessoa_Contatos_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_Pessoa_Contatos` ADD CONSTRAINT fkPessoa_Contatos_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoContato) REFERENCES `tb_TipoGeral` (`id_TipoGeral`);
 
 DELETE FROM tb_Pessoa;
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
- ('1','1a45ufnfeu43','1989-09-10','Kasandra Abadinel');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`)VALUES
- ('2','1b345ufnfeu43','1996-03-08','Judite Siqueira');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
- ('3','1c434hjb34b3','2019-09-09','Carla Figuereiro');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
- ('4','1d354jn34jn3n3','2009-01-07','Juliana Abratinel');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
- ('5','1e34jr434j3j4bj3','2022-01-01','Sirley Pereira');
-INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`) VALUES
- ('6','1f345u4ehhds','1978-06-02','Maria de Aparecida');
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`) VALUES
+ ('1','1a45ufnfeu43','1989-09-10','Kasandra Abadinel',TRUE);
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`)VALUES
+ ('2','1b345ufnfeu43','1996-03-08','Judite Siqueira',FALSE);
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`) VALUES
+ ('3','1c434hjb34b3','2019-09-09','Carla Figuereiro',TRUE);
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`) VALUES
+ ('4','1d354jn34jn3n3','2009-01-07','Juliana Abratinel',TRUE);
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`) VALUES
+ ('5','1e34jr434j3j4bj3','2022-01-01','Sirley Pereira',FALSE);
+INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`) VALUES
+ ('6','1f345u4ehhds','1978-06-02','Maria de Aparecida',TRUE);
 
 DELETE FROM tb_TipoGeral;
 INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
