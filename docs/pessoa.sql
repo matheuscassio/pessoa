@@ -26,8 +26,11 @@ DROP TABLE IF EXISTS `tb_Pessoa_Nome`;
 DROP TABLE IF EXISTS `tb_Pessoa_Contatos`;
 DROP TABLE IF EXISTS `tb_Pessoa`;
 DROP TABLE IF EXISTS `tb_Municipio`;	
+DROP TRIGGER IF EXISTS pessoa.TgrPreenchimentoHashPessoaNome;
+DROP TRIGGER IF EXISTS pessoa.TgrPreenchimentoHashPessoa;
 
--- data de nascimento , nome da mae tudo varchar 100
+
+
 CREATE TABLE `tb_Pessoa` (
   `id_Pessoa`INT NOT NULL AUTO_INCREMENT COMMENT 'Identificação sequêncial de Pessoa.',
   `tx_Hash` VARCHAR(50) NULL DEFAULT NULL COMMENT 'Algoritmo utilizado para garantir a integridade dos dados da',
@@ -39,6 +42,12 @@ CREATE TABLE `tb_Pessoa` (
 ) COMMENT 'Tabela para o cadastro de Pessoa Física e Jurídica ';
 
 
+DELIMITER $$
+$$
+CREATE DEFINER=`pessoa`@`%` TRIGGER `TgrPreenchimentoHashPessoa` BEFORE INSERT ON `tb_Pessoa` FOR EACH ROW BEGIN 
+	SET tx_Hash=NEW.id_Pessoa;
+END$$
+DELIMITER ;
 
 
 CREATE TABLE `tb_Municipio` (
@@ -51,9 +60,7 @@ CREATE TABLE `tb_Municipio` (
 -- ---
 -- Table 'tb_Pessoa_Endereco'
 -- Vinculação com tb_Pessoa
--- ---
-
-		
+-- ---	
 CREATE TABLE `tb_Pessoa_Endereco` (
   `id_Pessoa_Endereco` INT NOT NULL AUTO_INCREMENT ,
   `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave Estrangeira com tb_Pessoa',
@@ -111,6 +118,15 @@ CREATE TABLE `tb_Pessoa_Nome` (
   PRIMARY KEY (`id_pessoa_Nome`)
 ) COMMENT 'Nome de Pessoa Física ou Jurídica.';
 
+DELIMITER $$
+$$
+CREATE DEFINER=`pessoa`@`%` TRIGGER `TgrPreenchimentoHashPessoaNome` BEFORE INSERT ON `tb_Pessoa_Nome` FOR EACH ROW BEGIN 
+	SET @dt_Nascimento = (SELECT dt_Nascimento FROM tb_Pessoa WHERE id_Pessoa=NEW.id_Pessoa);
+    SET @nm_Mae = (SELECT nm_Mae FROM tb_Pessoa WHERE id_Pessoa=NEW.id_Pessoa);
+	UPDATE `tb_Pessoa` SET tx_Hash=MD5(CONCAT(NEW.nm_Pessoa, @nm_Mae, @dt_Nascimento)) WHERE id_Pessoa=NEW.id_Pessoa;
+END$$
+DELIMITER ;
+
 -- ---
 -- Table 'tb_Pessoa_Contatos'
 -- Vinculação com chave pessoa tb_Pessoa
@@ -139,9 +155,15 @@ ALTER TABLE `tb_Pessoa_Nome` ADD CONSTRAINT fkPessoa_Nome_tbPessoaDocumento_idPe
 ALTER TABLE `tb_Pessoa_Contatos` ADD CONSTRAINT fkPessoa_Contatos_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_Pessoa` (`id_Pessoa`);
 ALTER TABLE `tb_Pessoa_Contatos` ADD CONSTRAINT fkPessoa_Contatos_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoContato) REFERENCES `tb_TipoGeral` (`id_TipoGeral`);
 
-
-
+DELETE FROM tb_Pessoa_Endereco ;
+DELETE FROM tb_Pessoa_Nome ;
+DELETE FROM tb_Pessoa_Documento;
+DELETE FROM tb_Pessoa_Contatos ;
 DELETE FROM tb_Pessoa;
+DELETE FROM tb_TipoGeral;
+DELETE FROM tb_Municipio;
+
+
 INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`) VALUES
  ('1','1a45ufnfeu43','1989-09-10','Kasandra Abadinel',TRUE);
 INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`)VALUES
@@ -155,7 +177,6 @@ INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embr
 INSERT INTO `tb_Pessoa` (`id_Pessoa`,`tx_Hash`,`dt_Nascimento`,`nm_Mae`,`st_Embriao`) VALUES
  ('6','1f345u4ehhds','1978-06-02','Maria de Aparecida',TRUE);
 
-DELETE FROM tb_TipoGeral;
 INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
  ('1','Rua','TIPO_ENDERECO');
 INSERT INTO `tb_TipoGeral` (`id_TipoGeral`,`nm_TipoGeral`,`nm_Filtro`) VALUES
@@ -187,7 +208,6 @@ INSERT INTO `tb_Municipio` (`id_Municipio`,`nm_Municipio`) VALUES
  ('4','Rio Grande do Sul');
 
 
-DELETE FROM tb_Pessoa_Documento;
 INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDocumento`,`vr_Documento`,`dt_Emissao`,  `nm_OrgaoEmissor`,  `ds_Serie`) VALUES
  ('1','1','4','01239403003','1998-03-31','SESP-DF','RTETRET54');
 INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDocumento`,`vr_Documento`,`dt_Emissao`,  `nm_OrgaoEmissor`,  `ds_Serie`) VALUES
@@ -201,7 +221,6 @@ INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDoc
 INSERT INTO `tb_Pessoa_Documento` (`id_Pessoa_Documento`,`id_Pessoa`,`id_TipoDocumento`,`vr_Documento`,`dt_Emissao`,  `nm_OrgaoEmissor`,  `ds_Serie`) VALUES
  ('6','6','4','89037473103','1998-03-03','SESP-DF','WDQE23');
 
-DELETE FROM tb_Pessoa_Endereco ;
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
 ('1','1','1','2','Rua','dos coqueiros','101','Taguatinga','19020015');
 INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogadouro`,`id_Municipio`,`nm_Logadouro`,`nm_Complemento`,`nm_Numero`,`nm_Bairro`,`nm_CEP`) VALUES
@@ -216,7 +235,6 @@ INSERT INTO `tb_Pessoa_Endereco` (`id_Pessoa_Endereco`,`id_Pessoa`,`id_TipoLogad
 ('6','6','2','3','quadra','Dos Pombos','106','Pelotas','34043028');
 
 
- DELETE FROM tb_Pessoa_Nome ;
  INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
  ('1','1','1','Joao');
  INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
@@ -230,7 +248,6 @@ INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`
 INSERT INTO `tb_Pessoa_Nome` (`id_pessoa_Nome`,`Id_Pessoa`,`id_Pessoa_Documento`,`nm_Pessoa`) VALUES
  ('6','6','6','Rodrigo');
  
-DELETE FROM tb_Pessoa_Contatos ;
 INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
  ('1','1','7','email','joaao13@gmail.com');
 INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
@@ -244,15 +261,7 @@ INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContat
 INSERT INTO `tb_Pessoa_Contatos` (`id_Pessoa_Contato`,`id_Pessoa`,`id_TipoContato`,`nm_Contato`,`ds_Contato`) VALUES
  ('6','6','9','Instagram','@rodrigo45');
 
--- criação da Tigger Hash apos inserir que tb_pessoa 
-CREATE TRIGGER TgrPreenchimentoHash 
-AFTER INSERT ON `tb_Pessoa_Nome` 
-FOR EACH ROW
-BEGIN
- SET @dt_Nascimento = (SELECT dt_Nascgeimento FROM tb_Pessoa WHERE id_Pessoa);
- SET @nm_Mae = (SELECT nm_Mae FROM tb_Pessoa WHERE id_Pessoa);
-    UPDATE tb_Pessoa set tx_Hash= MD5('nm_Mae') WHERE id_Pessoa = NEW.id_Pessoa;
-END;
+
 
 
 
