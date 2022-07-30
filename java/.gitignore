@@ -1,7 +1,9 @@
 target/
 .metadata/
-
-
-
+.settings/
+.project
+.idea/
+.classpath
+.vscode/
 
 
