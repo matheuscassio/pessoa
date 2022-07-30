@@ -20,7 +20,7 @@ public class PessoaDocumento {
 	@Id
 	@Column (name="id_Documento")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_PessoaDocumento;
+	private long id;
 	
 	private Pessoa pessoa;
 	

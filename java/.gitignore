@@ -6,4 +6,4 @@ target/
 .classpath
 .vscode/
 
-
+bin/
