@@ -4,20 +4,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Data
-@Table(name="tb_Pessoa")
-public class Pessoa {
-	
+@Table(name = "tb_Pessoa")
+public class Pessoa implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column (name="id_Pessoa")
 	//@GeneratedValue(strategy = GeneratioType.IDENTITY)
