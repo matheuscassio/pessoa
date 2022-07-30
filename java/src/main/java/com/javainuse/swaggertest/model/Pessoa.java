@@ -1,9 +1,7 @@
 package com.javainuse.swaggertest.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,19 +19,17 @@ public class Pessoa implements Serializable {
 
 	@Id
 	@Column (name="id_Pessoa")
-	//@GeneratedValue(strategy = GeneratioType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column (name="tx_Hach")
+	@Column (name="tx_Hash")
 	private String hash;
 	
-	@Column (name="idt_Nascimento")
+	@Column (name="dt_Nascimento")
 	private String dataNascimento;
 	
 	@Column (name="nm_Mae")
 	private String nomeMae;
-	
-	//gerar get in sets
 
 }
 

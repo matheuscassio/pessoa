@@ -1,9 +1,6 @@
 package com.javainuse.swaggertest.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,15 +17,19 @@ public class PessoaEndereco{
 	
 	@Id
 	@Column (name="id_Pessoa_Endereco")
-	//@GeneratedValue(strategy = GeneratioType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_Pessoa")
 	private Pessoa pessoa;
-	
-	private PessoaDocumento pessoaDocumento;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "id_TipoLogradouro")
 	private TipoGeral tipoGeral;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_Municipio")
 	private Municipio municipio;
 	
 	@Column (name="nm_Logadouro")

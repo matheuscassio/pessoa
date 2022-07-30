@@ -1,9 +1,6 @@
 package com.javainuse.swaggertest.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +17,7 @@ public class Municipio{
 	
 	@Id
 	@Column (name="id_Municipio")
-	//@GeneratedValue(strategy = GeneratioType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column (name="nm_Municipio")

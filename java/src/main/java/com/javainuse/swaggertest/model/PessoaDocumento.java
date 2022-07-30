@@ -16,15 +16,15 @@ public class PessoaDocumento implements Serializable {
 
 	@Id
 	@Column (name="id_Pessoa_Documento")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "pessoa_id_pessoa")
+	@JoinColumn(name = "id_Pessoa")
 	private Pessoa pessoa;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_Tipo_Documento")
+	@JoinColumn(name = "id_TipoDocumento")
 	private TipoGeral tipoGeral;
 	
 	@Column (name = "vr_Documento")
