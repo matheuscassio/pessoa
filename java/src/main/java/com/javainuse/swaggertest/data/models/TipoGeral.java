@@ -1,4 +1,4 @@
-package com.javainuse.swaggertest.model;
+package com.javainuse.swaggertest.data.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

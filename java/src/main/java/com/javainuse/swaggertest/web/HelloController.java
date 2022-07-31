@@ -1,4 +1,4 @@
-package com.javainuse.swaggertest;
+package com.javainuse.swaggertest.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

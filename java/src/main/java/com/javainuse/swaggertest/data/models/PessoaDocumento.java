@@ -1,10 +1,8 @@
-package com.javainuse.swaggertest.model;
+package com.javainuse.swaggertest.data.models;
 
 import javax.persistence.*;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 
