@@ -5,7 +5,7 @@ import com.javainuse.swaggertest.data.playloads.response.MessageResponse;
 import com.javainuse.swaggertest.data.models.Pessoa;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Component
@@ -19,7 +19,7 @@ public interface PessoaService {
 
     Pessoa getASinglePessoa(Integer employeeId);
 
-    List<Pessoa> getAllPessoa();
+    ArrayList<Pessoa> getAllPessoa();
 
-
+    Optional<ArrayList<Pessoa>> getAll() throws Exception;
 }
