@@ -24,8 +24,7 @@ import java.util.Optional;
 //@Tag(name = "Pessoas", description = "Operações relativas ao Cadastro de Pessoas")
 public class PessoaController {
 
-
-    private final PessoaService pessoaService;
+    private final PessoaService pessoaService = null;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -53,7 +52,7 @@ public class PessoaController {
         }
     }
 
-    @DeleteMapping("/{hashPessoa}}")
+    @DeleteMapping("/{hashPessoa}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "Pessoas", value = "Deletar uma pessoas da tabela.")
     public Boolean deletePessoa(@ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash) throws Exception {

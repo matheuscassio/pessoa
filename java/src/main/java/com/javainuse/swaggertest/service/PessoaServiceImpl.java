@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PessoaServiceImpl implements PessoaService {
 
-    private final PessoaRepository pessoaRepository;
+    private final PessoaRepository pessoaRepository = null;
 
     @Override
     public Optional<ArrayList<Pessoa>> getAll() throws Exception {
