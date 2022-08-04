@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface PessoaService {
 
     Optional<ArrayList<Pessoa>> getAll() throws Exception;
+
+    Optional<Pessoa> findByHash(String hash) throws Exception;
 }

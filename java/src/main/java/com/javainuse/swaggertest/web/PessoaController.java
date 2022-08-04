@@ -3,6 +3,7 @@ package com.javainuse.swaggertest.web;
 import com.javainuse.swaggertest.data.models.Pessoa;
 import com.javainuse.swaggertest.service.PessoaService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class PessoaController {
 
     private final PessoaService pessoaService;
 
-    @GetMapping("")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "Pessoas", value = "Listar todas as pessoas da tabela.")
     public ArrayList<Pessoa> listarPessoas() throws Exception {
@@ -37,5 +38,29 @@ public class PessoaController {
             return null;
         }
     }
+
+    @GetMapping(value = "/{hashPessoa}", name = "hashPessoa")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "Pessoas", value = "Recuperar uma pessoas.")
+    public Pessoa findByHash(
+            @ApiParam(value = "Código digital de Pessoa.", required = true)
+            final @PathVariable(required = true) String hashPessoa) throws Exception {
+        final Optional<Pessoa> pessoa = pessoaService.findByHash(hashPessoa);
+        if (pessoa.isPresent()) {
+            return pessoa.get();
+        } else {
+            return null;
+        }
+    }
+
+    @DeleteMapping("/{hashPessoa}}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "Pessoas", value = "Deletar uma pessoas da tabela.")
+    public Boolean deletePessoa(@ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash) throws Exception {
+        final Optional<ArrayList<Pessoa>> lista = pessoaService.getAll();
+        return true;
+    }
+
+
 
 }
