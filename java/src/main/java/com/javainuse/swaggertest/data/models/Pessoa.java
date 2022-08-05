@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.Date;
 
 @Builder
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class Pessoa implements Serializable {
 	private String hash;
 	
 	@Column (name="dt_Nascimento")
-	private String dataNascimento;
+	private Date dataNascimento;
 	
 	@Column (name="nm_Mae")
 	private String nomeMae;

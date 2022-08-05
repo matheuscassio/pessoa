@@ -1,6 +1,7 @@
 package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.Pessoa;
+import com.javainuse.swaggertest.data.playloads.request.PessoaRequest;
 import com.javainuse.swaggertest.service.PessoaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -56,10 +58,25 @@ public class PessoaController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "Pessoas", value = "Deletar uma pessoas da tabela.")
     public Boolean deletePessoa(@ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash) throws Exception {
-        final Optional<ArrayList<Pessoa>> lista = pessoaService.getAll();
-        return true;
+        return pessoaService.deleteByHash(hash);
     }
 
+    @PutMapping("/{hashPessoa}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "Pessoas", value = "Alterar os dados de uma pessoas da tabela.")
+    public Optional<Pessoa> updatePessoa(
+            @ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash,
+            @Valid @RequestBody PessoaRequest request) throws Exception {
+        return pessoaService.update(hash, request);
+    }
+
+    @PostMapping("/concepcao")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "Pessoas", value = "Incluir dados de uma pessoas na tabela.")
+    public Optional<Pessoa> insertPessoa(
+            @Valid @RequestBody PessoaRequest request) throws Exception {
+        return pessoaService.insert(request);
+    }
 
 
 }

@@ -1,19 +1,27 @@
 package com.javainuse.swaggertest.data.playloads.request;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotBlank;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel(value = "PessoaRequest", description = "Modelo que representa uma requisição para alterar uma pessoa.")
 public class PessoaRequest {
 
-    @NotBlank
-    @NotNull
-    private String hash;
+    @ApiModelProperty(value = "Data de Nascimento da Pessoa.", position = 1)
+    @NotNull(message = "A data de nascimento não pode ser nula.")
+    private Date dataNascimento;
 
-    @NotBlank
-    @NotNull
+    @ApiModelProperty(value = "O nome da mãe da Pessoa.", position = 1)
+    @NotNull(message = "O nome da mãe não pode ser nulo.")
     private String nomeMae;
-
-
 }
