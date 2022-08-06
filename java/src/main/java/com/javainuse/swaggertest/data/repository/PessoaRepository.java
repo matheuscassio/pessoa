@@ -31,15 +31,16 @@ public interface PessoaRepository extends CrudRepository <Pessoa, Long> {
             "set p.dataNascimento = :dataNascimento, " +
             "    p.nomeMae = :nomeMae " +
             "where p.hash = :hash")
-    Optional<Pessoa> update(
+    Integer update(
             @Param("hash") String hash,
             @Param("nomeMae") String nomeMae,
             @Param("dataNascimento") Date dataNascimento);
 
+    @Modifying
     @Query(value = " " +
             "INSERT INTO tb_pessoa (dt_nascimento, nm_Mae) " +
             "VALUES (:dataNascimento, :nomeMae) ", nativeQuery = true)
-    Optional<Pessoa> insert(
+    Integer insert(
             @Param("nomeMae") String nomeMae,
             @Param("dataNascimento") Date dataNascimento);
 

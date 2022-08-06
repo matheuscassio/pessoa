@@ -2,6 +2,7 @@ package com.javainuse.swaggertest.data.models;
 
 import javax.persistence.*;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,12 +17,13 @@ import java.util.Date;
 @Data
 @Table(name = "tb_pessoa")
 public class Pessoa implements Serializable {
-	private static final long serialVersionUID = 1L;
 
+	@ApiModelProperty(notes = "Identificador sequencial.",
+			example = "1", required = true, position = 0)
 	@Id
 	@Column (name="id_Pessoa")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Integer id;
 	
 	@Column (name="tx_Hash")
 	private String hash;

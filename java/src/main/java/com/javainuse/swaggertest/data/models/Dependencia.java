@@ -1,34 +1,40 @@
 package com.javainuse.swaggertest.data.models;
 
+import javax.persistence.*;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Data
-@Table(name="tb_tipogeral")
-public class TipoGeral {
+@Table(name="tb_dependencia")
+public class Dependencia {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",
 			example = "1", required = true, position = 0)
 	@Id
+	@Column (name="id_Depedencia")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_TipoGeral", nullable = false)
 	private Integer id;
 	
-	@Column (name="nm_TipoGeral")
-	private String nomeTipoGeral;
+	@ManyToOne
+	@JoinColumn(name = "id_Pessoa")
+	private Pessoa pessoa;
 	
-	@Column (name="nm_Filtro")
-	private String nomeFiltro;
+	@ManyToOne
+	@JoinColumn(name = "id_PessoaDependente")
+	private Pessoa pessoa1;
+	
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_TipoDependencia")
+	private TipoGeral tipoGeral;
 
 
 }
