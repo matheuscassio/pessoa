@@ -34,18 +34,18 @@ public interface PessoaEnderecoRepository extends CrudRepository <PessoaEndereco
             "    pe.nomeBairro = :nomeBairro, " +
             "    pe.nomeCep= :nomeCep " +
             "where pe.id = :id")
-    Optional<PessoaEndereco> update(
+    Integer  update(
             @Param("nomeLogadouro") Integer id,
             @Param("nomeLogadouro") String nomeLogadouro,
             @Param("nomeComplemento") String nomeComplemento,
             @Param("nomeNumero") String nomeNumero,
             @Param("nomeBairro") String nomeBairro,
             @Param("nomeCep") String nomeCep);
-
+    @Modifying
     @Query(value = " " +
             "INSERT INTO tb_pessoa_enderco (nm_Logadouro, nm_Complemento, nm_Numero, nm_Bairro, nm_CEP) " +
             "VALUES (:dataNascimento, :nomeLogadouro, :nomeComplemento, :nomeNumero, :nomeBairro, :nomeCep) ", nativeQuery = true)
-    Optional<PessoaEndereco> insert(
+    Integer insert(
     		@Param("nomeLogadouro") String nomeLogadouro,
             @Param("nomeComplemento") String nomeComplemento,
             @Param("nomeNumero") String nomeNumero,

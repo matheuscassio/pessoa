@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/v1/tipos")
 @RequiredArgsConstructor
+@Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
@@ -25,7 +27,7 @@ import java.util.Optional;
     })
 public class TipoGeralController {
 
-    private final TipoGeralService tipoService = null;
+    private final TipoGeralService tipoService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -71,7 +73,7 @@ public class TipoGeralController {
     @PutMapping("/{idTipoGeral}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipo-geral-controller", value = "Alterar os dados de uma tipos da tabela.")
-    public Optional<TipoGeral> updatePessoa(
+    public Integer updatePessoa(
             @ApiParam(name = "idTipoGeral",
                     value = "Código de identificação de Tipo.",
                     example = "1",
@@ -84,7 +86,7 @@ public class TipoGeralController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipo-geral-controller", value = "Incluir dados de uma tipos na tabela.")
-    public Optional<TipoGeral> insert(
+    public Integer insert(
             @Valid @RequestBody TipoGeralRequest request) throws Exception {
         return tipoService.insert(request);
     }

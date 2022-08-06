@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 //@log4j2
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PessoaNomeServiceImpl implements PessoaNomeService {
 
-    private final PessoaNomeRepository pessoaNomeRepository = null;
+    private final PessoaNomeRepository pessoaNomeRepository ;
 
     @Override
     public Optional<ArrayList<PessoaNome>> getAll() throws Exception {
@@ -28,11 +27,11 @@ public class PessoaNomeServiceImpl implements PessoaNomeService {
     }
 
     @Override
-    public Optional<PessoaNome> update(Integer idPessoaNome, PessoaNomeRequest request) throws Exception {
+    public Integer update(Integer idPessoaNome, PessoaNomeRequest request) throws Exception {
         Optional<PessoaNome> pessoaNomeAlterada = this.pessoaNomeRepository.findById(idPessoaNome);
         if (pessoaNomeAlterada.isPresent()) {
             return this.pessoaNomeRepository.update(idPessoaNome, request.getNomePessoa());
-        } else return pessoaNomeAlterada;
+        } else return 0;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class PessoaNomeServiceImpl implements PessoaNomeService {
     }
 
     @Override
-    public Optional<PessoaNome> insert(PessoaNomeRequest request) throws Exception {
+    public Integer insert(PessoaNomeRequest request) throws Exception {
         return this.pessoaNomeRepository.insert(request.getNomePessoa());
     }
 

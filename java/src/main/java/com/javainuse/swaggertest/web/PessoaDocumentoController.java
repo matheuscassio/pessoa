@@ -1,6 +1,6 @@
 package com.javainuse.swaggertest.web;
 
-import com.javainuse.swaggertest.data.models.PessoaContato;
+
 import com.javainuse.swaggertest.data.models.PessoaDocumento;
 import com.javainuse.swaggertest.data.playloads.request.PessoaDocumentoRequest;
 import com.javainuse.swaggertest.service.PessoaDocumentoService;
@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/v1/pessoa/documentos")
 @RequiredArgsConstructor
+@Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
@@ -26,7 +28,7 @@ import java.util.Optional;
     })
 public class PessoaDocumentoController {
 
-    private final PessoaDocumentoService pessoaDocumentoService = null;
+    private final PessoaDocumentoService pessoaDocumentoService ;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -72,7 +74,7 @@ public class PessoaDocumentoController {
     @PutMapping("/{idPessoaDocumento}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-documento-controller", value = "Alterar os dados de uma pessoas Documento da tabela.")
-    public Optional<PessoaDocumento> updatePessoaDocumento(
+    public Integer updatePessoaDocumento(
             @ApiParam(name = "idPessoaContato",
                     value = "Código de identificação do documento.",
                     example = "1",
@@ -85,7 +87,7 @@ public class PessoaDocumentoController {
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-documento-controller", value = "Incluir dados de uma pessoas documentos na tabela.")
-    public Optional<PessoaDocumento> insertPessoaDocumento(
+    public Integer insertPessoaDocumento(
             @Valid @RequestBody PessoaDocumentoRequest request) throws Exception {
         return pessoaDocumentoService.insert(request);
     }

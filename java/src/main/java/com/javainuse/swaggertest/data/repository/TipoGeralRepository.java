@@ -31,15 +31,16 @@ public interface TipoGeralRepository extends CrudRepository <TipoGeral, Integer>
             "set tg.nomeTipoGeral = :nomeTipoGeral, " +
             "    tg.nomeFiltro = :nomeFiltro " +
             "where tg.id = :id")
-    Optional<TipoGeral> update(
+    
+    Integer update(
             @Param("id") Integer id,
             @Param("nomeTipoGeral") String nomeTipoGeral,
             @Param("nomeFiltro") String nomeFiltro);
-
+    @Modifying
     @Query(value = " " +
             "INSERT INTO tb_TipoGeral (nm_TipoGeral, nm_Filtro) " +
             "VALUES (:nomeTipoGeral, :nomeFiltro) ", nativeQuery = true)
-    Optional<TipoGeral> insert(
+    Integer insert(
             @Param("nomeTipoGeral") String nomeTipoGeral,
             @Param("nomeFiltro") String nomeFiltro);
 

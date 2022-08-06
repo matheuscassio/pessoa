@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 //@log4j2
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PessoaEnderecoServiceImpl implements PessoaEnderecoService {
 
-    private final PessoaEnderecoRepository pessoaEnderecoRepository = null;
+    private final PessoaEnderecoRepository pessoaEnderecoRepository ;
 
     @Override
     public Optional<ArrayList<PessoaEndereco>> getAll() throws Exception {
@@ -28,11 +27,11 @@ public class PessoaEnderecoServiceImpl implements PessoaEnderecoService {
     }
 
     @Override
-    public Optional<PessoaEndereco> update(Integer idPessoaEndereco, PessoaEnderecoRequest request) throws Exception {
+    public Integer update(Integer idPessoaEndereco, PessoaEnderecoRequest request) throws Exception {
         Optional<PessoaEndereco> pessoaEnderecoAlterada = this.pessoaEnderecoRepository.findById(idPessoaEndereco);
         if (pessoaEnderecoAlterada.isPresent()) {
             return this.pessoaEnderecoRepository.update(idPessoaEndereco, request.getNomeLogadouro(), request.getNomeComplemento(), request.getNomeNumero(), request.getNomeBairro(), request.getNomeCep());
-        } else return pessoaEnderecoAlterada;
+        } else return 0;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class PessoaEnderecoServiceImpl implements PessoaEnderecoService {
     }
 
     @Override
-    public Optional<PessoaEndereco> insert(PessoaEnderecoRequest request) throws Exception {
+    public Integer insert(PessoaEnderecoRequest request) throws Exception {
         return this.pessoaEnderecoRepository.insert(request.getNomeLogadouro(), request.getNomeComplemento(), request.getNomeNumero(), request.getNomeBairro(), request.getNomeCep());
     }
 

@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PessoaContatoServiceImpl implements PessoaContatoService {
 
-    private final PessoaContatoRepository pessoaContatoRepository = null;
+    private final PessoaContatoRepository pessoaContatoRepository ;
 
     @Override
     public Optional<ArrayList<PessoaContato>> getAll() throws Exception {
@@ -22,11 +22,11 @@ public class PessoaContatoServiceImpl implements PessoaContatoService {
     }
 
     @Override
-    public Optional<PessoaContato> update(Integer idPessoaContato, PessoaContatoRequest request) throws Exception {
+    public Integer update(Integer idPessoaContato, PessoaContatoRequest request) throws Exception {
         Optional<PessoaContato> pessoaContatoAlterada = this.pessoaContatoRepository.findById(idPessoaContato);
         if (pessoaContatoAlterada.isPresent()) {
             return this.pessoaContatoRepository.update(idPessoaContato, request.getNomeContato(), request.getDescricaoContato());
-        } else return pessoaContatoAlterada;
+        } else return 0;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PessoaContatoServiceImpl implements PessoaContatoService {
     }
 
     @Override
-    public Optional<PessoaContato> insert(PessoaContatoRequest request) throws Exception {
+    public Integer insert(PessoaContatoRequest request) throws Exception {
         return this.pessoaContatoRepository.insert(request.getIdPessoa(), request.getNomeContato(), request.getDescricaoContato());
     }
 

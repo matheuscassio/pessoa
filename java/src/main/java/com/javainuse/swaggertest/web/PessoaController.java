@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/v1/pessoa")
 @RequiredArgsConstructor
+@Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
@@ -25,7 +27,7 @@ import java.util.Optional;
     })
 public class PessoaController {
 
-    private final PessoaService pessoaService = null;
+    private final PessoaService pessoaService ;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -63,7 +65,7 @@ public class PessoaController {
     @PutMapping("/{hashPessoa}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-controller", value = "Alterar os dados de uma pessoas da tabela.")
-    public Optional<Pessoa> updatePessoa(
+    public Integer updatePessoa(
             @ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash,
             @Valid @RequestBody PessoaRequest request) throws Exception {
         return pessoaService.update(hash, request);
@@ -72,7 +74,7 @@ public class PessoaController {
     @PostMapping("/concepcao")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-controller", value = "Incluir dados de uma pessoas na tabela.")
-    public Optional<Pessoa> insertPessoa(
+    public Integer insertPessoa(
             @Valid @RequestBody PessoaRequest request) throws Exception {
         return pessoaService.insert(request);
     }

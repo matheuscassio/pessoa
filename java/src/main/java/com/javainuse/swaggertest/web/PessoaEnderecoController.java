@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/v1/pessoa/endereco")
 @RequiredArgsConstructor
+@Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
@@ -25,7 +27,7 @@ import java.util.Optional;
     })
 public class PessoaEnderecoController {
 
-    private final PessoaEnderecoService pessoaEnderecoService = null;
+    private final PessoaEnderecoService pessoaEnderecoService ;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -71,7 +73,7 @@ public class PessoaEnderecoController {
     @PutMapping("/{idPessoaEndereco}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-endereco-controller", value = "Alterar os dados de uma pessoas Endereco da tabela.")
-    public Optional<PessoaEndereco> updatePessoaEndereco(
+    public Integer updatePessoaEndereco(
             @ApiParam(name = "idPessoaContato",
                     value = "Código de identificação de endereço.",
                     example = "1",
@@ -84,7 +86,7 @@ public class PessoaEnderecoController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-endereco-controller", value = "Incluir dados de uma pessoas Endereco na tabela.")
-    public Optional<PessoaEndereco> insertPessoa(
+    public Integer insertPessoa(
             @Valid @RequestBody PessoaEnderecoRequest request) throws Exception {
         return pessoaEnderecoService.insert(request);
     }

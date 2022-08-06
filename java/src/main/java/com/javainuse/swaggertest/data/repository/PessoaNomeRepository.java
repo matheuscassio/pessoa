@@ -30,14 +30,15 @@ public interface PessoaNomeRepository extends CrudRepository <PessoaNome, Intege
             "update PessoaNome pn "+
             "set pn.nomePessoa = :nomePessoa " +
             "where pn.id = :id")
-    Optional<PessoaNome> update(
+    
+    Integer update(
             @Param("id") Integer id,
             @Param("nomePessoa") String nomePessoa);
-
+    @Modifying
     @Query(value = " " +
             "INSERT INTO tb_pessoa_nome (nm_Pessoa) " +
             "VALUES (:nomePessoa) ", nativeQuery = true)
-    Optional<PessoaNome> insert(
+    Integer insert(
             @Param("nomePessoa") String nomePessoa);
 
 

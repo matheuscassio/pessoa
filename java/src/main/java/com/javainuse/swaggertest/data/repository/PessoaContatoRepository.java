@@ -31,15 +31,17 @@ public interface PessoaContatoRepository extends CrudRepository <PessoaContato, 
             "set pc.nomeContato = :nomeContato, " +
             "    pc.descricaoContato = :descricaoContato " +
             "where pc.id = :id")
-    Optional<PessoaContato> update(
+    
+    Integer update(
             @Param("id") Integer id,
             @Param("nomeContato") String nomeContato,
             @Param("descricaoContato") String descricaoContato);
-
+    
+    @Modifying
     @Query(value = " " +
             "INSERT INTO tb_pessoa_contato (id_Pessoa, nm_Contato, ds_Contato) " +
             "VALUES (:idPessoa, :nomeContato, :descricaoContato) ", nativeQuery = true)
-    Optional<PessoaContato> insert(
+    Integer insert(
             @Param("idPessoa") Integer idPessoa,
             @Param("nomeContato") String nomeContato,
             @Param("descricaoContato") String descricaoContato);

@@ -33,17 +33,18 @@ public interface PessoaDocumentoRepository extends CrudRepository <PessoaDocumen
             "    pd.nomeOrgaoEmissor = :nomeOrgaoEmissor, " +
             "    pd.descricaoSerie= :descricaoSerie " +
             "where pd.id = :id")
-    Optional<PessoaDocumento> update(
+    Integer update(
             @Param("id") Integer id,
             @Param("valorDocumento") String valorDocumento,
             @Param("dataEmissao") String dataEmissao,
     		@Param("nomeOrgaoEmissor") String nomeOrgaoEmissor,
     		@Param("descricaoSerie") String descricaoSerie);
-
+    
+    @Modifying
     @Query(value = " " +
             "INSERT INTO tb_pessoa_documento (vr_Documento, dt_Emissao, nm_OrgaoEmissor, ds_Serie) " +
             "VALUES (:valorDocumento, :dataEmissao, :nomeOrgaoEmissor, :descricaoSerie) ", nativeQuery = true)
-    Optional<PessoaDocumento> insert(
+    Integer insert(
     		 @Param("valorDocumento") String valorDocumento,
              @Param("dataEmissao") String dataEmissao,
 			 @Param("nomeOrgaoEmissor") String nomeOrgaoEmissor,

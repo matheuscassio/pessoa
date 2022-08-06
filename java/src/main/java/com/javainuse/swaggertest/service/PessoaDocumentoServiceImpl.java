@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 //@log4j2
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PessoaDocumentoServiceImpl implements PessoaDocumentoService {
 
-    private final PessoaDocumentoRepository pessoaDocumentoRepository = null;
+    private final PessoaDocumentoRepository pessoaDocumentoRepository ;
 
     @Override
     public Optional<ArrayList<PessoaDocumento>> getAll() throws Exception {
@@ -23,11 +22,11 @@ public class PessoaDocumentoServiceImpl implements PessoaDocumentoService {
     }
 
     @Override
-    public Optional<PessoaDocumento> update(Integer idPessoaDocumento, PessoaDocumentoRequest request) throws Exception {
+    public Integer update(Integer idPessoaDocumento, PessoaDocumentoRequest request) throws Exception {
         Optional<PessoaDocumento> pessoaDocumentoAlterada = this.pessoaDocumentoRepository.findById(idPessoaDocumento);
         if (pessoaDocumentoAlterada.isPresent()) {
             return this.pessoaDocumentoRepository.update(idPessoaDocumento, request.getValorDocumento(), request.getDataEmissao(), request.getNomeOrgaoEmissor(), request.getDescricaoSerie());
-        } else return pessoaDocumentoAlterada;
+        } else return 0;
     }
 
     @Override
@@ -40,7 +39,7 @@ public class PessoaDocumentoServiceImpl implements PessoaDocumentoService {
     }
 
     @Override
-    public Optional<PessoaDocumento> insert(PessoaDocumentoRequest request) throws Exception {
+    public Integer insert(PessoaDocumentoRequest request) throws Exception {
         return this.pessoaDocumentoRepository.insert(request.getValorDocumento(), request.getDataEmissao(), request.getNomeOrgaoEmissor(), request.getDescricaoSerie());
     }
 

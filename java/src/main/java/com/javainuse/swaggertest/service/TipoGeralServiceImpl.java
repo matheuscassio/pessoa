@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 //@log4j2
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TipoGeralServiceImpl implements TipoGeralService {
 
-    private final TipoGeralRepository tipoGeralRepository = null;
+    private final TipoGeralRepository tipoGeralRepository ;
 
     @Override
     public Optional<ArrayList<TipoGeral>> getAll() throws Exception {
@@ -28,11 +27,11 @@ public class TipoGeralServiceImpl implements TipoGeralService {
     }
 
     @Override
-    public Optional<TipoGeral> update(Integer idTipoGeral, TipoGeralRequest request) throws Exception {
+    public Integer update(Integer idTipoGeral, TipoGeralRequest request) throws Exception {
         Optional<TipoGeral> tipoGeralAlterada = this.tipoGeralRepository.findById(idTipoGeral);
         if (tipoGeralAlterada.isPresent()) {
             return this.tipoGeralRepository.update(idTipoGeral, request.getNomeTipoGeral(), request.getNomeFiltro());
-        } else return tipoGeralAlterada;
+        } else return 0;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class TipoGeralServiceImpl implements TipoGeralService {
     }
 
     @Override
-    public Optional<TipoGeral> insert(TipoGeralRequest request) throws Exception {
+    public Integer insert(TipoGeralRequest request) throws Exception {
         return this.tipoGeralRepository.insert(request.getNomeTipoGeral(), request.getNomeFiltro());
     }
 
