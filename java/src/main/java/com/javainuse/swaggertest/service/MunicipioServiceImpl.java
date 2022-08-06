@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 //@log4j2
@@ -15,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MunicipioServiceImpl implements MunicipioService {
 
-    private final MunicipioRepository municipioRepository = null;
+    private final MunicipioRepository municipioRepository;
 
     @Override
     public Optional<ArrayList<Municipio>> getAll() throws Exception {
@@ -28,11 +27,11 @@ public class MunicipioServiceImpl implements MunicipioService {
     }
 
     @Override
-    public Optional<Municipio> update(Integer idMunicipio, MunicipioRequest request) throws Exception {
+    public Integer update(Integer idMunicipio, MunicipioRequest request) throws Exception {
         Optional<Municipio> municipioAlterada = this.municipioRepository.findById(idMunicipio);
         if (municipioAlterada.isPresent()) {
             return this.municipioRepository.update(idMunicipio, request.getNomeMunicipio());
-        } else return municipioAlterada;
+        } else return 0;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class MunicipioServiceImpl implements MunicipioService {
     }
 
     @Override
-    public Optional<Municipio> insert(MunicipioRequest request) throws Exception {
+    public Integer insert(MunicipioRequest request) throws Exception {
         return this.municipioRepository.insert(request.getNomeMunicipio());
     }
 

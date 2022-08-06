@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import com.javainuse.swaggertest.data.models.Municipio;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 @Component
@@ -13,9 +12,9 @@ public interface MunicipioService {
 
     Optional<ArrayList<Municipio>> getAll() throws Exception;
     
-    Optional<Municipio> update(Integer idMunicipio, MunicipioRequest request) throws Exception;
+    Integer update(Integer idMunicipio, MunicipioRequest request) throws Exception;
     
-    Optional<Municipio> insert(MunicipioRequest request) throws Exception;
+    Integer insert(MunicipioRequest request) throws Exception;
 
     Optional<Municipio> findById(Integer idMunicipio) throws Exception;
 

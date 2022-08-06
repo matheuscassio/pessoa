@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
 @RequestMapping("/v1/municipio")
 @RequiredArgsConstructor
+@Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
@@ -25,7 +27,7 @@ import java.util.Optional;
     })
 public class MunicipioController {
 
-    private final MunicipioService municipioService = null;
+    private final MunicipioService municipioService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -71,7 +73,7 @@ public class MunicipioController {
     @PutMapping("/{idMunicipio}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "municipio-controller", value = "Alterar os dados de um Município da tabela.")
-    public Optional<Municipio> updateMunicipio(
+    public Integer updateMunicipio(
             @ApiParam(name = "idMunicipio",
                     value = "Código de Município.",
                     example = "1",
@@ -84,7 +86,7 @@ public class MunicipioController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "municipio-controller", value = "Incluir dados de um Município na tabela.")
-    public Optional<Municipio> insertMunicipio(
+    public Integer insertMunicipio(
             @Valid @RequestBody MunicipioRequest request) throws Exception {
         return municipioService.insert(request);
     }

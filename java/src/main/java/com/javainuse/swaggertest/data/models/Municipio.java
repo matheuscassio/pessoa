@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-@Table(name="tb_munucipio")
+@Table(name="tb_municipio")
 public class Municipio{
 
 	@ApiModelProperty(notes = "Identificador sequencial.",

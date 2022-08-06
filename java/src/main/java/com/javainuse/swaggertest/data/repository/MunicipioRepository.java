@@ -30,15 +30,15 @@ public interface MunicipioRepository extends CrudRepository <Municipio, Integer>
             "update Municipio m "+
             "set m.nomeMunicipio = :nomeMunicipio " +
             "where m.id = :idMunicipio")
-    Optional<Municipio> update(
+    Integer update(
             @Param("idMunicipio") Integer idMunicipio,
             @Param("nomeMunicipio") String nomeMunicipio);
 
+    @Modifying
     @Query(value = " " +
             "INSERT INTO tb_municipio (nm_Municipio) " +
             "VALUES (:nomeMunicipio) ", nativeQuery = true)
-    Optional<Municipio> insert(
-            @Param("nomeMunicipio") String nomeMunicipio);
+    Integer insert(@Param("nomeMunicipio") String nomeMunicipio);
 
 
 }
