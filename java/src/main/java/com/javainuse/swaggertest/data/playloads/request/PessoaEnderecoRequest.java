@@ -16,16 +16,18 @@ import java.util.Date;
 @AllArgsConstructor
 @ApiModel(value = "PessoaEnderecoRequest", description = "Modelo que representa uma requisição para alterar Endereço de Pessoa.")
 public class PessoaEnderecoRequest {
+
+    @ApiModelProperty(notes = "Código de identificação da Pessoa.",
+            example = "1", required = true, position = 0)
+    private Integer idPessoa;
+
+	@ApiModelProperty(value = "Código de identificação Tipo Logadouro",
+            example = "1", required = true, position = 1)
+	private Integer idTipoLogradouro;
 	
-	@ApiModelProperty(value = "Código de identificação da Pessoa")
-	private Long idPessoa;
-	//DUVIDA
-	@ApiModelProperty(value = "Código de identificação Tipo Logadouro")
-	private Long idTipoLogradouro;
-	
-	@ApiModelProperty(value = "Código de identificação da Pessoa")
-	private Long idMunicipio;
-	
+	@ApiModelProperty(value = "Código de identificação de Municipio",
+            example = "1", required = true, position = 2)
+	private Integer idMunicipio;
 	
     @ApiModelProperty(value = "Nome do Logadouro.", position = 1)
     @NotNull(message = "Nome do Logadouro não pode ser nula.")

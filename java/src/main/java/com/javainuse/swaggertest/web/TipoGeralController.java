@@ -23,14 +23,13 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Pessoas", description = "Operações relativas ao Cadastro de Pessoas")
 public class TipoGeralController {
 
     private final TipoGeralService tipoService = null;
 
-    @GetMapping()
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Tipos", value = "Listar todas as tipos da tabela.")
+    @ApiOperation(tags = "tipo-geral-controller", value = "Listar todas as tipos da tabela.")
     public ArrayList<TipoGeral> listarTipos() throws Exception {
         final Optional<ArrayList<TipoGeral>> lista = tipoService.getAll();
         if (lista.isPresent()) {
@@ -42,13 +41,16 @@ public class TipoGeralController {
 
     @GetMapping(value = "/{idTipoGeral}", name = "idTipoGeral")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Tipos", value = "Recuperar uma tipos.")
-    public Pessoa findByHash(
-            @ApiParam(value = "Código digital de Tipo.", required = true)
-            final @PathVariable(required = true) String hashPessoa) throws Exception {
+    @ApiOperation(tags = "tipo-geral-controller", value = "Recuperar uma tipos.")
+    public TipoGeral findByHash(
+            @ApiParam(name = "idTipoGeral",
+                    value = "Código de identificação de Tipo.",
+                    example = "1",
+                    required = true)
+            final @PathVariable(required = true) Integer idTipoGeral) throws Exception {
         final Optional<TipoGeral> tipoGeral = tipoService.findById(idTipoGeral);
-        if (pessoa.isPresent()) {
-            return tipos.get();
+        if (tipoGeral.isPresent()) {
+            return tipoGeral.get();
         } else {
             return null;
         }
@@ -56,24 +58,33 @@ public class TipoGeralController {
 
     @DeleteMapping("/{idTipoGeral}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Tipos", value = "Deletar uma tipos da tabela.")
-    public Boolean deleteTipoGeral(@ApiParam(value = "Código de identificação da Tipo.", required = true) final @PathVariable(required = true) String id) throws Exception {
-        return tipoService.deleteByHash(id);
+    @ApiOperation(tags = "tipo-geral-controller", value = "Deletar uma tipos da tabela.")
+    public Boolean deleteTipoGeral(
+            @ApiParam(name = "idTipoGeral",
+                    value = "Código de identificação de Tipo.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) Integer idTipoGeral) throws Exception {
+        return tipoService.deleteById(idTipoGeral);
     }
 
     @PutMapping("/{idTipoGeral}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Alterar os dados de uma tipos da tabela.")
+    @ApiOperation(tags = "tipo-geral-controller", value = "Alterar os dados de uma tipos da tabela.")
     public Optional<TipoGeral> updatePessoa(
-            @ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String id,
+            @ApiParam(name = "idTipoGeral",
+                    value = "Código de identificação de Tipo.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) Integer idTipoGeral,
             @Valid @RequestBody TipoGeralRequest request) throws Exception {
-        return tipoService.update(id, request);
+        return tipoService.update(idTipoGeral, request);
     }
 
-    @PostMapping("/concepcao")
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Tipos", value = "Incluir dados de uma tipos na tabela.")
-    public Optional<TipoGeral> insertPessoa(
+    @ApiOperation(tags = "tipo-geral-controller", value = "Incluir dados de uma tipos na tabela.")
+    public Optional<TipoGeral> insert(
             @Valid @RequestBody TipoGeralRequest request) throws Exception {
         return tipoService.insert(request);
     }

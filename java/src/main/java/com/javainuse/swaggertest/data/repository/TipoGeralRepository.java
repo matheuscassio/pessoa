@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Repository
-public interface TipoGeralRepository extends CrudRepository <TipoGeral, Long> {
+public interface TipoGeralRepository extends CrudRepository <TipoGeral, Integer> {
 
     @Query(value = " " +
             "select tg " +
@@ -23,7 +23,7 @@ public interface TipoGeralRepository extends CrudRepository <TipoGeral, Long> {
             "select tg "+
             "from TipoGeral tg " +
             "where tg.id = :id ")
-    Optional<TipoGeral> findById(@Param("id") String id);
+    Optional<TipoGeral> findById(@Param("id") Integer id);
 
     @Modifying
     @Query(value = " " +
@@ -32,6 +32,7 @@ public interface TipoGeralRepository extends CrudRepository <TipoGeral, Long> {
             "    tg.nomeFiltro = :nomeFiltro " +
             "where tg.id = :id")
     Optional<TipoGeral> update(
+            @Param("id") Integer id,
             @Param("nomeTipoGeral") String nomeTipoGeral,
             @Param("nomeFiltro") String nomeFiltro);
 

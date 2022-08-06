@@ -12,12 +12,13 @@ import java.util.Optional;
 @Component
 public interface PessoaNomeService {
 
-Optional<ArrayList<PessoaNome>> getAll() throws Exception;
+    Optional<ArrayList<PessoaNome>> getAll() throws Exception;
     
     Optional<PessoaNome> update(Integer idPessoaNome, PessoaNomeRequest request) throws Exception;
     
-    Optional deleteByid(Integer idPessoaNome, PessoaNomeRequest request)throws Exception;
-    
     Optional<PessoaNome> insert(PessoaNomeRequest request) throws Exception;
 
+    Boolean deleteById(Integer idPessoaNome) throws Exception;
+
+    Optional<PessoaNome> findById(Integer idPessoaNome) throws Exception;
 }

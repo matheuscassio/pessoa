@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Repository
-public interface PessoaContatoRepository extends CrudRepository <PessoaContato, Long> {
+public interface PessoaContatoRepository extends CrudRepository <PessoaContato, Integer> {
 
     @Query(value = " " +
             "select pc " +
@@ -23,7 +23,7 @@ public interface PessoaContatoRepository extends CrudRepository <PessoaContato, 
             "select pc "+
             "from PessoaContato pc " +
             "where pc.id = :id ")
-    Optional<PessoaContato> findById(@Param("id") String hash);
+    Optional<PessoaContato> findById(@Param("id") Integer id);
 
     @Modifying
     @Query(value = " " +
@@ -32,16 +32,17 @@ public interface PessoaContatoRepository extends CrudRepository <PessoaContato, 
             "    pc.descricaoContato = :descricaoContato " +
             "where pc.id = :id")
     Optional<PessoaContato> update(
+            @Param("id") Integer id,
             @Param("nomeContato") String nomeContato,
             @Param("descricaoContato") String descricaoContato);
-           
 
     @Query(value = " " +
-            "INSERT INTO tb_Pessoa_Contato (nm_Contato, ds_Contato) " +
-            "VALUES ( :nomeContato, :descricaoContato) ", nativeQuery = true)
+            "INSERT INTO tb_pessoa_contato (id_Pessoa, nm_Contato, ds_Contato) " +
+            "VALUES (:idPessoa, :nomeContato, :descricaoContato) ", nativeQuery = true)
     Optional<PessoaContato> insert(
+            @Param("idPessoa") Integer idPessoa,
             @Param("nomeContato") String nomeContato,
-            @Param("descricaoContato") Date descricaoContato);
+            @Param("descricaoContato") String descricaoContato);
 
 
 }

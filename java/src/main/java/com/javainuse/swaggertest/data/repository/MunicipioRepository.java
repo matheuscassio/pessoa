@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Repository
-public interface MunicipioRepository extends CrudRepository <Municipio, Long> {
+public interface MunicipioRepository extends CrudRepository <Municipio, Integer> {
 
     @Query(value = " " +
             "select m " +
@@ -23,18 +23,19 @@ public interface MunicipioRepository extends CrudRepository <Municipio, Long> {
             "select m "+
             "from Municipio m " +
             "where m.id = :id ")
-    Optional<Municipio> findById(@Param("id") String id);
+    Optional<Municipio> findById(@Param("id") Integer id);
 
     @Modifying
     @Query(value = " " +
             "update Municipio m "+
-            "set m.nomeMunicipio = :nomeMunicipio, " +
-            "where m.id = :id")
+            "set m.nomeMunicipio = :nomeMunicipio " +
+            "where m.id = :idMunicipio")
     Optional<Municipio> update(
+            @Param("idMunicipio") Integer idMunicipio,
             @Param("nomeMunicipio") String nomeMunicipio);
 
     @Query(value = " " +
-            "INSERT INTO tb_Municipio (nm_Municipio) " +
+            "INSERT INTO tb_municipio (nm_Municipio) " +
             "VALUES (:nomeMunicipio) ", nativeQuery = true)
     Optional<Municipio> insert(
             @Param("nomeMunicipio") String nomeMunicipio);

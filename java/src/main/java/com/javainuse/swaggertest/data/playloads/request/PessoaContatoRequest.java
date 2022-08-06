@@ -16,22 +16,20 @@ import java.util.Date;
 @AllArgsConstructor
 @ApiModel(value = "PessoaContatoRequest", description = "Modelo que representa uma requisição para alterar contato de pessoa.")
 public class PessoaContatoRequest {
-	
-	
-	@ApiModelProperty(value = "Código de identificação da Pessoa")
-	private Long Pessoa;
-	
-	@ApiModelProperty(value = "Código de identificação da Pessoa Documento")
-	private Long idPessoaDocumento;
-	//DUVIDA
-	@ApiModelProperty(value = "Código de identificação de Tipo GEral")
-	private Long idTipoGeral;
 
-    @ApiModelProperty(value = "Nome do Contato.", position = 1)
+    @ApiModelProperty(notes = "Código de identificação da Pessoa.",
+            example = "1", required = true, position = 0)
+	private Integer idPessoa;
+
+    @ApiModelProperty(notes = "Código de identificação de Tipo Contato.",
+            example = "1", required = true, position = 1)
+	private Integer idTipoContato;
+
+    @ApiModelProperty(value = "Nome do Contato.")
     @NotNull(message = "o nome do contato não pode seer nulo.")
     private String nomeContato;
 
-    @ApiModelProperty(value = "Descrição do Contato.", position = 1)
+    @ApiModelProperty(value = "Descrição do Contato.")
     @NotNull(message = "Descrição do Contato não pode ser nulo.")
     private String descricaoContato;
 }

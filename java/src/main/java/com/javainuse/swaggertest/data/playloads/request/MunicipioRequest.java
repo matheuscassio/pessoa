@@ -16,9 +16,6 @@ import java.util.Date;
 @AllArgsConstructor
 @ApiModel(value = "MunicipioRequest", description = "Modelo que representa uma requisição para alterar Município.")
 public class MunicipioRequest {
-	
-	@ApiModelProperty(value = "Código de identificação Municipio")
-	private Long Municipio;
 
     @ApiModelProperty(value = "Nome do Município.", position = 1)
     @NotNull(message = "O nome do Município não pode ser nulo !")

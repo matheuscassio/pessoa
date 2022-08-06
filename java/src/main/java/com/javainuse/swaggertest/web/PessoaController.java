@@ -16,21 +16,20 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/pessoas")
+@RequestMapping("/v1/pessoa")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Pessoas", description = "Operações relativas ao Cadastro de Pessoas")
 public class PessoaController {
 
     private final PessoaService pessoaService = null;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Listar todas as pessoas da tabela.")
+    @ApiOperation(tags = "pessoa-controller", value = "Listar todas as pessoas da tabela.")
     public ArrayList<Pessoa> listarPessoas() throws Exception {
         final Optional<ArrayList<Pessoa>> lista = pessoaService.getAll();
         if (lista.isPresent()) {
@@ -42,7 +41,7 @@ public class PessoaController {
 
     @GetMapping(value = "/{hashPessoa}", name = "hashPessoa")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Recuperar uma pessoas.")
+    @ApiOperation(tags = "pessoa-controller", value = "Recuperar uma pessoas.")
     public Pessoa findByHash(
             @ApiParam(value = "Código digital de Pessoa.", required = true)
             final @PathVariable(required = true) String hashPessoa) throws Exception {
@@ -56,14 +55,14 @@ public class PessoaController {
 
     @DeleteMapping("/{hashPessoa}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Deletar uma pessoas da tabela.")
+    @ApiOperation(tags = "pessoa-controller", value = "Deletar uma pessoas da tabela.")
     public Boolean deletePessoa(@ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash) throws Exception {
         return pessoaService.deleteByHash(hash);
     }
 
     @PutMapping("/{hashPessoa}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Alterar os dados de uma pessoas da tabela.")
+    @ApiOperation(tags = "pessoa-controller", value = "Alterar os dados de uma pessoas da tabela.")
     public Optional<Pessoa> updatePessoa(
             @ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash,
             @Valid @RequestBody PessoaRequest request) throws Exception {
@@ -72,7 +71,7 @@ public class PessoaController {
 
     @PostMapping("/concepcao")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Incluir dados de uma pessoas na tabela.")
+    @ApiOperation(tags = "pessoa-controller", value = "Incluir dados de uma pessoas na tabela.")
     public Optional<Pessoa> insertPessoa(
             @Valid @RequestBody PessoaRequest request) throws Exception {
         return pessoaService.insert(request);

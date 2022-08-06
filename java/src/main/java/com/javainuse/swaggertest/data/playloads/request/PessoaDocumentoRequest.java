@@ -20,12 +20,14 @@ import java.util.Date;
 @AllArgsConstructor
 @ApiModel(value = "PessoaDocumentoRequest", description = "Modelo que representa uma requisição para alterar uma pessoa documento.")
 public class PessoaDocumentoRequest {
+
+    @ApiModelProperty(notes = "Código de identificação da Pessoa.",
+            example = "1", required = true, position = 0)
+    private Integer idPessoa;
 	
-	@ApiModelProperty(value = "Código de identificação da Pessoa")
-	private Long idPessoa;
-	
-	@ApiModelProperty(value = "Código de identificação da Pessoa")
-	private Long idTipoDocumento;
+	@ApiModelProperty(value = "Código de identificação do Tipo de Documento",
+            example = "1", required = true, position = 1)
+	private Integer idTipoDocumento;
 	
     @ApiModelProperty(value = "valor do documento", position = 1)
     @NotNull(message = "Valo do Documento não pode ser nula.")

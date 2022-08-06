@@ -1,5 +1,6 @@
 package com.javainuse.swaggertest.data.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,13 +13,15 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Data
-@Table(name="tb_TipoGeral")
+@Table(name="tb_tipogeral")
 public class TipoGeral {
 
+	@ApiModelProperty(notes = "Identificador sequencial.",
+			example = "1", required = true, position = 0)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_TipoGeral", nullable = false)
-	private Long id;
+	private Integer id;
 	
 	@Column (name="nm_TipoGeral")
 	private String nomeTipoGeral;

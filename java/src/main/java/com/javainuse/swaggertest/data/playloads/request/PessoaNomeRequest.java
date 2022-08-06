@@ -16,16 +16,14 @@ import java.util.Date;
 @AllArgsConstructor
 @ApiModel(value = "PessoaNomeRequest", description = "Modelo que representa uma requisição para alterar Nome de pessoa.")
 public class PessoaNomeRequest {
-	
-	@ApiModelProperty(value = "Código de identificação da Pessoa")
-	private Long idPessoa;
-	
-	@ApiModelProperty(value = "Código de identificação da Pessoa")
-	private Long idPessoaDocumento;
-	
+
+    @ApiModelProperty(notes = "Código de identificação da Pessoa.",
+            example = "1", required = true, position = 0)
+	private Integer idPessoa;
+
     @ApiModelProperty(value = "Nome Pessoa.", position = 1)
     @NotNull(message = "Nome Pessoa não pode ser nula.")
-    private Date dataNascimento;
+    private String nomePessoa;
 
     
 }

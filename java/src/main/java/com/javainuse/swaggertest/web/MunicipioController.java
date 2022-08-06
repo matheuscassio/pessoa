@@ -16,21 +16,20 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/municipios")
+@RequestMapping("/v1/municipio")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Municipios", description = "Operações relativas ao Cadastro de Municipios")
 public class MunicipioController {
 
-    private final Municipioervice municipiosService = null;
+    private final MunicipioService municipioService = null;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Municipios", value = "Listar todas os municipios da tabela.")
+    @ApiOperation(tags = "municipio-controller", value = "Listar todas os municipios da tabela.")
     public ArrayList<Municipio> listarMunicipios() throws Exception {
         final Optional<ArrayList<Municipio>> lista = municipioService.getAll();
         if (lista.isPresent()) {
@@ -42,12 +41,15 @@ public class MunicipioController {
 
     @GetMapping(value = "/{idMunicipio}", name = "idMunicipio")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Municipios", value = "Recuperar um Municipio.")
-    public Municipio findByHash(
-            @ApiParam(value = "Código digital de Municipio.", required = true)
-            final @PathVariable(required = true) String hashPessoa) throws Exception {
+    @ApiOperation(tags = "municipio-controller", value = "Recuperar um Municipio.")
+    public Municipio findById(
+            @ApiParam(name = "idMunicipio",
+                    value = "Código de Município.",
+                    example = "1",
+                    required = true)
+            final @PathVariable(required = true) Integer idMunicipio) throws Exception {
         final Optional<Municipio> municipio = municipioService.findById(idMunicipio);
-        if (pessoa.isPresent()) {
+        if (municipio.isPresent()) {
             return municipio.get();
         } else {
             return null;
@@ -56,27 +58,35 @@ public class MunicipioController {
 
     @DeleteMapping("/{idMunicipio}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Municipios", value = "Deletar um Municipio da tabela.")
-    public Boolean deleteMunicipio(@ApiParam(value = "Código de identificação do Municipio.", required = true) final @PathVariable(required = true) String id) throws Exception {
-        return municipioService.deleteById(id);
+    @ApiOperation(tags = "municipio-controller", value = "Deletar um Município da tabela.")
+    public Boolean deleteMunicipio(
+            @ApiParam(name = "idMunicipio",
+                    value = "Código de Município.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idMunicipio) throws Exception {
+        return municipioService.deleteById(idMunicipio);
     }
 
     @PutMapping("/{idMunicipio}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Municipios", value = "Alterar os dados de um Municipio da tabela.")
+    @ApiOperation(tags = "municipio-controller", value = "Alterar os dados de um Município da tabela.")
     public Optional<Municipio> updateMunicipio(
-            @ApiParam(value = "Código de identificação de Municipio.", required = true) final @PathVariable(required = true) String id,
-            @Valid @RequestBody PessoaRequest request) throws Exception {
-        return municipioService.update(id, request);
+            @ApiParam(name = "idMunicipio",
+                    value = "Código de Município.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idMunicipio,
+            @Valid @RequestBody MunicipioRequest request) throws Exception {
+        return municipioService.update(idMunicipio, request);
     }
 
-    @PostMapping("/concepcao")
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Municipios", value = "Incluir dados de um Municipio na tabela.")
+    @ApiOperation(tags = "municipio-controller", value = "Incluir dados de um Município na tabela.")
     public Optional<Municipio> insertMunicipio(
             @Valid @RequestBody MunicipioRequest request) throws Exception {
         return municipioService.insert(request);
     }
-
 
 }

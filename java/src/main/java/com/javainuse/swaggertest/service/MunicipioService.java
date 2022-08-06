@@ -15,8 +15,9 @@ public interface MunicipioService {
     
     Optional<Municipio> update(Integer idMunicipio, MunicipioRequest request) throws Exception;
     
-    Optional deleteByid(Integer idMunicipio, MunicipioRequest request)throws Exception;
-    
     Optional<Municipio> insert(MunicipioRequest request) throws Exception;
- 
+
+    Optional<Municipio> findById(Integer idMunicipio) throws Exception;
+
+    Boolean deleteById(Integer idMunicipio) throws Exception;
 }

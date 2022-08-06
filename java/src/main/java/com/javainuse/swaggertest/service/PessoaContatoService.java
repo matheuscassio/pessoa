@@ -14,9 +14,11 @@ public interface PessoaContatoService {
     Optional<ArrayList<PessoaContato>> getAll() throws Exception;
     
     Optional<PessoaContato> update(Integer idPessoaContato, PessoaContatoRequest request) throws Exception;
-    
-    Optional deleteByid(Integer idPessoaContato, PessoaContatoRequest request)throws Exception;
-    
+
+    Boolean deleteById(Integer idPessoaContato) throws Exception;
+
     Optional<PessoaContato> insert(PessoaContatoRequest request) throws Exception;
- 
+
+    Optional<PessoaContato> findById(Integer idPessoaContato) throws Exception;
+
 }

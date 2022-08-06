@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Repository
-public interface PessoaRepository extends CrudRepository <Pessoa, String> {
+public interface PessoaRepository extends CrudRepository <Pessoa, Long> {
 
     @Query(value = " " +
             "select p " +

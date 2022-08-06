@@ -1,5 +1,6 @@
 package com.javainuse.swaggertest.web;
 
+import com.javainuse.swaggertest.data.models.PessoaContato;
 import com.javainuse.swaggertest.data.models.PessoaDocumento;
 import com.javainuse.swaggertest.data.playloads.request.PessoaDocumentoRequest;
 import com.javainuse.swaggertest.service.PessoaDocumentoService;
@@ -16,21 +17,20 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/pessoasDocumento")
+@RequestMapping("/v1/pessoa/documentos")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Pessoas", description = "Operações relativas ao Cadastro de Pessoas Documento")
-public class PessoaController {
+public class PessoaDocumentoController {
 
     private final PessoaDocumentoService pessoaDocumentoService = null;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasDocumento", value = "Listar todas as pessoas da tabela.")
+    @ApiOperation(tags = "pessoa-documento-controller", value = "Listar todas as pessoas da tabela.")
     public ArrayList<PessoaDocumento> listarPessoasDocumento() throws Exception {
         final Optional<ArrayList<PessoaDocumento>> lista = pessoaDocumentoService.getAll();
         if (lista.isPresent()) {
@@ -42,10 +42,13 @@ public class PessoaController {
 
     @GetMapping(value = "/{idPessoaDocumento}", name = "idPessoaDocumento")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasDocumentos", value = "Recuperar uma pessoasDocumento.")
-    public PessoaDocumento findByHash(
-            @ApiParam(value = "Código digital de PessoaDocumento.", required = true)
-            final @PathVariable(required = true) String idPessoaDocumento) throws Exception {
+    @ApiOperation(tags = "pessoa-documento-controller", value = "Recuperar uma pessoasDocumento.")
+    public PessoaDocumento findById(
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de identificação do documento.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idPessoaDocumento) throws Exception {
         final Optional<PessoaDocumento> pessoaDocumento = pessoaDocumentoService.findById(idPessoaDocumento);
         if (pessoaDocumento.isPresent()) {
             return pessoaDocumento.get();
@@ -54,25 +57,34 @@ public class PessoaController {
         }
     }
 
-    @DeleteMapping("/{hashPessoa}")
+    @DeleteMapping("/{idPessoaDocumento}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Deletar uma pessoas da tabela.")
-    public Boolean deletePessoa(@ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String id) throws Exception {
-        return pessoaDocumentoService.deleteById(id);
+    @ApiOperation(tags = "pessoa-documento-controller", value = "Deletar uma pessoas da tabela.")
+    public Boolean deletePessoaDocumento(
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de identificação do documento.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idPessoaDocumento) throws Exception {
+        return pessoaDocumentoService.deleteById(idPessoaDocumento);
     }
 
     @PutMapping("/{idPessoaDocumento}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasDocumento", value = "Alterar os dados de uma pessoas Documento da tabela.")
+    @ApiOperation(tags = "pessoa-documento-controller", value = "Alterar os dados de uma pessoas Documento da tabela.")
     public Optional<PessoaDocumento> updatePessoaDocumento(
-            @ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash,
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de identificação do documento.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idPessoaDocumento,
             @Valid @RequestBody PessoaDocumentoRequest request) throws Exception {
-        return pessoaDocumentoService.update(id, request);
+        return pessoaDocumentoService.update(idPessoaDocumento, request);
     }
 
-    @PostMapping("/concepcao")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasDocumentos", value = "Incluir dados de uma pessoas documentos na tabela.")
+    @ApiOperation(tags = "pessoa-documento-controller", value = "Incluir dados de uma pessoas documentos na tabela.")
     public Optional<PessoaDocumento> insertPessoaDocumento(
             @Valid @RequestBody PessoaDocumentoRequest request) throws Exception {
         return pessoaDocumentoService.insert(request);

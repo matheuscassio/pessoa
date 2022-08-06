@@ -18,9 +18,10 @@ public interface TipoGeralService {
     
     Optional<TipoGeral> update(Integer idTipoGeral, TipoGeralRequest request) throws Exception;
     
-    Optional deleteByid(Integer idTipoGeral, TipoGeralRequest request)throws Exception;
-    
     Optional<TipoGeral> insert(TipoGeralRequest request) throws Exception;
- 
+
+    Optional<TipoGeral> findById(Integer idTipoGeral) throws Exception;
+
+    Boolean deleteById(Integer idTipoGeral) throws Exception;
 }
 

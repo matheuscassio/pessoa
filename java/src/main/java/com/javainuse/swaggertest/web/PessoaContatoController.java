@@ -16,21 +16,20 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/pessoasContato")
+@RequestMapping("/v1/pessoa/contatos")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Pessoas", description = "Operações relativas ao Cadastro de Pessoas")
 public class PessoaContatoController {
 
     private final PessoaContatoService pessoaContatoService = null;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Listar todas as pessoas da tabela contato.")
+    @ApiOperation(tags = "pessoa-contato-controller", value = "Listar todas as pessoas da tabela contato.")
     public ArrayList<PessoaContato> listarPessoasConato() throws Exception {
         final Optional<ArrayList<PessoaContato>> lista = pessoaContatoService.getAll();
         if (lista.isPresent()) {
@@ -42,11 +41,14 @@ public class PessoaContatoController {
 
     @GetMapping(value = "/{idPessoaContato}", name = "idPessoaContato")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Recuperar uma pessoasContato.")
+    @ApiOperation(tags = "pessoa-contato-controller", value = "Recuperar uma pessoasContato.")
     public PessoaContato findById(
-            @ApiParam(value = "Código digital de PessoaContato.", required = true)
-            final @PathVariable(required = true) String hashPessoa) throws Exception {
-        final Optional<PessoaContato> pessoa = pessoaContatoService.findById(idPessoaContato);
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de Pessoa Contato.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idPessoaContato) throws Exception {
+        final Optional<PessoaContato> pessoaContato = pessoaContatoService.findById(idPessoaContato);
         if (pessoaContato.isPresent()) {
             return pessoaContato.get();
         } else {
@@ -54,25 +56,34 @@ public class PessoaContatoController {
         }
     }
 
-    @DeleteMapping("/{hashPessoa}")
+    @DeleteMapping("/{idPessoaContato}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Pessoas", value = "Deletar uma pessoas da tabela.")
-    public Boolean deletePessoa(@ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash) throws Exception {
-        return pessoaContatoService.deleteById(id);
+    @ApiOperation(tags = "pessoa-contato-controller", value = "Deletar um contato da pessoas da tabela.")
+    public Boolean deletePessoaContato(
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de Pessoa Contato.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idPessoaContato) throws Exception {
+        return pessoaContatoService.deleteById(idPessoaContato);
     }
 
     @PutMapping("/{idPessoaContato}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasConato", value = "Alterar os dados de uma pessoas da tabela.")
-    public Optional<PessoaContato> updatePessoa(
-            @ApiParam(value = "Código de identificação da PessoasConato.", required = true) final @PathVariable(required = true) String hash,
-            @Valid @RequestBody PessoaConatoRequest request) throws Exception {
-        return PessoaContatoService.update(id, request);
+    @ApiOperation(tags = "pessoa-contato-controller", value = "Alterar os dados de um contato pessoas da tabela.")
+    public Optional<PessoaContato> updatePessoaContato(
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de Pessoa Contato.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idPessoaContato,
+            @Valid @RequestBody PessoaContatoRequest request) throws Exception {
+        return pessoaContatoService.update(idPessoaContato, request);
     }
 
-    @PostMapping("/concepcao")
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Incluir dados de uma pessoas na tabela.")
+    @ApiOperation(tags = "pessoa-contato-controller", value = "Incluir dados de uma pessoas na tabela.")
     public Optional<PessoaContato> insertPessoaContato(
             @Valid @RequestBody PessoaContatoRequest request) throws Exception {
         return pessoaContatoService.insert(request);
