@@ -2,6 +2,7 @@ package com.javainuse.swaggertest.data.models;
 
 import javax.persistence.*;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,24 +13,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-@Table(name="tb_Pessoa_Contato")
+@Table(name="tb_pessoa_cqontato")
 public class PessoaContato {
-	
+
+	@ApiModelProperty(notes = "Identificador sequencial.",
+			example = "1", required = true, position = 0)
 	@Id
 	@Column (name="id_Pessoa_Contato")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name = "pessoa_id_pessoa")
+	@JoinColumn(name = "id_Pessoa")
 	private Pessoa pessoa;
-	
-	@ManyToOne
-	@JoinColumn(name = "pessoa_documento_id_pessoa_documento")
-	private PessoaDocumento pessoaDocumento;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_Tipo_Contato")
+	@JoinColumn(name = "id_TipoContato")
 	private TipoGeral tipoGeral;
 	
 	@Column (name="nm_Contato")
@@ -37,7 +36,5 @@ public class PessoaContato {
 	
 	@Column (name="ds_Contato")
 	private String descricaoContato;
-	
-	
 
 }
