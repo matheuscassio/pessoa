@@ -22,21 +22,8 @@ public class DicNomeFamiliaServiceImpl implements DicNomeFamiliaService {
     }
 
     @Override
-    public Optional<DicNomeFamilia> findById(Integer idDicNomeFamilia) throws Exception {
-        return this.dicNomeFamiliaRepository.findById(idDicNomeFamilia);
-    }
-
-    @Override
-    public Integer update(String hash, PessoaRequest request) throws Exception {
-        Optional<DicNomeFamilia> dicNomeFamiliaAlterada = this.dicNomeFamiliaRepository.findById(idDicNomeFamilia);
-        if (dicNomeFamiliaAlterada.isPresent()) {
-            return this.dicNomeFamiliaRepository.update( request.getTextoDicNomeFamilia());
-        } else return dicNomeFamiliaAlterada;
-    }
-
-    @Override
-    public Boolean deleteById(String idDicNomeFamilia) throws Exception {
-        Optional<DicNomeFamilia> pessoa = this.dicNomeFamiliaRepository.findById(idDicNomeFamilia);
+    public Boolean deleteById(Integer idDicNomeFamilia) throws Exception {
+        Optional<DicNomeFamilia> dicNomeFamilia = this.dicNomeFamiliaRepository.findById(idDicNomeFamilia);
         if (dicNomeFamilia.isPresent()) {
             this.dicNomeFamiliaRepository.delete(dicNomeFamilia.get());
             return true;
@@ -44,26 +31,22 @@ public class DicNomeFamiliaServiceImpl implements DicNomeFamiliaService {
     }
 
     @Override
-    public Integer insert(DicNomeFamiliaRequest request) throws Exception {
-        return this.dicNomeFamiliaRepository.insert(request.getTextoDicNomeFamilia());
+    public Optional<DicNomeFamilia> findById(Integer idDicNomeFamilia) throws Exception {
+        return this.dicNomeFamiliaRepository.findById(idDicNomeFamilia);
     }
 
-	@Override
-	public Integer update(Integer idDicNomeFamilia, DicNomeFamiliaRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Integer update(Integer idDicNomeFamilia, DicNomeFamiliaRequest request) throws Exception {
+        Optional<DicNomeFamilia> dicNomeFamiliaAlterada = this.dicNomeFamiliaRepository.findById(idDicNomeFamilia);
+        if (dicNomeFamiliaAlterada.isPresent()) {
+            return this.dicNomeFamiliaRepository.update(request.getId(), request.getNomeFamilia());
+        } else return 0;
+    }
 
-	@Override
-	public Boolean deleteByHash(Integer idDicNomeFamilia) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Integer insert(DicNomeFamiliaRequest request) throws Exception {
+        return this.dicNomeFamiliaRepository.insert(request.getNomeFamilia());
+    }
 
-	@Override
-	public Integer insert(Integer idDicNomeFamilia, DicNomeFamiliaRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

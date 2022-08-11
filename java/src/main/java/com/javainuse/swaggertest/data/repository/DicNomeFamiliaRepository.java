@@ -17,23 +17,23 @@ import java.util.Optional;
 public interface DicNomeFamiliaRepository extends CrudRepository <DicNomeFamilia, Long> {
 
     @Query(value = " " +
-            "select dmf " +
-            "from DicNomeFamilia dmf ")
+            "select dnf " +
+            "from DicNomeFamilia dnf ")
     Optional<ArrayList<DicNomeFamilia>> listAll();
 
     @Query(value = " " +
-            "select dmf "+
-            "from DicNomeFamilia pd " +
-            "where dmf.id = :id ")
-    Optional<DicNomeFamilia> findById(@Param("idDicNomeFamilia") String id);
+            "select dnf "+
+            "from DicNomeFamilia dnf " +
+            "where dnf.id = :idDicNomeFamilia ")
+    Optional<DicNomeFamilia> findById(@Param("idDicNomeFamilia") Integer idDicNomeFamilia);
 
     @Modifying
     @Query(value = " " +
-            "update DicNomeFamilia dmf "+
-            "set dmf.textoNomeFamilia= :textoNomeFamilia, " +
-            "where dmf.id = :id")
+            "update DicNomeFamilia dnf "+
+            "set dnf.nomeFamilia= :textoNomeFamilia " +
+            "where dnf.id = :id ")
     Integer update(
-            @Param("id") String id,
+            @Param("id") Integer id,
             @Param("textoNomeFamilia") String textoNomeFamilia);
 
     @Query(value = " " +

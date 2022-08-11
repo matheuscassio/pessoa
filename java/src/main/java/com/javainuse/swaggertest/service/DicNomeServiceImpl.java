@@ -14,39 +14,39 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DicNomeServiceImpl implements DicNomeService {
 
-    private static final String DicNomeRepository = null;
-	private final DicNomeRepository pessoaRepository ;
+	private final DicNomeRepository dicNomeRepository ;
 
     @Override
     public Optional<ArrayList<DicNome>> getAll() throws Exception {
-        return this.DicNomeRepository.listAll();
+        return this.dicNomeRepository.listAll();
     }
 
     @Override
     public Optional<DicNome> findById(Integer idDicNome) throws Exception {
-        return this.DicNomeRepository.findById(idDicNome);
+        return this.dicNomeRepository.findById(idDicNome);
     }
 
     @Override
-    Integer update(Integer idDicNome, DicNomeRequest request) throws Exception {
-        Optional<DicNome> dicNomeAlterada = this.DicNomeRepository.findById(idDicNome);
+    public Integer update(Integer idDicNome, DicNomeRequest request) throws Exception {
+        Optional<DicNome> dicNomeAlterada = this.dicNomeRepository.findById(idDicNome);
         if (dicNomeAlterada.isPresent()) {
-            return this.DicNomeRepository.update( request.getTextoDicionarioNome(),);
-        } else return dicNomeAlterada;
+            return this.dicNomeRepository.update(request.getIdDicNomeRequest(), request.getNome());
+        } else return 0;
     }
 
     @Override
     public Boolean deleteById(Integer idDicNome) throws Exception {
-        Optional<DicNome> dicNome = this.DicNomeRepository.findById(idDicNome);
+        Optional<DicNome> dicNome = this.dicNomeRepository.findById(idDicNome);
         if (dicNome.isPresent()) {
-            this.DicNomeRepository.delete(dicNome.get());
+            this.dicNomeRepository.delete(dicNome.get());
             return true;
         } else return false;
     }
 
     @Override
-    Integer insert(DicNomeRequest request) throws Exception {
-        return this.pessoaRepository.insert(request.getTextoDicNome());
+    public Integer insert(DicNomeRequest request) throws Exception {
+        return this.dicNomeRepository.insert(request.getNome());
     }
+
 
 }

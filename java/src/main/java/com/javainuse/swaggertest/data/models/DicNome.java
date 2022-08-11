@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-@Table(name="tb_di_nome")
+@Table(name="tb_dic_nome")
 public class DicNome{
 
 	@ApiModelProperty(notes = "Identificador sequencial.",
@@ -25,11 +25,10 @@ public class DicNome{
 
 	@ManyToOne
 	@JoinColumn(name = "id_TipoSexo")
-	private TipoGeral tipoGeral;
-	
-	
-	
+	private TipoGeral tipoSexo;
+
 	@Column (name="tx_Nome")
-	private String textoNome;
+	private String nome;
 }
 	
+

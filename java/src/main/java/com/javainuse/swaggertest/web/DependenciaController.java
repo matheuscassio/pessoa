@@ -23,10 +23,9 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Dependencias", description = "Operações relativas ao Cadastro de Pessoas")
 public class DependenciaController {
 
-    private final DependenciaService pessoaContatoService = null;
+    private final DependenciaService dependenciaService = null;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -45,8 +44,8 @@ public class DependenciaController {
     @ApiOperation(tags = "PessoasContato", value = "Recuperar uma pessoasContato.")
     public Dependencia findById(
             @ApiParam(value = "Código digital de PessoaContato.", required = true)
-            final @PathVariable(required = true) String idDependencia) throws Exception {
-        final Optional<Dependencia> dependencia = pessoaContatoService.findById(idDependencia);
+            final @PathVariable(required = true) Integer idDependencia) throws Exception {
+        final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
         if (dependencia.isPresent()) {
             return dependencia.get();
         } else {
@@ -67,7 +66,7 @@ public class DependenciaController {
     Integer updateDepencia(
             @ApiParam(value = "Código de identificação da PessoasConato.", required = true) final @PathVariable(required = true) Integer id,
             @Valid @RequestBody DependenciaRequest request) throws Exception {
-        return DependenciaService.update(id, request);
+        return dependenciaService.update(id, request);
     }
 
     @PostMapping("/concepcao")
@@ -75,7 +74,7 @@ public class DependenciaController {
     @ApiOperation(tags = "PessoasContato", value = "Incluir dados de uma pessoas na tabela.")
     Integer  insertPessoaContato(
             @Valid @RequestBody DependenciaRequest request) throws Exception {
-        return pessoaContatoService.insert(request);
+        return dependenciaService.insert(request);
     }
 
 

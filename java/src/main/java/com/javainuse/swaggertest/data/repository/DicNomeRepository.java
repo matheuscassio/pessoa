@@ -15,30 +15,30 @@ import java.util.Optional;
 public interface DicNomeRepository extends CrudRepository <DicNome, Long> {
 
     @Query(value = " " +
-            "select dm " +
-            "from DicNome dm ")
+            "select dn " +
+            "from DicNome dn ")
     Optional<ArrayList<DicNome>> listAll();
 
     @Query(value = " " +
-            "select dm "+
-            "from DicNome dm" +
-            "where dm.id = :id ")
-    Optional<DicNome> findById(@Param("idDicNome") String id);
+            "select dn "+
+            "from DicNome dn " +
+            "where dn.id = :id ")
+    Optional<DicNome> findById(@Param("idDicNome") Integer id);
 
     @Modifying
     @Query(value = " " +
-            "update DicNome dm "+
-            "set dm.DicNome= :textoDicNome, " +
-            "where pd.id = :id")
+            "update DicNome dn "+
+            "set dn.nome = :dicNome " +
+            "where dn.id = :id")
     Integer update(
-            @Param("id") String id,
-            @Param("textoNome") String textoNome);
+            @Param("id") Integer id,
+            @Param("dicNome") String dicNome);
 
     @Query(value = " " +
-            "INSERT INTO tb_dicNome (tx_DicNome, ) " +
-            "VALUES (:textoDicNome, ) ", nativeQuery = true)
+            "INSERT INTO tb_dicNome (nome) " +
+            "VALUES (:textoDicNome) ", nativeQuery = true)
     Integer insert(
-    		 @Param("textoDocumento") String textoDocumento);
+    		 @Param("textoDicNome") String textoDicNome);
 
 
 }

@@ -1,6 +1,7 @@
 package com.javainuse.swaggertest.service;
 
 import com.javainuse.swaggertest.data.models.Dependencia;
+import com.javainuse.swaggertest.data.models.Municipio;
 import com.javainuse.swaggertest.data.playloads.request.DependenciaRequest;
 import com.javainuse.swaggertest.data.repository.DependenciaRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,19 +17,26 @@ public class DependenciaServiceImpl implements DependenciaService {
 
     private final DependenciaRepository dependenciaRepository ;
 
-    public Optional<ArrayList<Dependencia>> getAll() throws Exception {
-        return this.dependenciaRepository.listAll();
-    }
+	@Override
+	public Integer update(Integer idDependencia, Dependencia request) throws Exception {
+		Optional<Municipio> municipioAlterada = this.dependenciaRepository.findById(idDependencia);
+		if (municipioAlterada.isPresent()) {
+			return this.dependenciaRepository.update(idDependencia, request);
+		} else return 0;
+	}
 
 	@Override
-	public Integer update(String id, Dependencia request) throws Exception {
-		// TODO Auto-generated method stub
+	public Boolean deleteById(Integer idDependencia) throws Exception {
 		return null;
 	}
 
 	@Override
-	public Boolean deleteByID(String id) throws Exception {
-		// TODO Auto-generated method stub
+	public Optional<Dependencia> findById(Integer idDependencia) throws Exception {
+		return Optional.empty();
+	}
+
+	@Override
+	public Integer insert(DependenciaRequest request) throws Exception {
 		return null;
 	}
 

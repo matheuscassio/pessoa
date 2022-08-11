@@ -1,5 +1,6 @@
 package com.javainuse.swaggertest.service;
 
+import com.javainuse.swaggertest.data.models.PessoaDocumento;
 import com.javainuse.swaggertest.data.playloads.request.DicNomeFamiliaRequest;
 import org.springframework.stereotype.Component;
 import com.javainuse.swaggertest.data.models.DicNomeFamilia;
@@ -14,9 +15,9 @@ public interface DicNomeFamiliaService {
 
     Integer update(Integer idDicNomeFamilia, DicNomeFamiliaRequest request) throws Exception;
 
-    Boolean deleteByHash(Integer idDicNomeFamilia) throws Exception;
+    Boolean deleteById(Integer idDicNomeFamilia) throws Exception;
 
-    Integer insert(Integer idDicNomeFamilia, DicNomeFamiliaRequest request) throws Exception;
+    Optional<DicNomeFamilia> findById(Integer idDicNomeFamilia) throws Exception;
 
 	Integer insert(DicNomeFamiliaRequest request) throws Exception;
 

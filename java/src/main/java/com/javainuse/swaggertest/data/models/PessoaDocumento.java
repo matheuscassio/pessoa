@@ -25,7 +25,7 @@ public class PessoaDocumento implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_TipoDocumento")
-	private TipoGeral tipoGeral;
+	private TipoGeral tipoDocumento;
 	
 	@Column (name = "vr_Documento")
 	private String valorDocumento;

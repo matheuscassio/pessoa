@@ -26,13 +26,13 @@ import java.util.Optional;
 //@Tag(name = "Dependencias", description = "Operações relativas ao Cadastro de Pessoas")
 public class DicNomeFamiliaController {
 
-    private final DicNomeFamiliaService DicNomeFamiliaService = null;
+    private final DicNomeFamiliaService dicNomeFamiliaService = null;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "DicNomeFamilia", value = "Listar todas as pessoas da tabela contato.")
     public ArrayList<DicNomeFamilia> listarPessoasConato() throws Exception {
-        final Optional<ArrayList<DicNomeFamilia>> lista = DicNomeFamiliaService.getAll();
+        final Optional<ArrayList<DicNomeFamilia>> lista = dicNomeFamiliaService.getAll();
         if (lista.isPresent()) {
             return lista.get();
         } else {
@@ -45,19 +45,18 @@ public class DicNomeFamiliaController {
     @ApiOperation(tags = "DicNomeFamilia", value = "Recuperar uma DicNomeFamilia.")
     public DicNomeFamilia findById(
             @ApiParam(value = "Código digital de DicNomeFamilia.", required = true)
-            final @PathVariable(required = true) String idDependencia) throws Exception {
+            final @PathVariable(required = true) Integer idDicNomeFamilia) throws Exception {
         final Optional<DicNomeFamilia> dicNomeFamilia = dicNomeFamiliaService.findById(idDicNomeFamilia);
-        if (DicNomeFamilia.isPresent()) {
-            return DicNomeFamilia.get();
+        if (dicNomeFamilia.isPresent()) {
+            return dicNomeFamilia.get();
         } else {
             return null;
         }
     }
 
- 
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dicNomeFamilia", value = "Deletar uma DicNomeFamilia da tabela.")
-    public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer id) throws Exception {
+    public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer idDicNomeFamilia) throws Exception {
         return dicNomeFamiliaService.deleteById(idDicNomeFamilia);
     }
 
@@ -65,12 +64,12 @@ public class DicNomeFamiliaController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "DicNomeFamilia", value = "Alterar os dados de uma DicNomeFamilia da tabela.")
     Integer updateDepencia(
-            @ApiParam(value = "Código de identificação da PessoasConato.", required = true) final @PathVariable(required = true) Integer id,
+            @ApiParam(value = "Código de identificação da PessoasConato.", required = true) final @PathVariable(required = true) Integer idDicNomeFamilia,
             @Valid @RequestBody DicNomeFamiliaRequest request) throws Exception {
-        return dicNomeFamiliaService.update(id, request);
+        return dicNomeFamiliaService.update(idDicNomeFamilia, request);
     }
 
-    @PostMapping("/concepcao")
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "PessoasContato", value = "Incluir dados de uma pessoas na tabela.")
     Integer  insertPessoaContato(

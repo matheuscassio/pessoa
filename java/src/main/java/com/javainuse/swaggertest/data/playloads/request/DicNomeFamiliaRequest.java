@@ -23,12 +23,12 @@ public class DicNomeFamiliaRequest {
 
     @ApiModelProperty(notes = "Código de identificação da Dicionario Nome Familia.",
             example = "1", required = true, position = 0)
-    private Integer idDicNomeNomeRequest;
+    private Integer id;
 	
 	
     @ApiModelProperty(value = "Texto do Nome familia", position = 1)
     @NotNull(message = "Texto do Nome não pode ser nula.")
-    private String textoNomeFamilia;
+    private String nomeFamilia;
 
  
 }

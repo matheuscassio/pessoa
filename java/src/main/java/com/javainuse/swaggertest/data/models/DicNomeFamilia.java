@@ -24,7 +24,7 @@
 		private Integer id;
 		
 		@Column (name="tx_NomeFamilia")
-		private String textoNomeFamilia;
+		private String nomeFamilia;
 	}
 		
 

@@ -23,16 +23,15 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Dependencias", description = "Operações relativas ao Cadastro de Pessoas")
 public class DicNomeController {
 
-    private final DicNomeService pessoaContatoService;
+    private final DicNomeService dicNomeService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "PessoasContato", value = "Listar todas as pessoas da tabela contato.")
     public ArrayList<DicNome> listarPessoasConato() throws Exception {
-        final Optional<ArrayList<DicNome>> lista = DicNomeService.getAll();
+        final Optional<ArrayList<DicNome>> lista = dicNomeService.getAll();
         if (lista.isPresent()) {
             return lista.get();
         } else {
@@ -40,13 +39,13 @@ public class DicNomeController {
         }
     }
 
-    @GetMapping(value = "/{idPessoaContato}", name = "idPessoaContato")
+    @GetMapping(value = "/{idDicNome}", name = "idDicNome")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Recuperar uma pessoasContato.")
+    @ApiOperation(tags = "dic-nome-controller", value = "Recuperar uma pessoasContato.")
     public DicNome findById(
             @ApiParam(value = "Código digital de PessoaContato.", required = true)
-            final @PathVariable(required = true) String idDependencia) throws Exception {
-        final Optional<DicNome> dependencia = DicNomeService.findById(idDicNome);
+            final @PathVariable(required = true) Integer idDependencia) throws Exception {
+        final Optional<DicNome> dependencia = dicNomeService.findById(idDependencia);
         if (dependencia.isPresent()) {
             return dependencia.get();
         } else {
@@ -56,26 +55,26 @@ public class DicNomeController {
 
     
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dependencias", value = "Deletar uma Dependencia da tabela.")
+    @ApiOperation(tags = "dic-nome-controller", value = "Deletar uma Dependencia da tabela.")
     public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer id) throws Exception {
-        return DicNomeService.deleteById(id);
+        return dicNomeService.deleteById(id);
     }
 
     @PutMapping("/{idPessoaContato}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasConato", value = "Alterar os dados de uma pessoas da tabela.")
+    @ApiOperation(tags = "dic-nome-controller", value = "Alterar os dados de uma pessoas da tabela.")
     Integer updateDepencia(
             @ApiParam(value = "Código de identificação da DicNome.", required = true) final @PathVariable(required = true) Integer id,
             @Valid @RequestBody DicNomeRequest request) throws Exception {
-        return DicNomeService.update(id, request);
+        return dicNomeService.update(id, request);
     }
 
-    @PostMapping("/concepcao")
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "DicNome", value = "Incluir dados de uma pessoas na tabela.")
+    @ApiOperation(tags = "dic-nome-controller", value = "Incluir dados de uma pessoas na tabela.")
     Integer  insertPessoaContato(
-            @Valid @RequestBody DicNomeDependenciaRequest request) throws Exception {
-        return DicNomeService.insert(request);
+            @Valid @RequestBody DicNomeRequest request) throws Exception {
+        return dicNomeService.insert(request);
     }
 
 

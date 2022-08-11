@@ -12,7 +12,9 @@ public interface DicNomeService {
 
     Optional<ArrayList<DicNome>> getAll() throws Exception;
 
-     Integer update(Integer idDicNome, DicNomeRequest request) throws Exception;
+    Optional<DicNome> findById(Integer idDicNome) throws Exception;
+
+    Integer update(Integer idDicNome, DicNomeRequest request) throws Exception;
 
     Boolean deleteById(Integer idDicNome) throws Exception;
 

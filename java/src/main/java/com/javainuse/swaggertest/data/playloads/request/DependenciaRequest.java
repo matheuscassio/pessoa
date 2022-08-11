@@ -21,14 +21,6 @@ import java.util.Date;
 @ApiModel(value = "DependenciaRequest", description = "Modelo que representa uma requisição para alterar uma Dependencia.")
 public class DependenciaRequest {
 
-    @ApiModelProperty(notes = "Código de identificação da Dependencia.",
-            example = "1", required = true, position = 0)
-    private Integer idDependencia;
-	
-    @ApiModelProperty(notes = "Código de identificação da Pessoa.",
-            example = "1", required = true, position = 0)
-    private Integer idPessoa;
-    
 	@ApiModelProperty(value = "Código de identificação do da pessoaa dependente",
             example = "1", required = true, position = 1)
 	private Integer idPessoaDependencia;

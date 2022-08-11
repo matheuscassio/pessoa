@@ -29,7 +29,7 @@ public class PessoaContato {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_TipoContato")
-	private TipoGeral tipoGeral;
+	private TipoGeral tipoContato;
 	
 	@Column (name="nm_Contato")
 	private String nomeContato;
