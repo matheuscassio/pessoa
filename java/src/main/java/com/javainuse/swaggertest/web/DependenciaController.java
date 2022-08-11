@@ -25,9 +25,9 @@ import java.util.Optional;
     })
 public class DependenciaController {
 
-    private final DependenciaService dependenciaService = null;
+    private final DependenciaService dependenciaService;
 
-    @GetMapping()
+  /*  @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "PessoasContato", value = "Listar todas as pessoas da tabela contato.")
     public ArrayList<Dependencia> listarPessoasConato() throws Exception {
@@ -37,13 +37,13 @@ public class DependenciaController {
         } else {
             return null;
         }
-    }
+    }*/
 
-    @GetMapping(value = "/{idPessoaContato}", name = "idPessoaContato")
+    @GetMapping(value = "/{idDependencia}", name = "idDependencia")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Recuperar uma pessoasContato.")
+    @ApiOperation(tags = "Dependencia", value = "Recuperar uma Dependencia.")
     public Dependencia findById(
-            @ApiParam(value = "Código digital de PessoaContato.", required = true)
+            @ApiParam(value = "Código digital de Dependencia.", required = true)
             final @PathVariable(required = true) Integer idDependencia) throws Exception {
         final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
         if (dependencia.isPresent()) {
@@ -53,26 +53,26 @@ public class DependenciaController {
         }
     }
 
-    @DeleteMapping("/{hashPessoa}")
+    @DeleteMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dependencias", value = "Deletar uma Dependencia da tabela.")
     public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer id) throws Exception {
-        return dependenciaService.deleteById(id);
+        return dependenciaService.deleteById(idDependencia);
     }
 
-    @PutMapping("/{idPessoaContato}")
+    @PutMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "PessoasConato", value = "Alterar os dados de uma pessoas da tabela.")
     Integer updateDepencia(
             @ApiParam(value = "Código de identificação da PessoasConato.", required = true) final @PathVariable(required = true) Integer id,
             @Valid @RequestBody DependenciaRequest request) throws Exception {
-        return dependenciaService.update(id, request);
+        return dependenciaService.update(idDependencia, request);
     }
 
     @PostMapping("/concepcao")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Incluir dados de uma pessoas na tabela.")
-    Integer  insertPessoaContato(
+    @ApiOperation(tags = "Dependencia", value = "Incluir dados de Dependencia.")
+    Integer  insertDependencia(
             @Valid @RequestBody DependenciaRequest request) throws Exception {
         return dependenciaService.insert(request);
     }

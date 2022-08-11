@@ -29,7 +29,7 @@ public class DicNomeController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Listar todas as pessoas da tabela contato.")
+    @ApiOperation(tags = "DicNome", value = "Listar todas as pessoas da tabela contato.")
     public ArrayList<DicNome> listarPessoasConato() throws Exception {
         final Optional<ArrayList<DicNome>> lista = dicNomeService.getAll();
         if (lista.isPresent()) {
@@ -53,14 +53,14 @@ public class DicNomeController {
         }
     }
 
-    
+    /*@DeleteMapping("/{idDicNome}"*/
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-controller", value = "Deletar uma Dependencia da tabela.")
     public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer id) throws Exception {
         return dicNomeService.deleteById(id);
     }
 
-    @PutMapping("/{idPessoaContato}")
+    @PutMapping("/{idDicNome}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-controller", value = "Alterar os dados de uma pessoas da tabela.")
     Integer updateDepencia(
@@ -69,7 +69,7 @@ public class DicNomeController {
         return dicNomeService.update(id, request);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-controller", value = "Incluir dados de uma pessoas na tabela.")
     Integer  insertPessoaContato(

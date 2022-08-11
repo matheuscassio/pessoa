@@ -19,8 +19,8 @@ public class DependenciaServiceImpl implements DependenciaService {
 
 	@Override
 	public Integer update(Integer idDependencia, Dependencia request) throws Exception {
-		Optional<Municipio> municipioAlterada = this.dependenciaRepository.findById(idDependencia);
-		if (municipioAlterada.isPresent()) {
+		Optional<Dependencia> dependenciaAlterada = this.dependenciaRepository.findById(idDependencia);
+		if (dependenciaAlterada.isPresent()) {
 			return this.dependenciaRepository.update(idDependencia, request);
 		} else return 0;
 	}

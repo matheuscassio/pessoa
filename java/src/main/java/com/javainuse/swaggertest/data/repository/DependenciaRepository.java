@@ -13,30 +13,30 @@ import java.util.Optional;
 @Repository
 public interface DependenciaRepository extends CrudRepository <Dependencia, Long> {
 
-    @Query(value = " " +
+    /*@Query(value = " " +
             "select d " +
             "from Dependencia d ")
-    Optional<ArrayList<Dependencia>> listAll();
+    Optional<ArrayList<Dependencia>> listAll();*/
 
     @Query(value = " " +
             "select d "+
             "from Dependencia d " +
             "where d.id = :id ")
-    Optional<Dependencia> findById(@Param("idDependencia") String id);
+    Optional<Dependencia> findById(@Param("idDependencia") Integer id);
 
     @Modifying
     @Query(value = " " +
-            "update Dependencia m "+
-            "set m.nomeMunicipio = :nomeMunicipio " +
-            "where m.id = :idMunicipio")
+            "update Dependencia d "+
+            "set d.tipoDependicia = :tipoDependicia " +
+            "where d.id = :idDependencia")
     Integer update(
-            @Param("idMunicipio") Integer idMunicipio,
-            @Param("nomeMunicipio") String nomeMunicipio);
+            @Param("idDependencia") Integer idDependencia,
+            @Param("tipoDependencia") Integer tipoDependencia);
 
     @Modifying
     @Query(value = " " +
-            "INSERT INTO tb_municipio (nm_Municipio) " +
-            "VALUES (:nomeMunicipio) ", nativeQuery = true)
-    Integer insert(@Param("nomeMunicipio") String nomeMunicipio);
+            "INSERT INTO tb_dependencia (tipoDepencia) " +
+            "VALUES (:tipoDependencia) ", nativeQuery = true)
+    Integer insert(@Param("nomeMunicipio") Integer tipoDependencia);
 
 }

@@ -23,10 +23,10 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-//@Tag(name = "Dependencias", description = "Operações relativas ao Cadastro de Pessoas")
+//@Tag(name = "DicNomeFamilia", description = "Operações relativas ao Cadastro de Nome de familia")
 public class DicNomeFamiliaController {
 
-    private final DicNomeFamiliaService dicNomeFamiliaService = null;
+    private final DicNomeFamiliaService dicNomeFamiliaService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
