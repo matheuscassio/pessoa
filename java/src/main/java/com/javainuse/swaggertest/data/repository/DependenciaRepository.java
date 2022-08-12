@@ -7,11 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
-public interface DependenciaRepository extends CrudRepository <Dependencia, Long> {
+public interface DependenciaRepository extends CrudRepository <Dependencia, Integer> {
 
     /*@Query(value = " " +
             "select d " +
@@ -27,16 +26,16 @@ public interface DependenciaRepository extends CrudRepository <Dependencia, Long
     @Modifying
     @Query(value = " " +
             "update Dependencia d "+
-            "set d.tipoDependicia = :tipoDependicia " +
+            "set d.tipoDependicia = :tipoDependencia " +
             "where d.id = :idDependencia")
     Integer update(
             @Param("idDependencia") Integer idDependencia,
-            @Param("tipoDependencia") Integer tipoDependencia);
+            @Param("tipoDependencia") String tipoDependencia);
 
     @Modifying
     @Query(value = " " +
             "INSERT INTO tb_dependencia (tipoDepencia) " +
             "VALUES (:tipoDependencia) ", nativeQuery = true)
-    Integer insert(@Param("nomeMunicipio") Integer tipoDependencia);
+    Integer insert(@Param("tipoDependencia") Integer tipoDependencia);
 
 }

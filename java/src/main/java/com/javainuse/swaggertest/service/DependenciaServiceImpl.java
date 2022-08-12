@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Optional;
 
-//@log4j2
 @Service
 @RequiredArgsConstructor
 public class DependenciaServiceImpl implements DependenciaService {
@@ -21,7 +20,7 @@ public class DependenciaServiceImpl implements DependenciaService {
 	public Integer update(Integer idDependencia, Dependencia request) throws Exception {
 		Optional<Dependencia> dependenciaAlterada = this.dependenciaRepository.findById(idDependencia);
 		if (dependenciaAlterada.isPresent()) {
-			return this.dependenciaRepository.update(idDependencia, request);
+			return this.dependenciaRepository.update(idDependencia, request.getTipoDependencia());
 		} else return 0;
 	}
 
