@@ -1,7 +1,6 @@
 package com.javainuse.swaggertest.web;
 
 import java.util.Optional;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.javainuse.swaggertest.data.models.Dependencia;
 import com.javainuse.swaggertest.data.playloads.request.DependenciaRequest;
 import com.javainuse.swaggertest.service.DependenciaService;
@@ -38,18 +36,6 @@ import lombok.RequiredArgsConstructor;
 public class DependenciaController {
 
     private final DependenciaService dependenciaService;
-
-  /*  @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasContato", value = "Listar todas as pessoas da tabela contato.")
-    public ArrayList<Dependencia> listarPessoasConato() throws Exception {
-        final Optional<ArrayList<Dependencia>> lista = dependenciaService.getAll();
-        if (lista.isPresent()) {
-            return lista.get();
-        } else {
-            return null;
-        }
-    }*/
 
     @GetMapping(value = "/{idDependencia}", name = "idDependencia")
     @ResponseStatus(HttpStatus.OK)
@@ -81,13 +67,12 @@ public class DependenciaController {
         return dependenciaService.update(idDependencia, request);
     }
 
-    @PostMapping("/concepcao")
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "Dependencia", value = "Incluir dados de Dependencia.")
     Integer  insertDependencia(
             @Valid @RequestBody DependenciaRequest request) throws Exception {
         return dependenciaService.insert(request);
     }
-
 
 }

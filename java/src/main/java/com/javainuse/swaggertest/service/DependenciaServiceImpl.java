@@ -6,9 +6,7 @@ import com.javainuse.swaggertest.data.repository.DependenciaRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class DependenciaServiceImpl implements DependenciaService {
@@ -16,18 +14,18 @@ public class DependenciaServiceImpl implements DependenciaService {
     private final DependenciaRepository dependenciaRepository ;
 
 	@Override
-	public Integer update(Integer idDependencia, Dependencia request) throws Exception {
+	public Integer update(Integer idDependencia, DependenciaRequest request) throws Exception {
 		Optional<Dependencia> dependenciaAlterada = this.dependenciaRepository.findById(idDependencia);
 		if (dependenciaAlterada.isPresent()) {
-			return this.dependenciaRepository.update(idDependencia, request.getTipoDependencia());
+			return this.dependenciaRepository.update(idDependencia, request.getIdPessoa(), request.getIdPessoaDependente(), request.getIdTipoDependente());
 		} else return 0;
 	}
 
     @Override
     public Boolean deleteById(Integer idDependencia) throws Exception {
-        Optional<Dependencia> pessoaContato = this.dependenciaRepository.findById(idDependencia);
-        if (Dependencia.isPresent()) {
-            this.dependenciaRepository.delete(pessoaContato.get());
+        Optional<Dependencia> dependencia = this.dependenciaRepository.findById(idDependencia);
+        if (dependencia.isPresent()) {
+            this.dependenciaRepository.delete(dependencia.get());
             return true;
         } else return false;
     }
@@ -38,8 +36,8 @@ public class DependenciaServiceImpl implements DependenciaService {
 	}
 	
 	@Override
-	    public Integer insert(DependenciaRequest request) throws Exception {
-	        return this.dependenciaRepository.insert(request.getIdDependencia());
-	    }
+	public Integer insert(DependenciaRequest request) throws Exception {
+		return this.dependenciaRepository.insert(request.getIdPessoa(), request.getIdPessoaDependente(), request.getIdTipoDependente());
+	}
 
 }

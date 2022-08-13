@@ -31,7 +31,6 @@ public interface PessoaContatoRepository extends CrudRepository <PessoaContato, 
             "set pc.nomeContato = :nomeContato, " +
             "    pc.descricaoContato = :descricaoContato " +
             "where pc.id = :id")
-    
     Integer update(
             @Param("id") Integer id,
             @Param("nomeContato") String nomeContato,

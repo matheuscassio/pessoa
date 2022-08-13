@@ -21,7 +21,7 @@ public class Dependencia {
 	@Id
 	@Column (name="id_Depedencia")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer idDependencia;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_Pessoa")
