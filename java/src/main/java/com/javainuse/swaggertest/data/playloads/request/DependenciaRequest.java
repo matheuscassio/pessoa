@@ -7,12 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
+/*import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.util.Date;*/
 
 @Data
 @Builder
@@ -21,10 +21,14 @@ import java.util.Date;
 @ApiModel(value = "DependenciaRequest", description = "Modelo que representa uma requisição para alterar uma Dependencia.")
 public class DependenciaRequest {
 
-	@ApiModelProperty(value = "Código de identificação do da pessoaa dependente",
-            example = "1", required = true, position = 1)
-	private Integer idPessoaDependencia;
-	
+	@ApiModelProperty(value = "Código de identificação da pessoa.",
+			example = "1", required = true, position = 1)
+	private Integer idPessoa;
+
+	@ApiModelProperty(value = "Código de identificação da pessoa dependente",
+			example = "1", required = true, position = 1)
+	private Integer idPessoaDependente;
+
 	@ApiModelProperty(value = "Código de identificação do Tipo de Dependente",
             example = "1", required = true, position = 1)
 	private Integer idTipoDependente;
