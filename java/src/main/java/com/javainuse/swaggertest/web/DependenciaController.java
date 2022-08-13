@@ -39,7 +39,7 @@ public class DependenciaController {
 
     @GetMapping(value = "/{idDependencia}", name = "idDependencia")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Dependencia", value = "Recuperar uma Dependencia.")
+    @ApiOperation(tags = "dependencia-controller", value = "Recuperar uma Dependencia.")
     public Dependencia findById(
             @ApiParam(value = "Código digital de Dependencia.", required = true)
             final @PathVariable(required = true) Integer idDependencia) throws Exception {
@@ -53,14 +53,14 @@ public class DependenciaController {
 
     @DeleteMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dependencias", value = "Deletar uma Dependencia da tabela.")
+    @ApiOperation(tags = "dependencia-controller", value = "Deletar uma Dependencia da tabela.")
     public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer idDependencia) throws Exception {
         return dependenciaService.deleteById(idDependencia);
     }
 
     @PutMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "PessoasConato", value = "Alterar os dados de uma Dependencia da tabela.")
+    @ApiOperation(tags = "dependencia-controller", value = "Alterar os dados de uma Dependencia da tabela.")
     Integer updateDepencia(
             @ApiParam(value = "Código de identificação da PessoasConato.", required = true) final @PathVariable(required = true) Integer idDependencia,
             @Valid @RequestBody DependenciaRequest request) throws Exception {
@@ -69,7 +69,7 @@ public class DependenciaController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "Dependencia", value = "Incluir dados de Dependencia.")
+    @ApiOperation(tags = "dependencia-controller", value = "Incluir dados de Dependencia.")
     Integer  insertDependencia(
             @Valid @RequestBody DependenciaRequest request) throws Exception {
         return dependenciaService.insert(request);

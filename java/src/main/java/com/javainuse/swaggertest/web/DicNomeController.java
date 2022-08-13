@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/dependenciav1")
+@RequestMapping("/v1/dicionario/nome")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
@@ -29,7 +29,7 @@ public class DicNomeController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "DicNome", value = "Listar todas as pessoas da tabela contato.")
+    @ApiOperation(tags = "dic-nome-controller", value = "Listar todas as pessoas da tabela contato.")
     public ArrayList<DicNome> listarPessoasConato() throws Exception {
         final Optional<ArrayList<DicNome>> lista = dicNomeService.getAll();
         if (lista.isPresent()) {
