@@ -32,7 +32,7 @@ public class Pessoa implements Serializable {
 	private Date dataNascimento;
 	
 	@Column (name="nm_Genitor")
-	private String nomeMae;
+	private String nomeGenitor;
 
 }
 
