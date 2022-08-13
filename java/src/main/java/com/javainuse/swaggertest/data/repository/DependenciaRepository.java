@@ -15,8 +15,8 @@ public interface DependenciaRepository extends CrudRepository <Dependencia, Inte
     @Query(value = " " +
             "select d "+
             "from Dependencia d " +
-            "where d.idDependencia = :id ")
-    Optional<Dependencia> findById(@Param("idDependencia") Integer id);
+            "where d.idDependencia = :idDependencia ")
+    Optional<Dependencia> findById(@Param("idDependencia") Integer idDependencia);
 
     @Modifying
     @Query(value = " " +
