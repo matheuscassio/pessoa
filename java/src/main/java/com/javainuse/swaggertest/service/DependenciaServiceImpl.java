@@ -16,7 +16,7 @@ public class DependenciaServiceImpl implements DependenciaService {
 	public Integer update(Integer idDependencia, DependenciaRequest request) throws Exception {
 		Optional<Dependencia> dependenciaAlterada = this.dependenciaRepository.findById(idDependencia);
 		if (dependenciaAlterada.isPresent()) {
-			return this.dependenciaRepository.update(idDependencia, request);
+			return this.dependenciaRepository.update(idDependencia, request.getIdPessoa(), request.getIdPessoaDependente(), request.getIdTipoDependente());
 		} else return 0;
 	}
 

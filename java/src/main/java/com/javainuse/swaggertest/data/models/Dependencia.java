@@ -21,7 +21,7 @@ public class Dependencia {
 	@Id
 	@Column (name="id_Depedencia")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer idDependencia;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_Pessoa")
@@ -29,7 +29,7 @@ public class Dependencia {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_PessoaDependente")
-	private Pessoa pessoa1;
+	private Pessoa pessoaDependente;
 	
 
 	@ManyToOne(fetch = FetchType.EAGER)

@@ -21,11 +21,15 @@ public interface DependenciaRepository extends CrudRepository <Dependencia, Inte
     @Modifying
     @Query(value = " " +
             "update Dependencia d "+
-            "set d.tipoDependencia = :tipoDependencia " +
-            "where d.id = :idDependencia")
+            "set d.pessoa.id = :idPessoa," +
+            "    d.pessoaDependente.id = :idPessoaDependente," +
+            "    d.tipoGeral.id = :idTipoDependencia " +
+            "where d.idDependencia = :idDependencia")
     Integer update(
             @Param("idDependencia") Integer idDependencia,
-            @Param("tipoDependencia") DependenciaRequest dependencia);
+            @Param("idPessoa") Integer idPessoa,
+            @Param("idPessoaDependente") Integer idPessoaDependente,
+            @Param("idTipoDependencia") Integer idTipoDependencia);
 
     @Modifying
     @Query(value = " " +
