@@ -15,7 +15,7 @@ public interface DependenciaRepository extends CrudRepository <Dependencia, Inte
     @Query(value = " " +
             "select d "+
             "from Dependencia d " +
-            "where d.id = :id ")
+            "where d.idDependencia = :id ")
     Optional<Dependencia> findById(@Param("idDependencia") Integer id);
 
     @Modifying
@@ -23,7 +23,7 @@ public interface DependenciaRepository extends CrudRepository <Dependencia, Inte
             "update Dependencia d "+
             "set d.pessoa.id = :idPessoa," +
             "    d.pessoaDependente.id = :idPessoaDependente," +
-            "    d.tipoGeral.id = :idTipoDependencia " +
+            "    d.tipoDependencia.id = :idTipoDependencia " +
             "where d.idDependencia = :idDependencia")
     Integer update(
             @Param("idDependencia") Integer idDependencia,
