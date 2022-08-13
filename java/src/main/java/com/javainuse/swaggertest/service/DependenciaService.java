@@ -10,12 +10,14 @@ import java.util.Optional;
 @Component
 public interface DependenciaService {
 
-    Integer update(Integer idDependencia, DependenciaRequest request) throws Exception;
+	Integer update(Integer idDependencia, Dependencia request) throws Exception;
 
     Boolean deleteById(Integer idDependencia) throws Exception;
 
     Optional<Dependencia> findById(Integer idDependencia) throws Exception;
 
     Integer insert(DependenciaRequest request) throws Exception;
+
+	
 
 }

@@ -21,7 +21,7 @@ public class PessoaRequest {
     @NotNull(message = "A data de nascimento não pode ser nula.")
     private Date dataNascimento;
 
-    @ApiModelProperty(value = "O nome da mãe da Pessoa.")
-    @NotNull(message = "O nome da mãe não pode ser nulo.")
-    private String nomeMae;
+    @ApiModelProperty(value = "O nome do Genitor da Pessoa.")
+    @NotNull(message = "O nome do Genitor não pode ser nulo.")
+    private String nomeGenitor;
 }

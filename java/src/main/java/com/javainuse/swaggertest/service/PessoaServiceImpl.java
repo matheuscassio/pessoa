@@ -30,7 +30,7 @@ public class PessoaServiceImpl implements PessoaService {
     public Integer update(String hash, PessoaRequest request) throws Exception {
         Optional<Pessoa> pessoaAlterada = this.pessoaRepository.findByHash(hash);
         if (pessoaAlterada.isPresent()) {
-            return this.pessoaRepository.update(hash, request.getNomeMae(), request.getDataNascimento());
+            return this.pessoaRepository.update(hash, request.getNomeGenitor(), request.getDataNascimento());
         } else return 0;
     }
 
@@ -45,7 +45,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public Integer insert(PessoaRequest request) throws Exception {
-        return this.pessoaRepository.insert(request.getNomeMae(), request.getDataNascimento());
+        return this.pessoaRepository.insert(request.getNomeGenitor(), request.getDataNascimento());
     }
 
 }

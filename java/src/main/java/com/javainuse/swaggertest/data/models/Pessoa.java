@@ -31,7 +31,7 @@ public class Pessoa implements Serializable {
 	@Column (name="dt_Nascimento")
 	private Date dataNascimento;
 	
-	@Column (name="nm_Mae")
+	@Column (name="nm_Genitor")
 	private String nomeMae;
 
 }

@@ -1,6 +1,8 @@
 package com.javainuse.swaggertest.data.repository;
 
 import com.javainuse.swaggertest.data.models.Dependencia;
+import com.javainuse.swaggertest.data.models.TipoGeral;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -30,12 +32,13 @@ public interface DependenciaRepository extends CrudRepository <Dependencia, Inte
             "where d.id = :idDependencia")
     Integer update(
             @Param("idDependencia") Integer idDependencia,
-            @Param("tipoDependencia") String tipoDependencia);
+            @Param("tipoDependencia") Integer tipoGeral);
 
     @Modifying
     @Query(value = " " +
             "INSERT INTO tb_dependencia (tipoDepencia) " +
             "VALUES (:tipoDependencia) ", nativeQuery = true)
     Integer insert(@Param("tipoDependencia") Integer tipoDependencia);
+
 
 }
