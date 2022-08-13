@@ -30,7 +30,6 @@ public interface PessoaNomeRepository extends CrudRepository <PessoaNome, Intege
             "update PessoaNome pn "+
             "set pn.nomePessoa = :nomePessoa " +
             "where pn.id = :id")
-    
     Integer update(
             @Param("id") Integer id,
             @Param("nomePessoa") String nomePessoa);
