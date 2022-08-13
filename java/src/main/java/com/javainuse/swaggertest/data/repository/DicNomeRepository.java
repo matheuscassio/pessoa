@@ -22,7 +22,7 @@ public interface DicNomeRepository extends CrudRepository <DicNome, Long> {
     @Query(value = " " +
             "select dn "+
             "from DicNome dn " +
-            "where dn.id = :id ")
+            "where dn.id = :idDicNome ")
     Optional<DicNome> findById(@Param("idDicNome") Integer id);
 
     @Modifying
