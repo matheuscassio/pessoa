@@ -19,11 +19,11 @@
 		@ApiModelProperty(notes = "Identificador sequencial.",
 				example = "1", required = true, position = 0)
 		@Id
-		@Column (name="id_DicNomeFamilia")
+		@Column (name="id_Dic_Nome_Familia")
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private Integer id;
 		
-		@Column (name="tx_NomeFamilia")
+		@Column (name="tx_Nome_Familia")
 		private String nomeFamilia;
 	}
 		

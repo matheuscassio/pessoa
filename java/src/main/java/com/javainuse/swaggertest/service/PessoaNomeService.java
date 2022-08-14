@@ -1,9 +1,10 @@
 package com.javainuse.swaggertest.service;
 
+import com.javainuse.swaggertest.data.models.PessoaNome;
 import com.javainuse.swaggertest.data.playloads.request.PessoaNomeRequest;
 import org.springframework.stereotype.Component;
 
-import com.javainuse.swaggertest.data.models.PessoaNome;
+
 
 import java.util.ArrayList;
 import java.util.Optional;

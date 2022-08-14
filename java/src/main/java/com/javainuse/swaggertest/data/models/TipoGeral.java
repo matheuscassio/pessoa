@@ -23,7 +23,7 @@ public class TipoGeral {
 	@Column(name = "id_TipoGeral", nullable = false)
 	private Integer id;
 	
-	@Column (name="nm_TipoGeral")
+	@Column (name="nm_Tipo_Geral")
 	private String nomeTipoGeral;
 	
 	@Column (name="nm_Filtro")

@@ -28,7 +28,7 @@ public class PessoaEndereco{
 	private Pessoa pessoa;
 
 	@ManyToOne
-	@JoinColumn(name = "id_TipoLogradouro")
+	@JoinColumn(name = "id_Tipo_Logradouro")
 	private TipoGeral tipoGeral;
 	
 	@ManyToOne

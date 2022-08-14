@@ -54,15 +54,24 @@ public class DependenciaController {
     @DeleteMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dependencia-controller", value = "Deletar uma Dependencia da tabela.")
-    public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer idDependencia) throws Exception {
-        return dependenciaService.deleteById(idDependencia);
+    public Boolean deleteDependencia(
+            @ApiParam(name = "idDependencia",
+            value = "Código de Dependencia .",
+            example = "1",
+            required = true)
+            @PathVariable(required = true) final Integer idDependencia) throws Exception {
+    	        return dependenciaService.deleteById(idDependencia);
     }
 
     @PutMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dependencia-controller", value = "Alterar os dados de uma Dependencia da tabela.")
     Integer updateDepencia(
-            @ApiParam(value = "Código de identificação da PessoasConato.", required = true) final @PathVariable(required = true) Integer idDependencia,
+            @ApiParam(name = "idDependencia",
+            value = "Código de Dependencia .",
+            example = "1",
+            required = true)
+            @PathVariable(required = true) final Integer idDependencia,
             @Valid @RequestBody DependenciaRequest request) throws Exception {
         return dependenciaService.update(idDependencia, request);
     }

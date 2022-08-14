@@ -42,7 +42,7 @@ public interface PessoaDocumentoRepository extends CrudRepository <PessoaDocumen
     
     @Modifying
     @Query(value = " " +
-            "INSERT INTO tb_pessoa_documento (vr_Documento, dt_Emissao, nm_OrgaoEmissor, ds_Serie) " +
+            "INSERT INTO tb_pessoa_documento (vr_Documento, dt_Emissao, nm_Orgao_Emissor, ds_Serie) " +
             "VALUES (:valorDocumento, :dataEmissao, :nomeOrgaoEmissor, :descricaoSerie) ", nativeQuery = true)
     Integer insert(
     		 @Param("valorDocumento") String valorDocumento,

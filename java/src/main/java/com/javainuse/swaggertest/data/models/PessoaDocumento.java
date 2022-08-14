@@ -24,7 +24,7 @@ public class PessoaDocumento implements Serializable {
 	private Pessoa pessoa;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_TipoDocumento")
+	@JoinColumn(name = "id_Tipo_Documento")
 	private TipoGeral tipoDocumento;
 	
 	@Column (name = "vr_Documento")
@@ -33,7 +33,7 @@ public class PessoaDocumento implements Serializable {
 	@Column (name = "dt_Emissao")
 	private String dataEmissao;
 	
-	@Column (name = "nm_OrgaoEmissor")
+	@Column (name = "nm_Orgao_Emissor")
 	private String nomeOrgaoEmissor;
 	
 	@Column (name = "ds_Serie")

@@ -19,12 +19,12 @@ public class DicNome{
 	@ApiModelProperty(notes = "Identificador sequencial.",
 			example = "1", required = true, position = 0)
 	@Id
-	@Column (name="id_DicNome")
+	@Column (name="id_Dic_Nome")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_TipoSexo")
+	@JoinColumn(name = "id_Tipo_Sexo")
 	private TipoGeral tipoSexo;
 
 	@Column (name="tx_Nome")

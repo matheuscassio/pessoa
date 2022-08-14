@@ -28,12 +28,12 @@ public class Dependencia {
 	private Pessoa pessoa;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_PessoaDependente")
+	@JoinColumn(name = "id_Pessoa_Dependente")
 	private Pessoa pessoaDependente;
 	
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_TipoDependencia")
+	@JoinColumn(name = "id_Tipo_Dependencia")
 	private TipoGeral tipoDependencia	;
 
 

@@ -25,7 +25,7 @@ CREATE TABLE `tb_municipio` (
 CREATE TABLE `tb_pessoa_endereco` (
   `id_Pessoa_Endereco` INT NOT NULL AUTO_INCREMENT ,
   `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave Estrangeira com tb_pessoa',
-  `id_TipoLogadouro` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
+  `id_Tipo_Logadouro` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
   `id_Municipio` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera para Municipios',
   `nm_Logadouro` VARCHAR(250) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
   `nm_Complemento` VARCHAR(30) NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
@@ -46,10 +46,10 @@ CREATE TABLE `tb_pessoa_endereco` (
 CREATE TABLE `tb_pessoa_documento` (
   `id_Pessoa_Documento` INT NOT NULL AUTO_INCREMENT COMMENT 'Conecção de chave com a tabela tb_pessoa_nome',
   `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de tb_pessoa',
-  `id_TipoDocumento` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
+  `id_Tipo_Documento` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
   `vr_Documento` VARCHAR (100) NULL DEFAULT NULL  COMMENT 'Numero do Documento',
   `dt_Emissao` DATE NULL DEFAULT NULL  COMMENT 'Data de Emissao do Documento',
-  `nm_OrgaoEmissor` VARCHAR (100) NULL DEFAULT NULL  COMMENT 'Numero do Orgao emissor',
+  `nm_Orgao_Emissor` VARCHAR (100) NULL DEFAULT NULL  COMMENT 'Numero do Orgao emissor',
   `ds_Serie` VARCHAR (50) NULL DEFAULT NULL  COMMENT 'Descriçao da Serie do Documento',
   PRIMARY KEY (`id_Pessoa_Documento`)
 ) COMMENT 'Vinculação com Tabela tb_pessoa';
@@ -61,10 +61,10 @@ CREATE TABLE `tb_pessoa_documento` (
 
 		
 CREATE TABLE `tb_tipogeral` (
-  `id_TipoGeral` INTEGER NOT NULL AUTO_INCREMENT ,
-  `nm_TipoGeral` VARCHAR(100) NOT NULL COMMENT 'Nome do tipo Geral',
+  `id_Tipo_Geral` INTEGER NOT NULL AUTO_INCREMENT ,
+  `nm_Tipo_Geral` VARCHAR(100) NOT NULL COMMENT 'Nome do tipo Geral',
   `nm_Filtro` VARCHAR(100) NOT NULL COMMENT 'nome do Filtro',
-  PRIMARY KEY (`id_TipoGeral`)
+  PRIMARY KEY (`id_Tipo_Geral`)
 ) COMMENT 'Filtro de Geral ';
 
 -- ---
@@ -88,7 +88,7 @@ CREATE TABLE `tb_pessoa_nome` (
 CREATE TABLE `tb_pessoa_contatos` (
   `id_Pessoa_Contato` INTEGER NOT NULL AUTO_INCREMENT,
   `id_Pessoa` INT NOT NULL COMMENT 'Chave-Estrangera de tb_Pessoa',
-  `id_TipoContato` INTEGER NOT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
+  `id_Tipo_Contato` INTEGER NOT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
   `nm_Contato` VARCHAR(250) NOT NULL COMMENT 'Chave-Estrangera de filtro tb_TipoGeral',
   `ds_Contato` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id_Pessoa_Contato`)
@@ -98,24 +98,24 @@ CREATE TABLE `tb_pessoa_contatos` (
  CREATE TABLE `tb_dependencia` (
 `id_Dependencia`INTEGER NOT NULL AUTO_INCREMENT,
 `id_Pessoa` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de tb_pessoa',
-`id_PessoaDependente`  INTEGER NOT NULL COMMENT 'Chave-Estrangera de tb_pessoa',
-`id_TipoDependencia` INTEGER NOT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
+`id_Pessoa_Dependente`  INTEGER NOT NULL COMMENT 'Chave-Estrangera de tb_pessoa',
+`id_Tipo_Dependencia` INTEGER NOT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral',
   PRIMARY KEY (`id_Dependencia`)
 ) COMMENT 'Vinculação com chave pessoa tb_pessoa';
 
 CREATE TABLE `tb_dic_nome` (
-`id_DicNome` INTEGER NOT NULL AUTO_INCREMENT ,
-`id_TipoSexo` Integer NOT NULL COMMENT 'Tipo do sexo masculimo feminino',
+`id_Dic_Nome` INTEGER NOT NULL AUTO_INCREMENT ,
+`id_Tipo_Sexo` Integer NOT NULL COMMENT 'Tipo do sexo masculimo feminino',
 `tx_Nome` VARCHAR(100) NOT NULL COMMENT 'texto do nome',
-PRIMARY KEY (`id_DicNome`),
+PRIMARY KEY (`id_Dic_Nome`),
 UNIQUE KEY (`tx_Nome`)
 ) COMMENT 'tabea dicionario nome ';
 
   CREATE TABLE `tb_dic_nome_Familia` (
  `id_DicNomeFamilia` INTEGER NOT NULL AUTO_INCREMENT ,
- `tx_NomeFamilia` VARCHAR(100) NOT NULL COMMENT 'texto do nome familia',
+ `tx_Nome_Familia` VARCHAR(100) NOT NULL COMMENT 'texto do nome familia',
  PRIMARY KEY(`id_DicNomeFamilia`),
- UNIQUE KEY (`tx_NomeFamilia`)
+ UNIQUE KEY (`tx_Nome_Familia`)
   ) COMMENT 'tabea dicionario nome familia ';
 -- ###############################################################################################################3
 -- ---
@@ -124,21 +124,18 @@ UNIQUE KEY (`tx_Nome`)
 
 ALTER TABLE `tb_dependencia` ADD CONSTRAINT fkDependencia_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_pessoa` (`id_pessoa`);
 ALTER TABLE `tb_dependencia` ADD CONSTRAINT fkPessoaDependente_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_dependencia` ADD CONSTRAINT fkTipoDependencia_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoDependencia) REFERENCES `tb_tipogeral` (`id_TipoGeral`);
-ALTER TABLE `tb_dic_nome` ADD CONSTRAINT fkDic_Nome_tb_Tipogeral_idTipoGeral FOREIGN KEY (id_TipoSexo) REFERENCES `tb_tipogeral` (`id_TipoGeral`);
+ALTER TABLE `tb_dependencia` ADD CONSTRAINT fkTipoDependencia_tbTipoGeral_idTipoGeral FOREIGN KEY (id_Tipo_Dependencia) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
+ALTER TABLE `tb_dic_nome` ADD CONSTRAINT fkDic_Nome_tb_Tipogeral_idTipoGeral FOREIGN KEY (id_Tipo_Sexo) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
 -- #############################################################################################################
 
 
 ALTER TABLE `tb_pessoa_endereco` ADD CONSTRAINT fkPessoa_Endereco_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_pessoa_endereco` ADD CONSTRAINT fkPessoa_Endereco_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoLogadouro) REFERENCES `tb_tipogeral` (`id_TipoGeral`);
+ALTER TABLE `tb_pessoa_endereco` ADD CONSTRAINT fkPessoa_Endereco_tbTipoGeral_idTipoGeral FOREIGN KEY (id_Tipo_Logadouro) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
 ALTER TABLE `tb_pessoa_endereco` ADD CONSTRAINT fkPessoa_Endereco_tbMunicipio_idMunicipio FOREIGN KEY fkPessoa_Endereco_tbMunicipio_idMunicipio(id_Municipio) REFERENCES `tb_municipio` (`id_Municipio`);
 ALTER TABLE `tb_pessoa_documento`ADD CONSTRAINT fkPessoa_Documento_tbTipoGeral_idTipoGeral FOREIGN KEY (id_Pessoa) REFERENCES `tb_pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_pessoa_documento`ADD CONSTRAINT fkPessoa_Documento_tbPessoa_idPessoa FOREIGN KEY (id_TipoDocumento) REFERENCES `tb_tipogeral` (`id_TipoGeral`);
+ALTER TABLE `tb_pessoa_documento`ADD CONSTRAINT fkPessoa_Documento_tbPessoa_idPessoa FOREIGN KEY (id_Tipo_Documento) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
 ALTER TABLE `tb_pessoa_nome` ADD CONSTRAINT fkPessoa_Nome_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_pessoa` (`id_Pessoa`);
 ALTER TABLE `tb_pessoa_nome` ADD CONSTRAINT fkPessoa_Nome_tbPessoaDocumento_idPessoaDocumento FOREIGN KEY (id_Pessoa_Documento) REFERENCES `tb_pessoa_documento` (`id_Pessoa_Documento`);
 ALTER TABLE `tb_pessoa_contatos` ADD CONSTRAINT fkPessoa_Contatos_tbPessoa_idPessoa FOREIGN KEY (id_Pessoa) REFERENCES `tb_pessoa` (`id_Pessoa`);
-ALTER TABLE `tb_pessoa_contatos` ADD CONSTRAINT fkPessoa_Contatos_tbTipoGeral_idTipoGeral FOREIGN KEY (id_TipoContato) REFERENCES `tb_tipogeral` (`id_TipoGeral`);
-
-
-
+ALTER TABLE `tb_pessoa_contatos` ADD CONSTRAINT fkPessoa_Contatos_tbTipoGeral_idTipoGeral FOREIGN KEY (id_Tipo_Contato) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
 

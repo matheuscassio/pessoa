@@ -38,7 +38,7 @@ public interface TipoGeralRepository extends CrudRepository <TipoGeral, Integer>
             @Param("nomeFiltro") String nomeFiltro);
     @Modifying
     @Query(value = " " +
-            "INSERT INTO tb_TipoGeral (nm_TipoGeral, nm_Filtro) " +
+            "INSERT INTO tb_tipogeral (nm_Tipo_Geral, nm_Filtro) " +
             "VALUES (:nomeTipoGeral, :nomeFiltro) ", nativeQuery = true)
     Integer insert(
             @Param("nomeTipoGeral") String nomeTipoGeral,

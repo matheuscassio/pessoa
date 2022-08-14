@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-@Table(name="tb_pessoa_cqontato")
+@Table(name="tb_pessoa_contatos")
 public class PessoaContato {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",
@@ -28,7 +28,7 @@ public class PessoaContato {
 	private Pessoa pessoa;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_TipoContato")
+	@JoinColumn(name = "id_Tipo_Contato")
 	private TipoGeral tipoContato;
 	
 	@Column (name="nm_Contato")

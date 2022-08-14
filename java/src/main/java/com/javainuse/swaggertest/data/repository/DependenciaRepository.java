@@ -33,7 +33,7 @@ public interface DependenciaRepository extends CrudRepository <Dependencia, Inte
 
     @Modifying
     @Query(value = " " +
-            "INSERT INTO tb_dependencia (id_Pessoa, id_PessoaDependente, id_TipoDepencia) " +
+            "INSERT INTO tb_dependencia (id_Pessoa, id_Pessoa_Dependente, id_Tipo_Depencia) " +
             "VALUES (:idPessoa, :idPessoaDependente, :idTipoDependencia) ", nativeQuery = true)
     Integer insert(
             @Param("idPessoa") Integer idPessoa,
