@@ -20,7 +20,7 @@ public class TipoGeral {
 			example = "1", required = true, position = 0)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_TipoGeral", nullable = false)
+	@Column(name = "id_Tipo_Geral", nullable = false)
 	private Integer id;
 	
 	@Column (name="nm_Tipo_Geral")

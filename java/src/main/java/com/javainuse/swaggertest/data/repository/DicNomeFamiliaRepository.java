@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Repository
-public interface DicNomeFamiliaRepository extends CrudRepository <DicNomeFamilia, Long> {
+public interface DicNomeFamiliaRepository extends CrudRepository <DicNomeFamilia, Integer> {
 
     @Query(value = " " +
             "select dnf " +

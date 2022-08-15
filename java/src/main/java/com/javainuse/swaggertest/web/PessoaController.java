@@ -46,7 +46,7 @@ public class PessoaController {
     @ApiOperation(tags = "pessoa-controller", value = "Recuperar uma pessoas.")
     public Pessoa findByHash(
             @ApiParam(value = "Código digital de Pessoa.", required = true)
-            final @PathVariable(required = true) String hashPessoa) throws Exception {
+            @PathVariable(required = true) final String hashPessoa) throws Exception {
         final Optional<Pessoa> pessoa = pessoaService.findByHash(hashPessoa);
         if (pessoa.isPresent()) {
             return pessoa.get();
@@ -58,17 +58,20 @@ public class PessoaController {
     @DeleteMapping("/{hashPessoa}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-controller", value = "Deletar uma pessoas da tabela.")
-    public Boolean deletePessoa(@ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash) throws Exception {
-        return pessoaService.deleteByHash(hash);
+    public Boolean deletePessoa(
+            @ApiParam(value = "Código de identificação da Pessoa.", required = true)
+            @PathVariable(required = true) final String hashPessoa) throws Exception {
+        return pessoaService.deleteByHash(hashPessoa);
     }
 
     @PutMapping("/{hashPessoa}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-controller", value = "Alterar os dados de uma pessoas da tabela.")
     public Integer updatePessoa(
-            @ApiParam(value = "Código de identificação da Pessoa.", required = true) final @PathVariable(required = true) String hash,
+            @ApiParam(value = "Código de identificação da Pessoa.", required = true)
+            @PathVariable(required = true) final String hashPessoa,
             @Valid @RequestBody PessoaRequest request) throws Exception {
-        return pessoaService.update(hash, request);
+        return pessoaService.update(hashPessoa, request);
     }
 
     @PostMapping("/concepcao")
