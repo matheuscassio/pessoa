@@ -4,4 +4,8 @@ CREATE TABLE `tb_tipo_geral_filtro` (
 `nm_Tipo_FIltro` VARCHAR(100) NOT NULL COMMENT 'texto do nome familia',
  PRIMARY KEY(`id_tipo_geral_filtro`),
   UNIQUE KEY (`nm_Tipo_FIltro`)
-  ) COMMENT 'Situação em que a pessoa se encontra na tabela';
+  ) COMMENT 'tipo geral de filtros ';
+  
+  ALTER TABLE `tb_tipo_geral_filtro` ADD CONSTRAINT fktipo_geral_filtro_tbtipo_geral_filtro_id_tipo_geral_filtro FOREIGN KEY (id_Tipo_Geral) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
+  
+  
