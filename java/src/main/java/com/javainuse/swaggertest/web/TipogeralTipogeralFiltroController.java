@@ -36,7 +36,7 @@ import lombok.RequiredArgsConstructor;
     })
 public class TipogeralTipogeralFiltroController {
 
-    private final TipogeralTipogeralFiltroService tipogeralTipogeralFiltroService;
+   /* private final TipogeralTipogeralFiltroService tipogeralTipogeralFiltroService;
 
     @GetMapping(value = "/{idTipogeralTipogeralFiltro}", name = "idTipogeralTipogeralFiltro")
     @ResponseStatus(HttpStatus.OK)
@@ -84,7 +84,7 @@ public class TipogeralTipogeralFiltroController {
             @Valid @RequestBody TipogeralTipogeralFiltroRequest request) throws Exception {
         return tipogeralTipogeralFiltroService.insert(request);
     }
-
+*/
 }
 
 

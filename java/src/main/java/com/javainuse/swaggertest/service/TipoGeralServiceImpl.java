@@ -30,7 +30,7 @@ public class TipoGeralServiceImpl implements TipoGeralService {
     public Integer update(Integer idTipoGeral, TipoGeralRequest request) throws Exception {
         Optional<TipoGeral> tipoGeralAlterada = this.tipoGeralRepository.findById(idTipoGeral);
         if (tipoGeralAlterada.isPresent()) {
-            return this.tipoGeralRepository.update(idTipoGeral, request.getNomeTipoGeral(), request.getNomeFiltro());
+            return this.tipoGeralRepository.update(idTipoGeral, request.getNomeTipoGeral(), request.getNomeFiltro(),request.getSituacaoAtivo());
         } else return 0;
     }
 
@@ -45,7 +45,7 @@ public class TipoGeralServiceImpl implements TipoGeralService {
 
     @Override
     public Integer insert(TipoGeralRequest request) throws Exception {
-        return this.tipoGeralRepository.insert(request.getNomeTipoGeral(), request.getNomeFiltro());
+        return this.tipoGeralRepository.insert(request.getNomeTipoGeral(), request.getNomeFiltro(),request.getSituacaoAtivo());
     }
 
 }

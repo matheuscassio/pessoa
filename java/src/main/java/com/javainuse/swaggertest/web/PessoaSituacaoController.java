@@ -27,7 +27,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class PessoaSituacaoController {
-    private final PessoaSituacaoService pessoaSituacaoService ;
+   /* private final PessoaSituacaoService pessoaSituacaoService ;
 
 
     @GetMapping()
@@ -45,7 +45,7 @@ public class PessoaSituacaoController {
     @GetMapping(value = "/{idPessoaSituacao}", name = "idPessoaSituacao")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-situacao-controller", value = "Recuperar uma Situçao pessoa.")
-    public PessoaDocumento findById(
+    public PessoaSituacao findById(
             @ApiParam(name = "idPessoaSituacao",value = "Código de identificação da Situacao.",
                     example = "1",
                     required = true)
@@ -91,5 +91,5 @@ public class PessoaSituacaoController {
         return pessoaSituacaoService.insert(request);
     }
 
-
+*/
 }

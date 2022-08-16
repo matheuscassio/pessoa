@@ -32,7 +32,9 @@ public class TipoGeral {
 	
 	@Column (name="nm_Filtro")
 	private String nomeFiltro;
-
+	
+	@Column (name="st_Ativo")
+	private String situacaoAtivo;
 
 
 }

@@ -27,7 +27,7 @@ import java.util.Optional;
     })
 public class TipogeralFiltroController {
 
-    private final TipogeralFiltroService tipogeralFiltroService;
+    /*private final TipogeralFiltroService tipogeralFiltroService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -90,5 +90,5 @@ public class TipogeralFiltroController {
            @Valid @RequestBody TipogeralFiltroRequest request) throws Exception {
        return tipogeralFiltroService.insert(request);
    }
-
+*/
 }
