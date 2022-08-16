@@ -1,4 +1,4 @@
-package com.javainuse.swaggertest.web;
+/*package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.PessoaNome;
 import com.javainuse.swaggertest.data.playloads.request.PessoaNomeRequest;
@@ -90,4 +90,4 @@ public class PessoaNomeController {
 //    }
 
 
-}
+}*/

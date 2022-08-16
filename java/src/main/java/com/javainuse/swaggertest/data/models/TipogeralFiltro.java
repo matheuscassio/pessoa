@@ -26,6 +26,9 @@ public class TipogeralFiltro{
 	@Column (name="nm_Filtro")
 	private String nomeFiltro;
 	
+	@Column (name="tx_Parametro")
+	private String textoParametro;
+	
 	
 	
 }
