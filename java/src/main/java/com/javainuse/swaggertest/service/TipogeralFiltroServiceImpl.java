@@ -1,6 +1,6 @@
 package com.javainuse.swaggertest.service;
 
-import com.javainuse.swaggertest.data.models.TipogeralFiltro;
+import com.javainuse.swaggertest.data.models.TipoGeralFiltro;
 import com.javainuse.swaggertest.data.playloads.request.TipogeralFiltroRequest;
 import com.javainuse.swaggertest.data.repository.TipogeralFiltroRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,18 +17,18 @@ public class TipogeralFiltroServiceImpl implements TipogeralFiltroService {
     private final TipogeralFiltroRepository tipogeralFiltroRepository;
 
     @Override
-    public Optional<ArrayList<TipogeralFiltro>> getAll() throws Exception {
+    public Optional<ArrayList<TipoGeralFiltro>> getAll() throws Exception {
         return this.tipogeralFiltroRepository.listAll();
     }
 
     @Override
-    public Optional<TipogeralFiltro> findById(Integer idTipogeralFiltro) throws Exception {
+    public Optional<TipoGeralFiltro> findById(Integer idTipogeralFiltro) throws Exception {
         return this.tipogeralFiltroRepository.findById(idTipogeralFiltro);
     }
 
     @Override
     public Integer update(Integer idTipogeralFiltro, TipogeralFiltroRequest request) throws Exception {
-        Optional<TipogeralFiltro> tipogeralFiltroAlterada = this.tipogeralFiltroRepository.findById(idTipogeralFiltro);
+        Optional<TipoGeralFiltro> tipogeralFiltroAlterada = this.tipogeralFiltroRepository.findById(idTipogeralFiltro);
         if (tipogeralFiltroAlterada.isPresent()) {
             return this.tipogeralFiltroRepository.update(idTipogeralFiltro, request.getNomeFiltro(),  request.getTextoParametro());
         } else return 0;
@@ -36,7 +36,7 @@ public class TipogeralFiltroServiceImpl implements TipogeralFiltroService {
 
     @Override
     public Boolean deleteById(Integer idTipogeralFiltro) throws Exception {
-        Optional<TipogeralFiltro> tipogeralFiltro = this.tipogeralFiltroRepository.findById(idTipogeralFiltro);
+        Optional<TipoGeralFiltro> tipogeralFiltro = this.tipogeralFiltroRepository.findById(idTipogeralFiltro);
         if (tipogeralFiltro.isPresent()) {
             this.tipogeralFiltroRepository.delete(tipogeralFiltro.get());
             return true;

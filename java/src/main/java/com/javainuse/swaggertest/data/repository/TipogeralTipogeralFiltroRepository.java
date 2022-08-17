@@ -1,7 +1,6 @@
 package com.javainuse.swaggertest.data.repository;
 
-import com.javainuse.swaggertest.data.models.TipogeralTipogeralFiltro;
-import com.javainuse.swaggertest.data.playloads.request.TipogeralTipogeralFiltroRequest;
+import com.javainuse.swaggertest.data.models.TipoGeralTipoGeralFiltro;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,19 +9,19 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TipogeralTipogeralFiltroRepository extends CrudRepository <TipogeralTipogeralFiltro, Integer> {
+public interface TipogeralTipogeralFiltroRepository extends CrudRepository <TipoGeralTipoGeralFiltro, Integer> {
 
     @Query(value = " " +
             "select d "+
-            "from TipogeralTipogeralFiltro ttf " +
+            "from TipoGeralTipoGeralFiltro ttf " +
             "where ttf.idTipogeralTipogeralFiltro = :idTipogeralTipogeralFiltro ")
-    Optional<TipogeralTipogeralFiltro> findById(@Param("idTipogeralTipogeralFiltro") Integer idTipogeralTipogeralFiltro);
+    Optional<TipoGeralTipoGeralFiltro> findById(@Param("idTipogeralTipogeralFiltro") Integer idTipogeralTipogeralFiltro);
 
     @Modifying
     @Query(value = " " +
-            "update TipogeralTipogeralFiltro ttf "+
+            "update TipoGeralTipoGeralFiltro ttf "+
             "set ttf.tipoGeral.id = :idTipoGeral," +
-            "    ttf.tipogeralFiltro.id = :idTipoGeral," +
+            "    ttf.tipoGeralFiltro.id = :idTipoGeral," +
             "where ttf.idTipogeralTipogeralFiltro = :idTipogeralTipogeralFiltro")
     Integer update(
             @Param("idTipogeralTipogeralFiltro") Integer idTipogeralTipogeralFiltro,

@@ -1,13 +1,13 @@
 USE pessoa;
-CREATE TABLE `rl_Tipogeral_Tipogeralfiltro` (
- `id_Tipogeral_Tipogeralfiltroo` INTEGER NOT NULL AUTO_INCREMENT ,
+CREATE TABLE `rl_tipogeral_tipogeralfiltro` (
+ `id_TipoGeral_TipoGeralFiltro` INTEGER NOT NULL AUTO_INCREMENT ,
 `id_Tipo_Geral` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de tb_Tipo_Geral',
- `id_Tipogeral_Filtro` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral_Filtro',
- PRIMARY KEY(`id_Tipogeral_Tipogeralfiltroo`),
+ `id_TipoGeral_Filtro` INT NULL DEFAULT NULL COMMENT 'Chave-Estrangera de filtro tb_tipogeral_Filtro',
+ PRIMARY KEY(`id_Tipogeral_Tipogeralfiltro`),
   ) COMMENT 'Tabela Ligação tipo_geral e tipogeral_filtro';
 
 USE pessoa;
-ALTER TABLE `rl_Tipogeral_Tipogeralfiltro` ADD CONSTRAINT fkTipogeral_Tipogeralfiltro_idTipoGeral FOREIGN KEY (id_Tipo_Geral) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
+ALTER TABLE `rl_tipogeral_tipogeralfiltro` ADD CONSTRAINT fkTipogeral_Tipogeralfiltro_idTipoGeral FOREIGN KEY (id_Tipo_Geral) REFERENCES `tb_tipogeral` (`id_Tipo_Geral`);
 ALTER TABLE `tb_pessoa_situacao` ADD CONSTRAINT  fkTipogeral_Tipogeralfiltro_tbTipogeralFiltro_idTipogeralFiltro FOREIGN KEY (id_tipogeral_Filtro) REFERENCES `tb_tipogeral_Filtro` (`tb_tipogeral_Filtro`);
 
 

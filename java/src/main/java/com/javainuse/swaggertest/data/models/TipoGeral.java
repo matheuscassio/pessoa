@@ -25,7 +25,7 @@ public class TipoGeral {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_Tipo_Situacao")
-	private String tipoSituacao;
+	private Integer tipoSituacao;
 	
 	@Column (name="nm_Tipo_Geral")
 	private String nomeTipoGeral;
@@ -34,7 +34,7 @@ public class TipoGeral {
 	private String nomeFiltro;
 	
 	@Column (name="st_Ativo")
-	private String situacaoAtivo;
+	private String ativo;
 
 
 }

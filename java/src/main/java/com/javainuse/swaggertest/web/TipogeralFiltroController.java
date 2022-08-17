@@ -1,19 +1,9 @@
 package com.javainuse.swaggertest.web;
 
-import com.javainuse.swaggertest.data.models.TipogeralFiltro;
-import com.javainuse.swaggertest.data.playloads.request.TipogeralFiltroRequest;
-import com.javainuse.swaggertest.service.TipogeralFiltroService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
