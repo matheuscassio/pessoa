@@ -25,13 +25,5 @@ public class TipoGeralFiltro {
 	
 	@Column (name="nm_Filtro")
 	private String nomeFiltro;
-
-	@Column (name="nm_Chave")
-	private String chave;
-
-	@Column (name="tx_Parametro")
-	private String textoParametro;
-	
-	
 	
 }

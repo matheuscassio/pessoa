@@ -31,7 +31,7 @@ public class PessoaSituacao {
 	@JoinColumn(name = "id_Tipo_Situacao")
 	private TipoGeral tipoSituacao;
 	
-	@Column (name="dt_situacao")
+	@Column (name="dt_Situacao")
 	private String dataSituacao;
 	
 }

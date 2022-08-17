@@ -30,7 +30,7 @@ public class TipogeralFiltroServiceImpl implements TipogeralFiltroService {
     public Integer update(Integer idTipogeralFiltro, TipogeralFiltroRequest request) throws Exception {
         Optional<TipoGeralFiltro> tipogeralFiltroAlterada = this.tipogeralFiltroRepository.findById(idTipogeralFiltro);
         if (tipogeralFiltroAlterada.isPresent()) {
-            return this.tipogeralFiltroRepository.update(idTipogeralFiltro, request.getNomeFiltro(),  request.getTextoParametro());
+            return this.tipogeralFiltroRepository.update(idTipogeralFiltro, request.getNomeFiltro());
         } else return 0;
     }
 
@@ -45,7 +45,7 @@ public class TipogeralFiltroServiceImpl implements TipogeralFiltroService {
 
     @Override
     public Integer insert(TipogeralFiltroRequest request) throws Exception {
-        return this.tipogeralFiltroRepository.insert(request.getNomeFiltro(), request.getTextoParametro());
+        return this.tipogeralFiltroRepository.insert(request.getNomeFiltro());
     
     }
 

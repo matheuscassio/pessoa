@@ -28,19 +28,16 @@ public interface TipogeralFiltroRepository extends CrudRepository <TipoGeralFilt
     @Query(value = " " +
             "update TipoGeralFiltro tf "+
             "set tf.nomeFiltro = :nomeFiltro " +
-            "set tf.textoParametro = :textoParametro " +
             "where tf.id = :idTipogeralFiltro")
     Integer update(
             @Param("idTipogeralFiltro") Integer idTipogeralFiltro,
-            @Param("nomeFiltro") String nomeFiltro,
-    		@Param("textoParametro") String textoParametro);
+            @Param("nomeFiltro") String nomeFiltro);
 
     @Modifying
     @Query(value = " " +
             "INSERT INTO tb_Tiogeral_Filtro (nm_Filtro) " +
             "VALUES (:nomeFiltro) ", nativeQuery = true)
-    Integer insert(@Param("nomeFiltro") String nomeFiltro,
-    		@Param("textoParametro") String textoParametro);
+    Integer insert(@Param("nomeFiltro") String nomeFiltro);
 
 
 }

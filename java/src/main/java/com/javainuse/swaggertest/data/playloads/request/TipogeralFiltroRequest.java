@@ -21,9 +21,6 @@ public class TipogeralFiltroRequest {
     @NotNull(message = "O nome do Filtro não pode ser nulo !")
     private String nomeFiltro;
     
-    @ApiModelProperty(value = "texto Parametro.", position = 1)
-    @NotNull(message = "texto Parametro não pode ser nulo !")
-    private String textoParametro;
     
   
 }

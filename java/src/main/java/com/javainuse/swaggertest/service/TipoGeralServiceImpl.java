@@ -14,38 +14,38 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TipoGeralServiceImpl implements TipoGeralService {
 
-    private final TipoGeralRepository tipoGeralRepository ;
+	    private final TipoGeralRepository tipoGeralRepository;
 
-    @Override
-    public Optional<ArrayList<TipoGeral>> getAll() throws Exception {
-        return this.tipoGeralRepository.listAll();
-    }
+	    @Override
+	    public Optional<ArrayList<TipoGeral>> getAll() throws Exception {
+	        return this.tipoGeralRepository.listAll();
+	    }
 
-    @Override
-    public Optional<TipoGeral> findById(Integer idTipoGeral) throws Exception {
-        return this.tipoGeralRepository.findById(idTipoGeral);
-    }
+	    @Override
+	    public Optional<TipoGeral> findById(Integer idTipoGeral) throws Exception {
+	        return this.tipoGeralRepository.findById(idTipoGeral);
+	    }
 
-    @Override
-    public Integer update(Integer idTipoGeral, TipoGeralRequest request) throws Exception {
-        Optional<TipoGeral> tipoGeralAlterada = this.tipoGeralRepository.findById(idTipoGeral);
-        if (tipoGeralAlterada.isPresent()) {
-            return this.tipoGeralRepository.update(idTipoGeral, request.getNomeTipoGeral(), request.getNomeFiltro(),request.getSituacaoAtivo());
-        } else return 0;
-    }
+	    @Override
+	    public Integer update(Integer idTipoGeral, TipoGeralRequest request) throws Exception {
+	        Optional<TipoGeral> tipoGeralAlterada = this.tipoGeralRepository.findById(idTipoGeral);
+	        if (tipoGeralAlterada.isPresent()) {
+	            return this.tipoGeralRepository.update(idTipoGeral, request.getNomeTipoGeral(), request.getNomeFiltro(), request.getSituacaoPadrao(), request.getTextoParametro());
+	        } else return 0;
+	    }
 
-    @Override
-    public Boolean deleteById(Integer idTipoGeral) throws Exception {
-        Optional<TipoGeral> tipoGeral = this.tipoGeralRepository.findById(idTipoGeral);
-        if (tipoGeral.isPresent()) {
-            this.tipoGeralRepository.delete(tipoGeral.get());
-            return true;
-        } else return false;
-    }
+	    @Override
+	    public Boolean deleteById(Integer idTipoGeral) throws Exception {
+	        Optional<TipoGeral> tipoGeral = this.tipoGeralRepository.findById(idTipoGeral);
+	        if (tipoGeral.isPresent()) {
+	            this.tipoGeralRepository.delete(tipoGeral.get());
+	            return true;
+	        } else return false;
+	    }
 
-    @Override
-    public Integer insert(TipoGeralRequest request) throws Exception {
-        return this.tipoGeralRepository.insert(request.getNomeTipoGeral(), request.getNomeFiltro(),request.getSituacaoAtivo());
-    }
+	    @Override
+	    public Integer insert(TipoGeralRequest request) throws Exception {
+	        return this.tipoGeralRepository.insert( request.getNomeTipoGeral(), request.getNomeFiltro(), request.getSituacaoPadrao(), request.getTextoParametro());
+	    }
 
-}
+	}

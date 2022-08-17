@@ -27,7 +27,11 @@ public class TipoGeralRequest {
     private String nomeFiltro;
     
     
-    @ApiModelProperty(value = "Situacao Ativo.", position = 1)
-    @NotNull(message = "A Situacao Ativo não pode ser nulo.")
-    private String situacaoAtivo;
+    @ApiModelProperty(value = "situacao Padrao.", position = 1)
+    @NotNull(message = "A Situacao Padrao não pode ser nulo.")
+    private String situacaoPadrao;
+    
+    @ApiModelProperty(value = "texto Parametro.", position = 1)
+    @NotNull(message = "A texto Parametronão pode ser nulo.")
+    private String textoParametro;
 }

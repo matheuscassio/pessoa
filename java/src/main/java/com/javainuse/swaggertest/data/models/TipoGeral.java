@@ -30,11 +30,14 @@ public class TipoGeral {
 	@Column (name="nm_Tipo_Geral")
 	private String nomeTipoGeral;
 	
-	@Column (name="nm_Filtro")
+	@Column (name="nm_Chave")
 	private String nomeFiltro;
 	
-	@Column (name="st_Ativo")
-	private String ativo;
-
+	@Column (name="st_Padrao")
+	private String situacaoPadrao;
+	
+	@Column (name="tx_Parametro")
+	private String textoParametro;
+	
 
 }
