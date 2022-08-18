@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
-public class TipogeralFiltroController {
+public class TipoGeralFiltroController {
 
     /*private final TipogeralFiltroService tipogeralFiltroService;
 

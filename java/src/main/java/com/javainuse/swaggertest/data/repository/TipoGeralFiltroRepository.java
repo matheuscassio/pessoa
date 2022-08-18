@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
-public interface TipogeralFiltroRepository extends CrudRepository <TipoGeralFiltro, Integer> {
+public interface TipoGeralFiltroRepository extends CrudRepository <TipoGeralFiltro, Integer> {
 
     @Query(value = " " +
             "select tf " +
@@ -19,8 +19,8 @@ public interface TipogeralFiltroRepository extends CrudRepository <TipoGeralFilt
     Optional<ArrayList<TipoGeralFiltro>> listAll();
 
     @Query(value = " " +
-            "select tf"+
-            "from TipogeralFiltro tf " +
+            "select tf "+
+            "from TipoGeralFiltro tf " +
             "where tf.id = :id ")
     Optional<TipoGeralFiltro> findById(@Param("id") Integer id);
 

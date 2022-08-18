@@ -28,11 +28,10 @@ public class PessoaSituacaoRequest {
 	@ApiModelProperty(value = "Código de identificação do Tipo da Situação",
             example = "1", required = true, position = 1)
 	private Integer idTipoSituacao;
-	
 
     @ApiModelProperty(value = "Data da Situaçao.", position = 1)
     @NotNull(message = "A Data não pode ser nulo.")
-    private String dataSituacao;
+    private Date dataSituacao;
     
    
 }

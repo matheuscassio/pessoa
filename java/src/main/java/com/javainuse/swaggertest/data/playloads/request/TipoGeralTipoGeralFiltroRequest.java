@@ -7,19 +7,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "TipogeralTipogeralFiltroRequest", description = "Modelo que representa uma requisição para alterar uma tb TipogeralTipogeralFiltroRequest.")
-public class TipogeralTipogeralFiltroRequest {
+public class TipoGeralTipoGeralFiltroRequest {
 
 	@ApiModelProperty(value = "Código de identificação da TipogeralTipogeralFiltroRequest.",
 			example = "1", required = true, position = 1)

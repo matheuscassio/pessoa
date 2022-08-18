@@ -25,7 +25,7 @@ public class PessoaSituacaoServiceImpl implements PessoaSituacaoService {
     public Integer update(Integer idPessoaSituacao, PessoaSituacaoRequest request) throws Exception {
         Optional<PessoaSituacao> pessoaSituacaoAlterada = this.pessoaSituacaoRepository.findById(idPessoaSituacao);
         if (pessoaSituacaoAlterada.isPresent()) {
-            return this.pessoaSituacaoRepository.update(idPessoaSituacao, request.getDataSituacao());
+            return this.pessoaSituacaoRepository.update(idPessoaSituacao, request.getIdPessoa(), request.getIdTipoSituacao(), request.getDataSituacao());
         } else return 0;
     }
 
@@ -40,7 +40,7 @@ public class PessoaSituacaoServiceImpl implements PessoaSituacaoService {
 
     @Override
     public Integer insert(PessoaSituacaoRequest request) throws Exception {
-        return this.pessoaSituacaoRepository.insert(request.getDataSituacao());
+        return this.pessoaSituacaoRepository.insert(request.getIdPessoa(), request.getIdTipoSituacao(), request.getDataSituacao());
     }
 
 	@Override

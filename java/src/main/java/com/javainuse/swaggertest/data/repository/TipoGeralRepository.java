@@ -28,26 +28,28 @@ public interface TipoGeralRepository extends CrudRepository <TipoGeral, Integer>
     @Query(value = " " +
             "update TipoGeral tg "+
             "set tg.nomeTipoGeral = :nomeTipoGeral, " +
-            "    tg.nomeFiltro = :nomeFiltro " +
-            "    tg.situacaoPadrao = :situacaoPadrao " +
+            "    tg.nomeFiltro = :nomeFiltro, " +
+            "    tg.situacaoPadrao = :situacaoPadrao, " +
+            "    tg.ativo = :ativo, " +
             "    tg.textoParametro = :textoParametro " +
             "where tg.id = :id")
-    
     Integer update(
             @Param("id") Integer id,
             @Param("nomeTipoGeral") String nomeTipoGeral,
             @Param("nomeFiltro") String nomeFiltro,
     		@Param("situacaoPadrao") String situacaoPadrao,
+    		@Param("ativo") String ativo,
     		@Param("textoParametro") String textoParametro);
     @Modifying
     @Query(value = " " +
-            "INSERT INTO tb_tipogeral (nm_Tipo_Geral, nm_Filtro, st_Padrao, tx_Parametro) " +
-            "VALUES (:nomeTipoGeral, :nomeFiltro, :situacaoPadrao, :textoParametro) ", nativeQuery = true)
+            "INSERT INTO tb_tipogeral (nm_Tipo_Geral, nm_Filtro, st_Padrao, tx_Parametro, st_Ativo) " +
+            "VALUES (:nomeTipoGeral, :nomeFiltro, :situacaoPadrao, :ativo, :textoParametro) ", nativeQuery = true)
     Integer insert(
             @Param("nomeTipoGeral") String nomeTipoGeral,
             @Param("nomeFiltro") String nomeFiltro,
-    		@Param("situacaoAtivo") String situacaoPadrao,
-    		@Param("nomeFiltro") String textoParametro);
+    		@Param("situacaoPadrao") String situacaoPadrao,
+    		@Param("ativo") String ativo,
+    		@Param("textoParametro") String textoParametro);
 
 
 }

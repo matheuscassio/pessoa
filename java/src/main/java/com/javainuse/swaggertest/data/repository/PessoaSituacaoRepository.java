@@ -1,6 +1,7 @@
 package com.javainuse.swaggertest.data.repository;
 
 import com.javainuse.swaggertest.data.models.PessoaSituacao;
+import com.javainuse.swaggertest.data.playloads.request.PessoaSituacaoRequest;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -28,18 +29,24 @@ public interface PessoaSituacaoRepository extends CrudRepository <PessoaSituacao
     @Modifying
     @Query(value = " " +
             "update PessoaSituacao ps "+
-            "set ps.dataSituacao = :dataSituacao," +
+            "set ps.pessoa.id = :idPessoa," +
+            "    ps.tipoSituacao.id = :idTipoSituacao," +
+            "    ps.dataSituacao = :dataSituacao " +
             "where ps.id = :id")
     Integer update(
             @Param("id") Integer id,
-            @Param("dataSituacao") String dataSituacao);
-    
+            @Param("idPessoa") Integer idPessoa,
+            @Param("idTipoSituacao") Integer idTipoSituacao,
+            @Param("dataSituacao") Date dataSituacao);
+
     @Modifying
     @Query(value = " " +
-            "INSERT INTO tb_pessoa_situacao (dt_Situacao) " +
-            "VALUES (:dataSituacao) ", nativeQuery = true)
+            "INSERT INTO tb_pessoa_situacao (id_Pessoa, id_Tipo_Situacao, dt_Situacao) " +
+            "VALUES (:idPessoa, :idTipoSituacao, :dataSituacao) ", nativeQuery = true)
     Integer insert(
-             @Param("dataSituacao") String dataSituacao);
+            @Param("idPessoa") Integer idPessoa,
+            @Param("idTipoSituacao") Integer idTipoSituacao,
+            @Param("dataSituacao") Date dataSituacao);
 
 
 

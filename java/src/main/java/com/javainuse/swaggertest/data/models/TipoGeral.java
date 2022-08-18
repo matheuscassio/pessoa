@@ -22,20 +22,19 @@ public class TipoGeral {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_Tipo_Geral", nullable = false)
 	private Integer id;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_Tipo_Situacao")
-	private Integer tipoSituacao;
-	
+
 	@Column (name="nm_Tipo_Geral")
 	private String nomeTipoGeral;
 	
 	@Column (name="nm_Chave")
 	private String nomeFiltro;
-	
+
 	@Column (name="st_Padrao")
 	private String situacaoPadrao;
-	
+
+	@Column (name="st_Ativo")
+	private String ativo;
+
 	@Column (name="tx_Parametro")
 	private String textoParametro;
 	

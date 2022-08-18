@@ -16,8 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ApiModel(value = "TipoGeralRequest", description = "Modelo que representa uma requisição para alterar Tipo de Contato,Endereço,Documento de  pessoa.")
 public class TipoGeralRequest {
-	
-	
+
     @ApiModelProperty(value = "Nome do Tipo Geral.", position = 1)
     @NotNull(message = "O nome de Tipo Geral não pode ser nula.")
     private String nomeTipoGeral;
@@ -25,12 +24,15 @@ public class TipoGeralRequest {
     @ApiModelProperty(value = "O nome Do filtro.", position = 1)
     @NotNull(message = "O nome do Filtro não pode ser nulo.")
     private String nomeFiltro;
-    
-    
+
     @ApiModelProperty(value = "situacao Padrao.", position = 1)
     @NotNull(message = "A Situacao Padrao não pode ser nulo.")
     private String situacaoPadrao;
-    
+
+    @ApiModelProperty(value = "Ativo.", position = 1)
+    @NotNull(message = "A Situacao Padrao não pode ser nulo.")
+    private String ativo;
+
     @ApiModelProperty(value = "texto Parametro.", position = 1)
     @NotNull(message = "A texto Parametronão pode ser nulo.")
     private String textoParametro;

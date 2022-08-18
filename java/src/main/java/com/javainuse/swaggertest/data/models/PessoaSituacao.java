@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -32,6 +34,6 @@ public class PessoaSituacao {
 	private TipoGeral tipoSituacao;
 	
 	@Column (name="dt_Situacao")
-	private String dataSituacao;
+	private Date dataSituacao;
 	
 }

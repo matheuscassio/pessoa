@@ -8,14 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "TipogeralFiltroRequest", description = "Modelo que representa uma requisição para alterar TipogeralFiltro.")
-public class TipogeralFiltroRequest {
+public class TipoGeralFiltroRequest {
 
     @ApiModelProperty(value = "Nome do Filtro.", position = 1)
     @NotNull(message = "O nome do Filtro não pode ser nulo !")
