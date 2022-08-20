@@ -26,38 +26,38 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class PessoaContatoController {
-//
-//    private final PessoaContatoService pessoaContatoService;
-//
-//    @GetMapping()
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "pessoa-contato-controller", value = "Listar todas as pessoas da tabela contato.")
-//    public ArrayList<PessoaContato> listarPessoasConato() throws Exception {
-//        final Optional<ArrayList<PessoaContato>> lista = pessoaContatoService.getAll();
-//        if (lista.isPresent()) {
-//            return lista.get();
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @GetMapping(value = "/{idPessoaContato}", name = "idPessoaContato")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "pessoa-contato-controller", value = "Recuperar uma pessoasContato.")
-//    public PessoaContato findById(
-//            @ApiParam(name = "idPessoaContato",
-//                    value = "Código de Pessoa Contato.",
-//                    example = "1",
-//                    required = true)
-//            @PathVariable(required = true) final Integer idPessoaContato) throws Exception {
-//        final Optional<PessoaContato> pessoaContato = pessoaContatoService.findById(idPessoaContato);
-//        if (pessoaContato.isPresent()) {
-//            return pessoaContato.get();
-//        } else {
-//            return null;
-//        }
-//    }
-//
+
+    private final PessoaContatoService pessoaContatoService;
+
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "pessoa-contato-controller", value = "Listar todas as pessoas da tabela contato.")
+    public ArrayList<PessoaContato> listarPessoasConato() throws Exception {
+        final Optional<ArrayList<PessoaContato>> lista = pessoaContatoService.getAll();
+        if (lista.isPresent()) {
+            return lista.get();
+        } else {
+            return null;
+        }
+    }
+
+    @GetMapping(value = "/{idPessoaContato}", name = "idPessoaContato")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "pessoa-contato-controller", value = "Recuperar uma pessoasContato.")
+    public PessoaContato findById(
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de Pessoa Contato.",
+                    example = "1",
+                    required = true)
+            @PathVariable(required = true) final Integer idPessoaContato) throws Exception {
+        final Optional<PessoaContato> pessoaContato = pessoaContatoService.findById(idPessoaContato);
+        if (pessoaContato.isPresent()) {
+            return pessoaContato.get();
+        } else {
+            return null;
+        }
+    }
+
 //    @DeleteMapping("/{idPessoaContato}")
 //    @ResponseStatus(HttpStatus.OK)
 //    @ApiOperation(tags = "pessoa-contato-controller", value = "Deletar um contato da pessoas da tabela.")
