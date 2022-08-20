@@ -35,53 +35,53 @@ import lombok.RequiredArgsConstructor;
     })
 public class DependenciaController {
 
-//    private final DependenciaService dependenciaService;
-//
-//    @GetMapping(value = "/{idDependencia}", name = "idDependencia")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "dependencia-controller", value = "Recuperar uma Dependencia.")
-//    public Dependencia findById(
-//            @ApiParam(value = "Código digital de Dependencia.", required = true)
-//            final @PathVariable(required = true) Integer idDependencia) throws Exception {
-//        final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
-//        if (dependencia.isPresent()) {
-//            return dependencia.get();
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @DeleteMapping("/{idDependencia}")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "dependencia-controller", value = "Deletar uma Dependencia da tabela.")
-//    public Boolean deleteDependencia(
-//            @ApiParam(name = "idDependencia",
-//            value = "Código de Dependencia .",
-//            example = "1",
-//            required = true)
-//            @PathVariable(required = true) final Integer idDependencia) throws Exception {
-//    	        return dependenciaService.deleteById(idDependencia);
-//    }
-//
-//    @PutMapping("/{idDependencia}")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "dependencia-controller", value = "Alterar os dados de uma Dependencia da tabela.")
-//    Integer updateDepencia(
-//            @ApiParam(name = "idDependencia",
-//            value = "Código de Dependencia .",
-//            example = "1",
-//            required = true)
-//            @PathVariable(required = true) final Integer idDependencia,
-//            @Valid @RequestBody DependenciaRequest request) throws Exception {
-//        return dependenciaService.update(idDependencia, request);
-//    }
-//
-//    @PostMapping("/")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "dependencia-controller", value = "Incluir dados de Dependencia.")
-//    Integer  insertDependencia(
-//            @Valid @RequestBody DependenciaRequest request) throws Exception {
-//        return dependenciaService.insert(request);
-//    }
+    private final DependenciaService dependenciaService;
+/*
+    @GetMapping(value = "/{idDependencia}", name = "idDependencia")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "dependencia-controller", value = "Recuperar uma Dependencia.")
+    public Dependencia findById(
+            @ApiParam(value = "Código digital de Dependencia.", required = true)
+            final @PathVariable(required = true) Integer idDependencia) throws Exception {
+        final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
+        if (dependencia.isPresent()) {
+            return dependencia.get();
+        } else {
+            return null;
+        }
+    }
+*/
+    @DeleteMapping("/{idDependencia}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "dependencia-controller", value = "Deletar uma Dependencia da tabela.")
+    public Boolean deleteDependencia(
+            @ApiParam(name = "idDependencia",
+            value = "Código de Dependencia .",
+            example = "1",
+            required = true)
+            @PathVariable(required = true) final Integer idDependencia) throws Exception {
+    	        return dependenciaService.deleteById(idDependencia);
+    }
+/*
+    @PutMapping("/{idDependencia}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "dependencia-controller", value = "Alterar os dados de uma Dependencia da tabela.")
+    Integer updateDepencia(
+            @ApiParam(name = "idDependencia",
+            value = "Código de Dependencia .",
+            example = "1",
+            required = true)
+            @PathVariable(required = true) final Integer idDependencia,
+            @Valid @RequestBody DependenciaRequest request) throws Exception {
+        return dependenciaService.update(idDependencia, request);
+    }
 
+    @PostMapping("/")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(tags = "dependencia-controller", value = "Incluir dados de Dependencia.")
+    Integer  insertDependencia(
+            @Valid @RequestBody DependenciaRequest request) throws Exception {
+        return dependenciaService.insert(request);
+    }
+*/
 }

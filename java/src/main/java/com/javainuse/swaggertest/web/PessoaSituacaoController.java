@@ -27,8 +27,8 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class PessoaSituacaoController {
-   /* private final PessoaSituacaoService pessoaSituacaoService ;
-
+   private final PessoaSituacaoService pessoaSituacaoService ;
+   /*
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
