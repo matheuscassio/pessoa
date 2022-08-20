@@ -3,14 +3,20 @@ package com.javainuse.swaggertest.data.models;
 import javax.persistence.*;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Data
 @Table(name="tb_pessoa_documento")
-public class PessoaDocumento implements Serializable {
+public class PessoaDocumento {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",
 			example = "1", required = true, position = 0)
@@ -38,9 +44,5 @@ public class PessoaDocumento implements Serializable {
 	
 	@Column (name = "ds_Serie")
 	private String descricaoSerie;
-	
-	
-	
-	
 
 }

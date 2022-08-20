@@ -41,14 +41,16 @@ public class PessoaDocumentoController {
             return null;
         }
     }
+
     @GetMapping(value = "/{idPessoaDocumento}", name = "idPessoaDocumento")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-documento-controller", value = "Recuperar uma pessoasDocumento.")
     public PessoaDocumento findById(
-            @ApiParam(name = "idPessoaDocumento",
-                    value = "Código de Pessoa Documento.",
+            @ApiParam(name = "idPessoaContato",
+                    value = "Código de identificação do documento.",
                     example = "1",
                     required = true)
+            @RequestParam(value = "page", defaultValue = "1")
             @PathVariable(required = true) final Integer idPessoaDocumento) throws Exception {
         final Optional<PessoaDocumento> pessoaDocumento = pessoaDocumentoService.findById(idPessoaDocumento);
         if (pessoaDocumento.isPresent()) {
@@ -57,6 +59,40 @@ public class PessoaDocumentoController {
             return null;
         }
     }
+
+//    @DeleteMapping("/{idPessoaDocumento}")
+//    @ResponseStatus(HttpStatus.OK)
+//    @ApiOperation(tags = "pessoa-documento-controller", value = "Deletar uma pessoas da tabela.")
+//    public Boolean deletePessoaDocumento(
+//            @ApiParam(name = "idPessoaContato",
+//                    value = "Código de identificação do documento.",
+//                    example = "1",
+//                    required = true)
+//            @PathVariable(required = true) final Integer idPessoaDocumento) throws Exception {
+//        return pessoaDocumentoService.deleteById(idPessoaDocumento);
+//    }
+//
+//    @PutMapping("/{idPessoaDocumento}")
+//    @ResponseStatus(HttpStatus.OK)
+//    @ApiOperation(tags = "pessoa-documento-controller", value = "Alterar os dados de uma pessoas Documento da tabela.")
+//    public Integer updatePessoaDocumento(
+//            @ApiParam(name = "idPessoaContato",
+//                    value = "Código de identificação do documento.",
+//                    example = "1",
+//                    required = true)
+//            @PathVariable(required = true) final Integer idPessoaDocumento,
+//            @Valid @RequestBody PessoaDocumentoRequest request) throws Exception {
+//        return pessoaDocumentoService.update(idPessoaDocumento, request);
+//    }
+//
+//    @PostMapping("")
+//    @ResponseStatus(HttpStatus.OK)
+//    @ApiOperation(tags = "pessoa-documento-controller", value = "Incluir dados de uma pessoas documentos na tabela.")
+//    public Integer insertPessoaDocumento(
+//            @Valid @RequestBody PessoaDocumentoRequest request) throws Exception {
+//        return pessoaDocumentoService.insert(request);
+//    }
+
 /*
     @DeleteMapping("/{idPessoaDocumento}")
     @ResponseStatus(HttpStatus.OK)
