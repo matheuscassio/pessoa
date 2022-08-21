@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @ApiModel(value = "TipogeralTipogeralFiltroRequest", description = "Modelo que representa uma requisição para alterar uma tb TipogeralTipogeralFiltroRequest.")
 public class TipoGeralTipoGeralFiltroRequest {
 
-	@ApiModelProperty(value = "Código de identificação da TipogeralTipogeralFiltroRequest.",
+	@ApiModelProperty(value = "Código de identificação da TipoGeralTipoGeralFiltroRequest.",
 			example = "1", required = true, position = 1)
 	private Integer idTipoGeral;
 

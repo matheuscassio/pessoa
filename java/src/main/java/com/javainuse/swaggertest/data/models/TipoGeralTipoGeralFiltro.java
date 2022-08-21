@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-@Table(name="rl_tipogeral_tipogeralfiltro")
+@Table(name="rl_tipo_geral_tipo_geral_filtro")
 public class TipoGeralTipoGeralFiltro {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",
 			example = "1", required = true, position = 0)
 	@Id
-	@Column (name="id_TipoGeral_TipoGeralFiltro")
+	@Column (name="id_Tipo_Geral_Tipo_Geral_Filtro")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idTipoGeralTipoGeralFiltro;
 	
@@ -28,7 +28,7 @@ public class TipoGeralTipoGeralFiltro {
 	private TipoGeral tipoGeral;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_TipoGeral_Filtro")
+	@JoinColumn(name = "id_Tipo_Geral_Filtro")
 	private TipoGeralFiltro tipoGeralFiltro;
 
 

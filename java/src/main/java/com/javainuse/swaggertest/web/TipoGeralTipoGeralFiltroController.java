@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/tipoGeralTipogeralfiltro/")
+@RequestMapping("/v1/tipoGeralTipoGeralfiltro/")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
@@ -25,23 +25,28 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralTipoGeralFiltroController {
-	/*
-    private final TipoGeralTipoGeralFiltroService tipogeralTipogeralFiltroService;
+
+    private final TipoGeralTipoGeralFiltroService tipoGeralTipoGeralFiltroService;
    
-    @GetMapping(value = "/{TipoGeralTipoGeralFiltro}", name = "TipoGeralTipoGeralFiltro")
+    @GetMapping(value = "/{idTipoGeralTipoGeralFiltro}", name = "idTipoGeralTipoGeralFiltro")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Recuperar um TipogeralTipogeralFiltro.")
+    @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Recuperar um TipoGeralTipoGeralFiltro.")
     public TipoGeralTipoGeralFiltro findById(
-            @ApiParam(value = "Código digital de TipogeralTipogeralFiltro.", required = true)
-            final @PathVariable(required = true) Integer idTipogeralTipogeralFiltro) throws Exception {
-        final Optional<TipoGeralTipoGeralFiltro> tipogeralTipogeralFiltro = tipogeralTipogeralFiltroService.findById(idTipogeralTipogeralFiltro);
-        if (tipogeralTipogeralFiltro.isPresent()) {
-            return tipogeralTipogeralFiltro.get();
+            @ApiParam(name = "idTipoGeralTipoGeralFiltro",
+                    value = "Código de identificação TipoGeralTipoGeralFiltro.",
+                    example = "1",
+                    required = true)
+            @RequestParam(value = "page", defaultValue = "1")
+            @PathVariable(required = true) final Integer idTipoGeralTipoGeralFiltro) throws Exception {
+        final Optional<TipoGeralTipoGeralFiltro> tipoGeralTipoGeralFiltro = tipoGeralTipoGeralFiltroService.findById(idTipoGeralTipoGeralFiltro);
+        if (tipoGeralTipoGeralFiltro.isPresent()) {
+            return tipoGeralTipoGeralFiltro.get();
         } else {
             return null;
         }
     }
-    
+
+    /*
     @DeleteMapping("/{idTipogeralTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Deletar uma TipogeralTipogeralFiltro da tabela.")
