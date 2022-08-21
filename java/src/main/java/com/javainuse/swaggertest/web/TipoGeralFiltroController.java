@@ -1,14 +1,23 @@
 package com.javainuse.swaggertest.web;
 
+import com.javainuse.swaggertest.data.models.TipoGeral;
+import com.javainuse.swaggertest.data.playloads.request.TipoGeralRequest;
+import com.javainuse.swaggertest.service.TipoGeralService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/tipogeralFiltro")
-@RequiredArgsConstructor
+@RequestMapping("/v1/tipo/geral/filtro")
 @Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
@@ -16,14 +25,14 @@ import org.springframework.web.bind.annotation.*;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralFiltroController {
-
-    /*private final TipogeralFiltroService tipogeralFiltroService;
+	/*
+    private final TipoGeralFiltroService tipoGeralFiltroService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipogeralFiltro-controller", value = "Listar todas os TipogeralFiltro da tabela.")
-    public ArrayList<TipogeralFiltro> listarTipogeralFiltro() throws Exception {
-        final Optional<ArrayList<TipogeralFiltro>> lista = tipogeralFiltroService.getAll();
+    @ApiOperation(tags = "tipo-geral-filtro-controller", value = "Listar todas od tipos geral do filtro.")
+    public ArrayList<TipoGeralFiltro> listarTipoGeralFiltro() throws Exception {
+        final Optional<ArrayList<TipoGeralFiltro>> lista = tipoGeralFiltroService.getAll();
         if (lista.isPresent()) {
             return lista.get();
         } else {
@@ -31,23 +40,23 @@ public class TipoGeralFiltroController {
         }
     }
 
-    @GetMapping(value = "/{idTipogeralFiltro}", name = "idTipogeralFiltro")
+    @GetMapping(value = "/{idTipoGeralFiltro}", name = "idTipoGeralFiltro")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipogeralFiltro-controller", value = "Recuperar um TipogeralFiltro.")
-    public TipogeralFiltro findById(
-            @ApiParam(name = "idTipogeralFiltro",
-                    value = "Código de TipogeralFiltro.",
+    @ApiOperation(tags = "tipo-geral-filtro-controller", value = "Recuperar um  tipo geral filtro.")
+    public TipoGeralFiltro findById(
+            @ApiParam(name = "idTipoGeralFiltro",
+                    value = "Código de tipo geral filtro.",
                     example = "1",
                     required = true)
-            final @PathVariable(required = true) Integer idTipogeralFiltro) throws Exception {
-        final Optional<TipogeralFiltro> tipogeralFiltro = tipogeralFiltroService.findById(idTipogeralFiltro);
-        if (tipogeralFiltro.isPresent()) {
-            return tipogeralFiltro.get();
+            @PathVariable(required = true) final Integer idTipoGeralFiltro) throws Exception {
+        final Optional<TipoGeralFiltro> tipoGeralFiltro = tipoGeralFiltroService.findById(idTipoGeralFiltro);
+        if (tipoGeralFiltro.isPresent()) {
+            return tipoGeralFiltro.get();
         } else {
             return null;
         }
     }
-
+    
     @DeleteMapping("/{idTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipogeralFiltro-controller", value = "Deletar um TipogeralFiltro da tabela.")

@@ -1,43 +1,47 @@
+		package com.javainuse.swaggertest.web;
 
-package com.javainuse.swaggertest.web;
+import com.javainuse.swaggertest.data.models.TipoGeralTipoGeralFiltro;
+import com.javainuse.swaggertest.data.playloads.request.TipoGeralTipoGeralFiltroRequest;
+import com.javainuse.swaggertest.service.TipoGeralTipoGeralFiltroService;
 
-import javax.transaction.Transactional;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/tipogeralTipogeralFiltro")
+@RequestMapping("/v1/tipoGeralTipogeralfiltro/")
 @RequiredArgsConstructor
-@Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralTipoGeralFiltroController {
-
-   /* private final TipogeralTipogeralFiltroService tipogeralTipogeralFiltroService;
-
-    @GetMapping(value = "/{idTipogeralTipogeralFiltro}", name = "idTipogeralTipogeralFiltro")
+	/*
+    private final TipoGeralTipoGeralFiltroService tipogeralTipogeralFiltroService;
+   
+    @GetMapping(value = "/{TipoGeralTipoGeralFiltro}", name = "TipoGeralTipoGeralFiltro")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Recuperar um TipogeralTipogeralFiltro.")
-    public TipogeralTipogeralFiltro findById(
+    @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Recuperar um TipogeralTipogeralFiltro.")
+    public TipoGeralTipoGeralFiltro findById(
             @ApiParam(value = "Código digital de TipogeralTipogeralFiltro.", required = true)
             final @PathVariable(required = true) Integer idTipogeralTipogeralFiltro) throws Exception {
-        final Optional<TipogeralTipogeralFiltro> tipogeralTipogeralFiltro = tipogeralTipogeralFiltroService.findById(idTipogeralTipogeralFiltro);
+        final Optional<TipoGeralTipoGeralFiltro> tipogeralTipogeralFiltro = tipogeralTipogeralFiltroService.findById(idTipogeralTipogeralFiltro);
         if (tipogeralTipogeralFiltro.isPresent()) {
             return tipogeralTipogeralFiltro.get();
         } else {
             return null;
         }
     }
-
+    
     @DeleteMapping("/{idTipogeralTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Deletar uma TipogeralTipogeralFiltro da tabela.")

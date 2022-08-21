@@ -2,6 +2,7 @@ package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.DicNome;
 import com.javainuse.swaggertest.data.playloads.request.DicNomeRequest;
+import com.javainuse.swaggertest.data.playloads.request.PessoaRequest;
 import com.javainuse.swaggertest.service.DicNomeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -67,20 +68,12 @@ public class DicNomeController {
     public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer id) throws Exception {
         return dicNomeService.deleteById(id);
     }
-
-    @PutMapping("/{idDicNome}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dic-nome-controller", value = "Alterar os dados de uma pessoas da tabela.")
-    Integer updateDepencia(
-            @ApiParam(value = "Código de identificação da DicNome.", required = true) final @PathVariable(required = true) Integer id,
-            @Valid @RequestBody DicNomeRequest request) throws Exception {
-        return dicNomeService.update(id, request);
-    }
+    
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-controller", value = "Incluir dados de uma pessoas na tabela.")
-    Integer  insertPessoaContato(
+    Integer  insertDicNome(
             @Valid @RequestBody DicNomeRequest request) throws Exception {
         return dicNomeService.insert(request);
     }

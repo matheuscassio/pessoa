@@ -36,7 +36,7 @@ import lombok.RequiredArgsConstructor;
 public class DependenciaController {
 
     private final DependenciaService dependenciaService;
-/*
+
     @GetMapping(value = "/{idDependencia}", name = "idDependencia")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dependencia-controller", value = "Recuperar uma Dependencia.")
@@ -50,7 +50,7 @@ public class DependenciaController {
             return null;
         }
     }
-*/
+    /*
     @DeleteMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dependencia-controller", value = "Deletar uma Dependencia da tabela.")
@@ -62,7 +62,7 @@ public class DependenciaController {
             @PathVariable(required = true) final Integer idDependencia) throws Exception {
     	        return dependenciaService.deleteById(idDependencia);
     }
-/*
+
     @PutMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dependencia-controller", value = "Alterar os dados de uma Dependencia da tabela.")

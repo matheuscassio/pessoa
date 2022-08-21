@@ -26,38 +26,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class PessoaEnderecoController {
-	
 
-	 private final PessoaEnderecoService pessoaEnderecoService;
-	 /*	
-	    @GetMapping()
-	    @ResponseStatus(HttpStatus.OK)
-	    @ApiOperation(tags = "pessoa-endereco-controller", value = "Listar todas os endereços.")
-	    public ArrayList<PessoaEndereco> listarPessoaEndereco() throws Exception {
-	        final Optional<ArrayList<PessoaEndereco>> lista = pessoaEnderecoService.getAll();
-	        if (lista.isPresent()) {
-	            return lista.get();
-	        } else {
-	            return null;
-	        }
-	    }
-*/
-	    @GetMapping(value = "/{idPessoaEndereco}", name = "idPessoaEndereco")
-	    @ResponseStatus(HttpStatus.OK)
-	    @ApiOperation(tags = "pessoa-endereco-controller", value = "Recuperar um Endereço.")
-	    public PessoaEndereco findById(
-	            @ApiParam(name = "idPessoaEndereco",
-	                    value = "Código de Pessoa Endereco.",
-	                    example = "1",
-	                    required = true)
-	            @PathVariable(required = true) final Integer idPessoaEndereco) throws Exception {
-	        final Optional<PessoaEndereco> pessoaEndereco = pessoaEnderecoService.findById(idPessoaEndereco);
-	        if (pessoaEndereco.isPresent()) {
-	            return pessoaEndereco.get();
-	        } else {
-	            return null;
-	        }
-	    }
 
     /*private final PessoaEnderecoService pessoaEnderecoService ;
 
