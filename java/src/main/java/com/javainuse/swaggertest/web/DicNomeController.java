@@ -2,7 +2,6 @@ package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.DicNome;
 import com.javainuse.swaggertest.data.playloads.request.DicNomeRequest;
-import com.javainuse.swaggertest.data.playloads.request.PessoaRequest;
 import com.javainuse.swaggertest.service.DicNomeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -27,10 +26,6 @@ import java.util.Optional;
 public class DicNomeController {
 
    private final DicNomeService dicNomeService;
-   
-   
-   
-   private final DicNomeService pessoaContatoService;
 
    @GetMapping()
    @ResponseStatus(HttpStatus.OK)
@@ -70,13 +65,13 @@ public class DicNomeController {
     }
     
 
-    @PostMapping("")
+    @PostMapping("/textoNome")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-controller", value = "Incluir dados de uma pessoas na tabela.")
     Integer  insertDicNome(
             @Valid @RequestBody DicNomeRequest request) throws Exception {
         return dicNomeService.insert(request);
     }
-
 */
+
 }

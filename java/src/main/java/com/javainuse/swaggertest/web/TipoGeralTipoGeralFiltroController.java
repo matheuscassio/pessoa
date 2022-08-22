@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/tipoGeralTipoGeralfiltro/")
+@RequestMapping("/v1/tipo/geral/tipo/geral/filtro")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
@@ -25,7 +25,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralTipoGeralFiltroController {
-
+	
     private final TipoGeralTipoGeralFiltroService tipoGeralTipoGeralFiltroService;
    
     @GetMapping(value = "/{idTipoGeralTipoGeralFiltro}", name = "idTipoGeralTipoGeralFiltro")
@@ -45,8 +45,8 @@ public class TipoGeralTipoGeralFiltroController {
             return null;
         }
     }
-
     /*
+    
     @DeleteMapping("/{idTipogeralTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Deletar uma TipogeralTipogeralFiltro da tabela.")

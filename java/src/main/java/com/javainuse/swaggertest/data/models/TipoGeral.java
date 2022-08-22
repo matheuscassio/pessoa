@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Data
-@Table(name="tb_tipogeral")
+@Table(name="tb_tipo_geral")
 public class TipoGeral {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",

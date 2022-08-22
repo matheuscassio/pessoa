@@ -1,8 +1,8 @@
 package com.javainuse.swaggertest.web;
 
-import com.javainuse.swaggertest.data.models.TipoGeral;
-import com.javainuse.swaggertest.data.playloads.request.TipoGeralRequest;
-import com.javainuse.swaggertest.service.TipoGeralService;
+import com.javainuse.swaggertest.data.models.TipoGeralFiltro;
+import com.javainuse.swaggertest.data.playloads.request.TipoGeralFiltroRequest;
+import com.javainuse.swaggertest.service.TipoGeralFiltroService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponses;
@@ -17,7 +17,8 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/tipo/geral/filtro")
+@RequestMapping("/v1/tippo/geral/filtro")
+@RequiredArgsConstructor
 @Transactional
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
@@ -25,9 +26,8 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralFiltroController {
-	/*
-    private final TipoGeralFiltroService tipoGeralFiltroService;
 
+    private final TipoGeralFiltroService tipoGeralFiltroService;
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipo-geral-filtro-controller", value = "Listar todas od tipos geral do filtro.")
@@ -56,7 +56,7 @@ public class TipoGeralFiltroController {
             return null;
         }
     }
-    
+    /*
     @DeleteMapping("/{idTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipogeralFiltro-controller", value = "Deletar um TipogeralFiltro da tabela.")

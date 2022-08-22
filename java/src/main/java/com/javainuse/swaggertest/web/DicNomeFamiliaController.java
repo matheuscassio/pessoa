@@ -1,6 +1,6 @@
 package com.javainuse.swaggertest.web;
 
-
+import com.javainuse.swaggertest.data.models.DicNome;
 import com.javainuse.swaggertest.data.models.DicNomeFamilia;
 import com.javainuse.swaggertest.data.playloads.request.DicNomeFamiliaRequest;
 import com.javainuse.swaggertest.service.DicNomeFamiliaService;
@@ -17,8 +17,8 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/dicionario/familia")
-
+@RequestMapping("/v1/dicionario/nome/familia")
+@RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Recurso de segurança acionado. Acesso não permitido."),
@@ -26,11 +26,11 @@ import java.util.Optional;
     })
 public class DicNomeFamiliaController {
 
-	/*  private final DicNomeFamiliaService dicNomeFamiliaService;
+   private final DicNomeFamiliaService dicNomeFamiliaService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dic-nome-familia-controller", value = "Listar todas as pessoas da tabela contato.")
+    @ApiOperation(tags = "dic-nome-familia-controller", value = "Listar todas as pessoas da tabela dic-nome-familia.")
     public ArrayList<DicNomeFamilia> listarPessoasConato() throws Exception {
         final Optional<ArrayList<DicNomeFamilia>> lista = dicNomeFamiliaService.getAll();
         if (lista.isPresent()) {
@@ -39,14 +39,14 @@ public class DicNomeFamiliaController {
             return null;
         }
     }
-
-  
+    
+    
     @GetMapping(value = "/{idDicNomeFamilia}", name = "idDicNomeFamilia")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dic-nome-controller", value = "Recuperar uma pessoasContato.")
+    @ApiOperation(tags = "dic-nome-familia-controller", value = "Recuperar Dicionario nome familia.")
     public DicNomeFamilia findById(
             @ApiParam(name = "idDicNomeFamilia",
-                    value = "Código de dicionario nome familia.",
+                    value = "Código Dicionaro Nome familia.",
                     example = "1",
                     required = true)
             @PathVariable(required = true) final Integer idDicNomeFamilia) throws Exception {
@@ -57,8 +57,9 @@ public class DicNomeFamiliaController {
             return null;
         }
     }
-
-
+    
+    
+/*
     @DeleteMapping("/{idDicNomeFamilia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-familia-controller", value = "Deletar uma DicNomeFamilia da tabela.")

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-@Table(name="tb_tipogeral_filtro")
+@Table(name="tb_tipo_geral_filtro")
 public class TipoGeralFiltro {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",
