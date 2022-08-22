@@ -25,7 +25,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralTipoGeralFiltroController {
-	
+	/*
     private final TipoGeralTipoGeralFiltroService tipoGeralTipoGeralFiltroService;
    
     @GetMapping(value = "/{idTipoGeralTipoGeralFiltro}", name = "idTipoGeralTipoGeralFiltro")
@@ -45,7 +45,7 @@ public class TipoGeralTipoGeralFiltroController {
             return null;
         }
     }
-    /*
+    
     
     @DeleteMapping("/{idTipogeralTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
@@ -56,9 +56,9 @@ public class TipoGeralTipoGeralFiltroController {
             example = "1",
             required = true)
             @PathVariable(required = true) final Integer idTipogeralTipogeralFiltro) throws Exception {
-    	        return tipogeralTipogeralFiltroService.deleteById(idTipogeralTipogeralFiltro);
+    	        return tipoGeralTipoGeralFiltroService.deleteById(idTipogeralTipogeralFiltro);
     }
-
+    
     @PutMapping("/{idTipogeralTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Alterar os dados de um TipogeralTipogeralFiltro da tabela.")

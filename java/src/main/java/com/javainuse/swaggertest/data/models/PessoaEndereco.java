@@ -23,15 +23,15 @@ public class PessoaEndereco{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_Pessoa")
 	private Pessoa pessoa;
 
-	@ManyToOne
-	@JoinColumn(name = "id_Tipo_Logradouro")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_Tipo_Logadouro")
 	private TipoGeral tipoGeral;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_Municipio")
 	private Municipio municipio;
 	

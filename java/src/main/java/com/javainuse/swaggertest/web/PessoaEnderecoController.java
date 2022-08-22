@@ -27,9 +27,9 @@ import java.util.Optional;
     })
 public class PessoaEnderecoController {
 
-
-    /*private final PessoaEnderecoService pessoaEnderecoService ;
-
+	 /*
+    private final PessoaEnderecoService pessoaEnderecoService ;
+   
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-endereco-controller", value = "Listar todas as pessoas Endereco da tabela.")
@@ -58,6 +58,7 @@ public class PessoaEnderecoController {
             return null;
         }
     }
+  
     @DeleteMapping("/{idPessoaEndereco}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-endereco-controller", value = "Deletar uma pessoas Endereco da tabela.")

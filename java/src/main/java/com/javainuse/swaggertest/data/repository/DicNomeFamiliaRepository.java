@@ -40,7 +40,7 @@ public interface DicNomeFamiliaRepository extends CrudRepository <DicNomeFamilia
             "INSERT INTO tb_dicNomeFamilia (tx_Nome_Familia) " +
             "VALUES (:textoNomeFamilia) ", nativeQuery = true)
     Integer insert(
-    		 @Param("textoNomeFamilia") String valorDocumento);
+    		 @Param("textoNomeFamilia") String textoNomeFamilia);
 
 
 

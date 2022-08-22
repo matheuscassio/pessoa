@@ -40,7 +40,7 @@ public interface PessoaEnderecoRepository extends CrudRepository <PessoaEndereco
             @Param("nomeComplemento") String nomeComplemento,
             @Param("nomeNumero") String nomeNumero,
             @Param("nomeBairro") String nomeBairro,
-            @Param("nomeCep") String nomeCep);
+            @Param("nomeCep") Integer nomeCep);
     @Modifying
     @Query(value = " " +
             "INSERT INTO tb_pessoa_enderco (nm_Logadouro, nm_Complemento, nm_Numero, nm_Bairro, nm_CEP) " +
@@ -50,7 +50,7 @@ public interface PessoaEnderecoRepository extends CrudRepository <PessoaEndereco
             @Param("nomeComplemento") String nomeComplemento,
             @Param("nomeNumero") String nomeNumero,
             @Param("nomeBairro") String nomeBairro,
-            @Param("nomeCep") String nomeCep);
+            @Param("nomeCep") Integer nomeCep);
 
 
 }

@@ -36,7 +36,7 @@ public interface PessoaDocumentoRepository extends CrudRepository <PessoaDocumen
     Integer update(
             @Param("id") Integer id,
             @Param("valorDocumento") String valorDocumento,
-            @Param("dataEmissao") String dataEmissao,
+            @Param("dataEmissao") Date dataEmissao,
     		@Param("nomeOrgaoEmissor") String nomeOrgaoEmissor,
     		@Param("descricaoSerie") String descricaoSerie);
     
@@ -46,7 +46,7 @@ public interface PessoaDocumentoRepository extends CrudRepository <PessoaDocumen
             "VALUES (:valorDocumento, :dataEmissao, :nomeOrgaoEmissor, :descricaoSerie) ", nativeQuery = true)
     Integer insert(
     		 @Param("valorDocumento") String valorDocumento,
-             @Param("dataEmissao") String dataEmissao,
+             @Param("dataEmissao") Date dataEmissao,
 			 @Param("nomeOrgaoEmissor") String nomeOrgaoEmissor,
 			 @Param("descricaoSerie") String descricaoSerie);
 

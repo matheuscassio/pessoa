@@ -23,7 +23,7 @@ public class PessoaEnderecoRequest {
 
 	@ApiModelProperty(value = "Código de identificação Tipo Logadouro",
             example = "1", required = true, position = 1)
-	private Integer idTipoLogradouro;
+	private Integer idTipoLogadouro;
 	
 	@ApiModelProperty(value = "Código de identificação de Municipio",
             example = "1", required = true, position = 2)
@@ -47,5 +47,5 @@ public class PessoaEnderecoRequest {
     
     @ApiModelProperty(value = "Nome do CEP.", position = 1)
     @NotNull(message = "O nome do CEP não pode ser nulo.")
-    private String nomeCep;
+    private Integer nomeCep;
 }

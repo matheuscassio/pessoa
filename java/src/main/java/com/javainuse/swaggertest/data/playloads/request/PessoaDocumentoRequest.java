@@ -35,7 +35,7 @@ public class PessoaDocumentoRequest {
 
     @ApiModelProperty(value = "Data de Emissão.", position = 1)
     @NotNull(message = "A Data não pode ser nulo.")
-    private String dataEmissao;
+    private Date dataEmissao;
     
     @ApiModelProperty(value = "Nome do Orgão Emissor.", position = 1)
     @NotNull(message = "O nome do Orgão não pode ser nulo.")
