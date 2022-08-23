@@ -69,7 +69,7 @@ public class MunicipioController {
 	     return municipioService.deleteById(idMunicipio);
 	 }
     
-    /*
+    
 
     @PutMapping("/{idMunicipio}")
     @ResponseStatus(HttpStatus.OK)
@@ -91,5 +91,5 @@ public class MunicipioController {
             @Valid @RequestBody MunicipioRequest request) throws Exception {
         return municipioService.insert(request);
     }
-*/
+    /**/
 }
