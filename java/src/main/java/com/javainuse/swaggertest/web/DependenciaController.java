@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.javainuse.swaggertest.data.models.Dependencia;
 import com.javainuse.swaggertest.data.models.PessoaContato;
+import com.javainuse.swaggertest.data.models.TipoGeralTipoGeralFiltro;
 import com.javainuse.swaggertest.data.playloads.request.DependenciaRequest;
 import com.javainuse.swaggertest.service.DependenciaService;
+import com.javainuse.swaggertest.service.TipoGeralTipoGeralFiltroService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -36,36 +39,41 @@ import lombok.RequiredArgsConstructor;
     })
 public class DependenciaController {
 	
+	
     private final DependenciaService dependenciaService;
-
+   
     @GetMapping(value = "/{idDependencia}", name = "idDependencia")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dependencia-controller", value = "Recuperar uma Dependencia.")
+    @ApiOperation(tags = "dependencia-controller", value = "Recuperar uma dependcia.")
     public Dependencia findById(
-    	       @ApiParam(name = "idDependencia",
-               value = "Código de Dependencia.",
-               example = "1",
-               required = true)
-       @PathVariable(required = true) final Integer idDependencia) throws Exception {
-   final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
-   if (dependencia.isPresent()) {
-       return dependencia.get();
-   } else {
-       return null;
-   }
-}
-    /*
-    @DeleteMapping("/{idDependencia}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dependencia-controller", value = "Deletar uma Dependencia da tabela.")
-    public Boolean deleteDependencia(
             @ApiParam(name = "idDependencia",
-            value = "Código de Dependencia .",
-            example = "1",
-            required = true)
+                    value = "Código de identificação Dependencia.",
+                    example = "1",
+                    required = true)
+            @RequestParam(value = "page", defaultValue = "1")
             @PathVariable(required = true) final Integer idDependencia) throws Exception {
-    	        return dependenciaService.deleteById(idDependencia);
+        final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
+        if (dependencia.isPresent()) {
+            return dependencia.get();
+        } else {
+            return null;
+        }
     }
+    
+	 @DeleteMapping("/{idDependencia}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "dependencia-controller", value = "Deletar uma dependencia-controllerda tabela.")
+	 public Boolean idDependencia(
+	         @ApiParam(name = "idDependencia",
+	                 value = "Código dependencia-controller.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idDependencia) throws Exception {
+	     return dependenciaService.deleteById(idDependencia);
+	 }
+    
+    /*
+
 
     @PutMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)

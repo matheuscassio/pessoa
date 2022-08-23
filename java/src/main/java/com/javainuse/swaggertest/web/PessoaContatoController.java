@@ -58,17 +58,17 @@ public class PessoaContatoController {
         }
     }
 
-//    @DeleteMapping("/{idPessoaContato}")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "pessoa-contato-controller", value = "Deletar um contato da pessoas da tabela.")
-//    public Boolean deletePessoaContato(
-//            @ApiParam(name = "idPessoaContato",
-//                    value = "Código de Pessoa Contato.",
-//                    example = "1",
-//                    required = true)
-//            @PathVariable(required = true) final Integer idPessoaContato) throws Exception {
-//        return pessoaContatoService.deleteById(idPessoaContato);
-//    }
+	 @DeleteMapping("/{idPessoaContato}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "pessoa-contato-controller", value = "Deletar um pessoa-contato da tabela.")
+	 public Boolean idPessoaContato(
+	         @ApiParam(name = "idPessoaContato",
+	                 value = "Código de Pessoa Contato.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idPessoaContato) throws Exception {
+	     return pessoaContatoService.deleteById(idPessoaContato);
+	 }
 //
 //    @PutMapping("/{idPessoaContato}")
 //    @ResponseStatus(HttpStatus.OK)

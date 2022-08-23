@@ -57,18 +57,19 @@ public class PessoaSituacaoController {
             return null;
         }
     }
-    /*
-    @DeleteMapping("/{idPessoaSituacao}")
+    
+	 @DeleteMapping("/{idPessoaSituacao}")
 	 @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "pessoa-Situacao-controller", value = "Deletar uma Situação pessoas da tabela.")
-    public Boolean deletePessoaDocumento(
-            @ApiParam(name = "idPessoaSituacao",
-                    value = "Código de identificação da Situação.",
-                    example = "1",
-                    required = true)
-            @PathVariable(required = true) final Integer idPessoaSituacao) throws Exception {
-        return pessoaSituacaoService.deleteById(idPessoaSituacao);
-    }
+	 @ApiOperation(tags = "pessoa-situacao-controller", value = "Deletar uma pessoa-situacao da tabela.")
+	 public Boolean idPessoaSituacao(
+	         @ApiParam(name = "idPessoaSituacao",
+	                 value = "Código de pessoa-situacao.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idPessoaSituacao) throws Exception {
+	     return pessoaSituacaoService.deleteById(idPessoaSituacao);
+	 }
+    /*
 
     @PutMapping("/{idPessoaSituacao}")
     @ResponseStatus(HttpStatus.OK)

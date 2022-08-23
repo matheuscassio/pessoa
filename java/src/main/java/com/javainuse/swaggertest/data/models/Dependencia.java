@@ -19,7 +19,7 @@ public class Dependencia {
 	@ApiModelProperty(notes = "Identificador sequencial.",
 			example = "1", required = true, position = 0)
 	@Id
-	@Column (name="id_Depedencia")
+	@Column (name="id_Dependencia")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idDependencia;
 	

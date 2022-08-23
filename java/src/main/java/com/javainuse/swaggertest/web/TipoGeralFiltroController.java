@@ -56,18 +56,19 @@ public class TipoGeralFiltroController {
             return null;
         }
     }
+	 @DeleteMapping("/{idTipoGeralFiltro}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "tipo-geral-filtro-controller", value = "Deletar um tipo-geral-filtro-controllerda tabela.")
+	 public Boolean idTipoGeralFiltro(
+	         @ApiParam(name = "idTipoGeralFiltro",
+	                 value = "Código de tipo-geral-filtro-controller.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idTipoGeralFiltro) throws Exception {
+	     return tipoGeralFiltroService.deleteById(idTipoGeralFiltro);
+	 }
+    
     /*
-    @DeleteMapping("/{idTipogeralFiltro}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipogeralFiltro-controller", value = "Deletar um TipogeralFiltro da tabela.")
-    public Boolean deleteMunicipio(
-            @ApiParam(name = "idTipogeralFiltro",
-                    value = "Código de TipogeralFiltro.",
-                    example = "1",
-                    required = true)
-            @PathVariable(required = true) final Integer idTipogeralFiltro) throws Exception {
-        return tipogeralFiltroService.deleteById(idTipogeralFiltro);
-    }
 
     @PutMapping("/{idTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)

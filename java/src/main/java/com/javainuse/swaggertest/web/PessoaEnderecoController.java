@@ -59,18 +59,20 @@ public class PessoaEnderecoController {
             return null;
         }
     }
+    
+	 @DeleteMapping("/{idPessoaEndereco}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "pessoa-endereco-controller", value = "Deletar um pessoa-endereco-controller da tabela.")
+	 public Boolean idPessoaNome(
+	         @ApiParam(name = "idPessoaEndereco",
+	                 value = "Código de Pessoa Endereco.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idPessoaEndereco) throws Exception {
+	     return pessoaEnderecoService.deleteById(idPessoaEndereco);
+	 }
     /*
-    @DeleteMapping("/{idPessoaEndereco}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "pessoa-endereco-controller", value = "Deletar uma pessoas Endereco da tabela.")
-    public Boolean deletePessoaEndereco(
-            @ApiParam(name = "idPessoaContato",
-                    value = "Código de identificação de endereço.",
-                    example = "1",
-                    required = true)
-            @PathVariable(required = true) final Integer idPessoaEndereco) throws Exception {
-        return pessoaEnderecoService.deleteById(idPessoaEndereco);
-    }
+
 
     @PutMapping("/{idPessoaEndereco}")
     @ResponseStatus(HttpStatus.OK)

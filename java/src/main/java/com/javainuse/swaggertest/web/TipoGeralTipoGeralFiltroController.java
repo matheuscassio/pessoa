@@ -46,19 +46,19 @@ public class TipoGeralTipoGeralFiltroController {
         }
     }
     
-    /*
-    @DeleteMapping("/{idTipoGeralTipoGeralFiltro}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Deletar uma TipogeralTipogeralFiltro da tabela.")
-    public Boolean deleteTipogeralTipogeralFiltro(
-            @ApiParam(name = "idTipogeralTipogeralFiltro",
-            value = "Código de TipogeralTipogeralFiltro .",
-            example = "1",
-            required = true)
-            @PathVariable(required = true) final Integer idTipogeralTipogeralFiltro) throws Exception {
-    	        return tipoGeralTipoGeralFiltroService.deleteById(idTipogeralTipogeralFiltro);
-    }
+	 @DeleteMapping("/{idTipoGeralTipoGeralFiltro}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Deletar um tipo-geral-tipo-geral-filtro-controller da tabela.")
+	 public Boolean idTipoGeralTipoGeralFiltro(
+	         @ApiParam(name = "idTipoGeralTipoGeralFiltro",
+	                 value = "Código de tipo-geral-tipo-geral-filtro-controller.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idTipoGeralTipoGeralFiltro) throws Exception {
+	     return tipoGeralTipoGeralFiltroService.deleteById(idTipoGeralTipoGeralFiltro);
+	 }
     
+    /*
     @PutMapping("/{idTipogeralTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Alterar os dados de um TipogeralTipogeralFiltro da tabela.")

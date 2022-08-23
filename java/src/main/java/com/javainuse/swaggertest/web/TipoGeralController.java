@@ -57,18 +57,18 @@ public class TipoGeralController {
             return null;
         }
     }
+	 @DeleteMapping("/{idTipoGeral}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "tipo-geral-controller", value = "Deletar um tipo-geral-controller da tabela.")
+	 public Boolean idPessoaContato(
+	         @ApiParam(name = "idTipoGeral",
+	                 value = "Código de tipo-geral-controller.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idTipoGeral) throws Exception {
+	     return tipoService.deleteById(idTipoGeral);
+	 }
 /*
-    @DeleteMapping("/{idTipoGeral}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipo-geral-controller", value = "Deletar uma tipos da tabela.")
-    public Boolean deleteTipoGeral(
-            @ApiParam(name = "idTipoGeral",
-                    value = "Código de identificação de Tipo.",
-                    example = "1",
-                    required = true)
-            @PathVariable(required = true) Integer idTipoGeral) throws Exception {
-        return tipoService.deleteById(idTipoGeral);
-    }
 
     @PutMapping("/{idTipoGeral}")
     @ResponseStatus(HttpStatus.OK)

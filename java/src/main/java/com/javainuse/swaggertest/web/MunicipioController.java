@@ -57,18 +57,19 @@ public class MunicipioController {
             return null;
         }
     }
+	 @DeleteMapping("/{idMunicipio}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "municipio-controller", value = "Deletar um Municipio da tabela.")
+	 public Boolean deleteMunicipio(
+	         @ApiParam(name = "idMunicipio",
+	                 value = "Código de Municipio.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idMunicipio) throws Exception {
+	     return municipioService.deleteById(idMunicipio);
+	 }
+    
     /*
-    @DeleteMapping("/{idMunicipio}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "municipio-controller", value = "Deletar um Município da tabela.")
-    public Boolean deleteMunicipio(
-            @ApiParam(name = "idMunicipio",
-                    value = "Código de Município.",
-                    example = "1",
-                    required = true)
-            @PathVariable(required = true) final Integer idMunicipio) throws Exception {
-        return municipioService.deleteById(idMunicipio);
-    }
 
     @PutMapping("/{idMunicipio}")
     @ResponseStatus(HttpStatus.OK)

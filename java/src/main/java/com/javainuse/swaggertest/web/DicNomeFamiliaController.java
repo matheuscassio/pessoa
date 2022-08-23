@@ -57,16 +57,19 @@ public class DicNomeFamiliaController {
             return null;
         }
     }
+   
+	 @DeleteMapping("/{idDicNomeFamilia}")
+	 @ResponseStatus(HttpStatus.OK)
+	 @ApiOperation(tags = "dic-nome-familia-controller", value = "Deletar um nome familia da tabela.")
+	 public Boolean deleteDicNomeFamilia(
+	         @ApiParam(name = "idDicNomeFamilia",
+	                 value = "Código de dic nome familia.",
+	                 example = "1",
+	                 required = true)
+	         @PathVariable(required = true) final Integer idDicNomeFamilia) throws Exception {
+	     return dicNomeFamiliaService.deleteById(idDicNomeFamilia);
+	 }
     /*
-    
-
-    @DeleteMapping("/{idDicNomeFamilia}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dic-nome-familia-controller", value = "Deletar uma DicNomeFamilia da tabela.")
-    public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer idDicNomeFamilia) throws Exception {
-        return dicNomeFamiliaService.deleteById(idDicNomeFamilia);
-    }
-
     @PutMapping("/{idDicNomeFamilia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-familia-controller", value = "Alterar os dados de uma DicNomeFamilia da tabela.")

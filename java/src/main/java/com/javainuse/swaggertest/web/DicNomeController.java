@@ -56,19 +56,20 @@ public class DicNomeController {
            return null;
        }
    }
+   
+   
+		 @DeleteMapping("/{idDicNome}")
+		 @ResponseStatus(HttpStatus.OK)
+		 @ApiOperation(tags = "dic-nome-controller", value = "Deletar um nome da tabela.")
+		 public Boolean deleteDicNome(
+		         @ApiParam(name = "idDicNome",
+		                 value = "Código de dic nome.",
+		                 example = "1",
+		                 required = true)
+		         @PathVariable(required = true) final Integer idDicNome) throws Exception {
+		     return dicNomeService.deleteById(idDicNome);
+		 }
    /*
-   @DeleteMapping("/{idDicNome}")
-   @ResponseStatus(HttpStatus.OK)
-   @ApiOperation(tags = "dic-nome-controller", value = "Deletar umn nome da tabela.")
-   public Boolean deleteDicNome(
-           @ApiParam(value = "Código de identificação de dic nome.", required = true)
-           @PathVariable(required = true) final Integer idDicNome) throws Exception {
-       return dicNomeService.deleteById(idDicNome);
-       
-   }
-
-
-
     
     
     @PostMapping("/textoNome")
