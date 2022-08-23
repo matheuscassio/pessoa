@@ -28,7 +28,7 @@ import java.util.Optional;
 public class TipoGeralController {
 
     private final TipoGeralService tipoService;
-/*
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipo-geral-controller", value = "Listar todas as tipos da tabela.")
@@ -40,7 +40,7 @@ public class TipoGeralController {
             return null;
         }
     }
-*/
+
     @GetMapping(value = "/{idTipoGeral}", name = "idTipoGeral")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipo-geral-controller", value = "Recuperar uma tipos.")

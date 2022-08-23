@@ -48,7 +48,7 @@ public class PessoaEndereco{
 	private String nomeBairro;
 	
 	@Column (name="nm_CEP")
-	private String nomeCep;
+	private Integer nomeCep;
 	
 	
 	

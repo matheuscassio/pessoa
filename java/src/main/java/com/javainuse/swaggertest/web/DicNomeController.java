@@ -2,6 +2,7 @@ package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.DicNome;
 import com.javainuse.swaggertest.data.playloads.request.DicNomeRequest;
+import com.javainuse.swaggertest.data.playloads.request.PessoaRequest;
 import com.javainuse.swaggertest.service.DicNomeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
-@RequestMapping("/v1/dicionario/nome")
+@RequestMapping("/v1/dic/nome")
 @RequiredArgsConstructor
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Esta é uma requisição errada, por favor reveja a documentação da API."),
@@ -24,7 +25,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class DicNomeController {
-
+	
    private final DicNomeService dicNomeService;
 
    @GetMapping()
@@ -55,16 +56,21 @@ public class DicNomeController {
            return null;
        }
    }
-   
-/*
-    @DeleteMapping("/{idDicNome}"
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "dic-nome-controller", value = "Deletar uma Dependencia da tabela.")
-    public Boolean deleteDependencia(@ApiParam(value = "Código de identificação da Dependencia.", required = true) final @PathVariable(required = true) Integer id) throws Exception {
-        return dicNomeService.deleteById(id);
-    }
-    
+   /*
+   @DeleteMapping("/{idDicNome}")
+   @ResponseStatus(HttpStatus.OK)
+   @ApiOperation(tags = "dic-nome-controller", value = "Deletar umn nome da tabela.")
+   public Boolean deleteDicNome(
+           @ApiParam(value = "Código de identificação de dic nome.", required = true)
+           @PathVariable(required = true) final Integer idDicNome) throws Exception {
+       return dicNomeService.deleteById(idDicNome);
+       
+   }
 
+
+
+    
+    
     @PostMapping("/textoNome")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-controller", value = "Incluir dados de uma pessoas na tabela.")
@@ -74,4 +80,5 @@ public class DicNomeController {
     }
 */
 
-}
+
+   }

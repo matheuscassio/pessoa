@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.javainuse.swaggertest.data.models.Dependencia;
+import com.javainuse.swaggertest.data.models.PessoaContato;
 import com.javainuse.swaggertest.data.playloads.request.DependenciaRequest;
 import com.javainuse.swaggertest.service.DependenciaService;
 
@@ -34,22 +35,25 @@ import lombok.RequiredArgsConstructor;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class DependenciaController {
-
+	
     private final DependenciaService dependenciaService;
 
     @GetMapping(value = "/{idDependencia}", name = "idDependencia")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dependencia-controller", value = "Recuperar uma Dependencia.")
     public Dependencia findById(
-            @ApiParam(value = "Código digital de Dependencia.", required = true)
-            final @PathVariable(required = true) Integer idDependencia) throws Exception {
-        final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
-        if (dependencia.isPresent()) {
-            return dependencia.get();
-        } else {
-            return null;
-        }
-    }
+    	       @ApiParam(name = "idDependencia",
+               value = "Código de Dependencia.",
+               example = "1",
+               required = true)
+       @PathVariable(required = true) final Integer idDependencia) throws Exception {
+   final Optional<Dependencia> dependencia = dependenciaService.findById(idDependencia);
+   if (dependencia.isPresent()) {
+       return dependencia.get();
+   } else {
+       return null;
+   }
+}
     /*
     @DeleteMapping("/{idDependencia}")
     @ResponseStatus(HttpStatus.OK)

@@ -1,6 +1,7 @@
 package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.PessoaEndereco;
+import com.javainuse.swaggertest.data.models.PessoaNome;
 import com.javainuse.swaggertest.data.playloads.request.PessoaEnderecoRequest;
 import com.javainuse.swaggertest.service.PessoaEnderecoService;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +28,7 @@ import java.util.Optional;
     })
 public class PessoaEnderecoController {
 
-	 /*
+	 
     private final PessoaEnderecoService pessoaEnderecoService ;
    
     @GetMapping()
@@ -44,13 +45,13 @@ public class PessoaEnderecoController {
 
     @GetMapping(value = "/{idPessoaEndereco}", name = "idPessoaEndereco")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "pessoa-endereco-controller", value = "Recuperar uma pessoas Endereco.")
+    @ApiOperation(tags = "pessoa-endereco-controller", value = "Recuperar uma pessoa Endereco.")
     public PessoaEndereco findById(
-            @ApiParam(name = "idPessoaContato",
-                    value = "Código de identificação de endereço.",
+            @ApiParam(name = "idPessoaEndereco",
+                    value = "Código de identificação de Endereco.",
                     example = "1",
                     required = true)
-           @PathVariable(required = true) Integer idPessoaEndereco) throws Exception {
+            final @PathVariable(required = true) Integer idPessoaEndereco) throws Exception {
         final Optional<PessoaEndereco> pessoaEndereco = pessoaEnderecoService.findById(idPessoaEndereco);
         if (pessoaEndereco.isPresent()) {
             return pessoaEndereco.get();
@@ -58,7 +59,7 @@ public class PessoaEnderecoController {
             return null;
         }
     }
-  
+    /*
     @DeleteMapping("/{idPessoaEndereco}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-endereco-controller", value = "Deletar uma pessoas Endereco da tabela.")

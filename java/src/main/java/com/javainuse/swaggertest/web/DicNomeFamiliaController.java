@@ -25,7 +25,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class DicNomeFamiliaController {
-
+	
    private final DicNomeFamiliaService dicNomeFamiliaService;
 
     @GetMapping()
@@ -57,9 +57,9 @@ public class DicNomeFamiliaController {
             return null;
         }
     }
+    /*
     
-    
-/*
+
     @DeleteMapping("/{idDicNomeFamilia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-familia-controller", value = "Deletar uma DicNomeFamilia da tabela.")

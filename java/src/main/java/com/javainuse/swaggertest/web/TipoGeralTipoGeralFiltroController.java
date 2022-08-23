@@ -25,7 +25,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralTipoGeralFiltroController {
-	/*
+	
     private final TipoGeralTipoGeralFiltroService tipoGeralTipoGeralFiltroService;
    
     @GetMapping(value = "/{idTipoGeralTipoGeralFiltro}", name = "idTipoGeralTipoGeralFiltro")
@@ -46,10 +46,10 @@ public class TipoGeralTipoGeralFiltroController {
         }
     }
     
-    
-    @DeleteMapping("/{idTipogeralTipogeralFiltro}")
+    /*
+    @DeleteMapping("/{idTipoGeralTipoGeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Deletar uma TipogeralTipogeralFiltro da tabela.")
+    @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Deletar uma TipogeralTipogeralFiltro da tabela.")
     public Boolean deleteTipogeralTipogeralFiltro(
             @ApiParam(name = "idTipogeralTipogeralFiltro",
             value = "Código de TipogeralTipogeralFiltro .",
@@ -61,7 +61,7 @@ public class TipoGeralTipoGeralFiltroController {
     
     @PutMapping("/{idTipogeralTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Alterar os dados de um TipogeralTipogeralFiltro da tabela.")
+    @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Alterar os dados de um TipogeralTipogeralFiltro da tabela.")
     Integer updateDepencia(
             @ApiParam(name = "idTipogeralTipogeralFiltro",
            value = "Código de TipogeralTipogeralFiltro .",
@@ -74,7 +74,7 @@ public class TipoGeralTipoGeralFiltroController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipogeralTipogeralFiltro-controller", value = "Incluir dados de TipogeralTipogeralFiltro.")
+    @ApiOperation(tags = "tipo-geral-tipo-geral-filtro-controller", value = "Incluir dados de TipogeralTipogeralFiltro.")
     Integer  insertDependencia(
             @Valid @RequestBody TipogeralTipogeralFiltroRequest request) throws Exception {
         return tipogeralTipogeralFiltroService.insert(request);

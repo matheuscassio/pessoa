@@ -26,7 +26,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class MunicipioController {
-	  /*
+	  
     private final MunicipioService municipioService;
 
     @GetMapping()
@@ -57,7 +57,7 @@ public class MunicipioController {
             return null;
         }
     }
-  
+    /*
     @DeleteMapping("/{idMunicipio}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "municipio-controller", value = "Deletar um Município da tabela.")

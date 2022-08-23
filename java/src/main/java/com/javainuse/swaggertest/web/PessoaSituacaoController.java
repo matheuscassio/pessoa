@@ -28,7 +28,7 @@ import java.util.Optional;
     })
 public class PessoaSituacaoController {
    private final PessoaSituacaoService pessoaSituacaoService ;
-   /*
+   
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -57,7 +57,7 @@ public class PessoaSituacaoController {
             return null;
         }
     }
-
+    /*
     @DeleteMapping("/{idPessoaSituacao}")
 	 @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-Situacao-controller", value = "Deletar uma Situação pessoas da tabela.")

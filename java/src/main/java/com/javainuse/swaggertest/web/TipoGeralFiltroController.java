@@ -26,7 +26,7 @@ import java.util.Optional;
         @io.swagger.annotations.ApiResponse(code = 500, message = "O serviço está momentâneamente fora do ar."),
     })
 public class TipoGeralFiltroController {
-	/*
+	
     private final TipoGeralFiltroService tipoGeralFiltroService;
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -56,7 +56,7 @@ public class TipoGeralFiltroController {
             return null;
         }
     }
-    
+    /*
     @DeleteMapping("/{idTipogeralFiltro}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "tipogeralFiltro-controller", value = "Deletar um TipogeralFiltro da tabela.")
