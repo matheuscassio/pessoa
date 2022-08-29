@@ -1,25 +1,24 @@
-CREATE TABLE tb_pessoa (
-	id_Pessoa INT NOT NULL, --  Identificação sequêncial de Pessoa
-	tx_Hash VARCHAR(50), -- Algoritimo ultilizando para garanit a integridade dos dados
-	dt_Nascimento DATE NOT NULL, -- Data de nascimento para criação do Hash
-	nm_Genitor VARCHAR(100) NOT NULL, -- Nome da mae para criação do Hash
-	st_Embriao char(1) DEFAULT '1', -- Identificação para criaçao do Hash
-	PRIMARY KEY (id_Pessoa),
-	CONSTRAINT 	uk_pessoa_txHash  UNIQUE (tx_Hash)
+CREATE TABLE TB_PESSOA (
+	ID_PESSOA INT NOT NULL, --  Identificação sequêncial de Pessoa
+	TX_HASH VARCHAR(50), -- Algoritimo ultilizando para garanit a integridade dos dados
+	DT_NASCIMENTO DATE NOT NULL, -- Data de nascimento para criação do Hash
+	NM_GENITOR VARCHAR(100) NOT NULL, -- Nome da mae para criação do Hash
+	ST_EMBRIAO char(1) DEFAULT '1', -- Identificação para criaçao do Hash
+	PRIMARY KEY (ID_PESSOA),
+	CONSTRAINT UK_PESSOA_TX_HASH UNIQUE (TX_HASH)
 	); 
-CREATE SEQUENCE SQ_Pessoa
+CREATE SEQUENCE SQ_PESSOA
 	  MINVALUE 1
 	  START WITH 1
 	  INCREMENT BY 1
 	  NOCACHE;
-  
-CREATE TABLE tb_municipio(
-	id_Municipio INT NOT NULL ,--  Identificação sequêncial de Municipio
- 	nm_Municipio VARCHAR (50),
- 	PRIMARY KEY (id_Municipio),
- 	CONSTRAINT uk_municipio_nmMunicipio UNIQUE (nm_Municipio)
+CREATE TABLE TB_MUNICIPIO(
+	ID_MUNICIPIO INT NOT NULL ,--  Identificação sequêncial de Municipio
+ 	NM_MUNICIPIO VARCHAR (50),
+ 	PRIMARY KEY (ID_MUNICIPIO),
+ 	CONSTRAINT uk_municipio_nmMunicipio UNIQUE (NM_MUNICIPIO)
  	);
-CREATE SEQUENCE SQ_Municipio
+CREATE SEQUENCE SQ_MUNICIPIO
 	 MINVALUE 1
 	 START WITH 1
 	 INCREMENT BY 1
@@ -31,8 +30,9 @@ CREATE TABLE TB_TIPO_GERAL (
 	NM_CHAVE VARCHAR (100) NOT NULL,
 	ST_PADRAO INT NOT NULL,
 	TX_PARAMETRO BLOB, 
-	ST_ATIVO VARCHAR (200) NOT NULL,
-	PRIMARY KEY (ID_TIPO_GERAL)
+	ST_ATIVO char(1) DEFAULT '1' NOT NULL,
+	PRIMARY KEY (ID_TIPO_GERAL),
+	CONSTRAINT UK_TIPOGERAL_NM_CHAVE UNIQUE (NM_CHAVE)
 	 );
  CREATE SEQUENCE SQ_TIPOGERAL
 	  MINVALUE 1
@@ -184,6 +184,7 @@ CREATE TABLE RL_TIPO_GERAL_TIPO_GERAL_FILTRO(
 		    ID_TIPO_GERAL INT NOT NULL,
 		    ID_TIPO_GERAL_FILTRO INT NOT NULL,
 		    PRIMARY KEY (ID_TIPO_GERAL_TIPO_GERAL_FILTRO),
+		    CONSTRAINT 	UK_RL_TIPOGERAL_TIPOGERALFILTRO UNIQUE (ID_TIPO_GERAL, ID_TIPO_GERAL_FILTRO),
 		    CONSTRAINT FK_TIPO_GERAL_TIPO_GERAL_FILTRO FOREIGN KEY (ID_TIPO_GERAL) REFERENCES TB_TIPO_GERAL(ID_TIPO_GERAL),
 		    CONSTRAINT FK_TIPO_GERAL_FILTRO FOREIGN KEY (ID_TIPO_GERAL_FILTRO) REFERENCES TB_TIPO_GERAL_FILTRO(ID_TIPO_GERAL_FILTRO)
 		 );
@@ -191,4 +192,14 @@ CREATE SEQUENCE SQ_TIPO_GERAL_TIPO_GERAL_FILTRO
 		    MINVALUE 1
 		    START WITH 1
 		    INCREMENT BY 1
-		    NOCACHE;
+		    NOCACHE;	  
+		    
+		   
+		   
+		   
+
+		   
+
+		   
+		   
+		   
