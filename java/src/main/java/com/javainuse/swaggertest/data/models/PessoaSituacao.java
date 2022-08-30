@@ -15,7 +15,7 @@ import java.util.Date;
 @Builder
 @Entity
 @Data
-@Table(name="tb_pessoa_situacao")
+@Table(name="TB_PESSOA_SITUACAO")
 public class PessoaSituacao {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",

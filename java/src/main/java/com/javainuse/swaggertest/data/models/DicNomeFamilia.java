@@ -13,7 +13,7 @@
 	@Builder
 	@Entity
 	@Data
-	@Table(name="tb_dic_nome_familia")
+	@Table(name="TB_DIC_NOME_FAMILIA")
 	public class DicNomeFamilia{
 
 		@ApiModelProperty(notes = "Identificador sequencial.",

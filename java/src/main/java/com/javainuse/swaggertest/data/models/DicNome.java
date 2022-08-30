@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Data
-@Table(name="tb_dic_nome")
+@Table(name="TB_DIC_NOME")
 public class DicNome{
 
 	@ApiModelProperty(notes = "Identificador sequencial.",

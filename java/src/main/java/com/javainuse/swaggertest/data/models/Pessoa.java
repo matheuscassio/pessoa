@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Data
-@Table(name = "tb_pessoa")
+@Table(name = "TB_PESSOA")
 public class Pessoa implements Serializable {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",

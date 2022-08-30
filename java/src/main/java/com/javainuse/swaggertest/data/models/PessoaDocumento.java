@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Builder
 @Entity
 @Data
-@Table(name="tb_pessoa_documento")
+@Table(name="TB_PESSOA_DOCUMENTO")
 public class PessoaDocumento {
 
 	@ApiModelProperty(notes = "Identificador sequencial.",
