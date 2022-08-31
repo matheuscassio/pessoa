@@ -1,7 +1,6 @@
 package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.PessoaContato;
-import com.javainuse.swaggertest.data.playloads.request.PessoaContatoRequest;
 import com.javainuse.swaggertest.service.PessoaContatoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

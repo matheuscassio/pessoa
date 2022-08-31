@@ -2,7 +2,7 @@ package com.javainuse.swaggertest.data.repository;
 
 import com.javainuse.swaggertest.data.models.DicNomeFamilia;
 
-import org.hibernate.sql.Insert;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Repository
-public interface DicNomeFamiliaRepository extends CrudRepository <DicNomeFamilia, Integer> {
+public interface DicNomeFamiliaRepository extends CrudRepository <DicNomeFamilia, Long> {
 
     @Query(value = " " +
             "select dnf " +
@@ -30,7 +30,7 @@ public interface DicNomeFamiliaRepository extends CrudRepository <DicNomeFamilia
     @Modifying
     @Query(value = " " +
             "update DicNomeFamilia dnf "+
-            "set dnf.nomeFamilia= :textoNomeFamilia " +
+            "set dnf.nomeFamilia = :textoNomeFamilia " +
             "where dnf.id = :id ")
     Integer update(
             @Param("id") Integer id,
