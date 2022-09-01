@@ -39,13 +39,13 @@ public class DicNomeFamiliaServiceImpl implements DicNomeFamiliaService {
     public Integer update(Integer idDicNomeFamilia, DicNomeFamiliaRequest request) throws Exception {
         Optional<DicNomeFamilia> dicNomeFamiliaAlterada = this.dicNomeFamiliaRepository.findById(idDicNomeFamilia);
         if (dicNomeFamiliaAlterada.isPresent()) {
-            return this.dicNomeFamiliaRepository.update(idDicNomeFamilia, request.getNomeFamilia());
+            return this.dicNomeFamiliaRepository.update(idDicNomeFamilia, request.getTextoNomeFamilia());
         } else return 0;
     }
 
     @Override
     public Integer insert(DicNomeFamiliaRequest request) throws Exception {
-        return this.dicNomeFamiliaRepository.insert(request.getNomeFamilia());
+        return this.dicNomeFamiliaRepository.insert(request.getTextoNomeFamilia());
     }
 
 

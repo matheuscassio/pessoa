@@ -21,7 +21,7 @@ public class DicNomeFamiliaRequest {
 
     @ApiModelProperty(value = "Texto do Nome familia", position = 1)
     @NotNull(message = "Texto do Nome não pode ser nula.")
-    private String nomeFamilia;
+    private String textoNomeFamilia;
 
  
 }

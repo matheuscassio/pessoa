@@ -1,6 +1,5 @@
 package com.javainuse.swaggertest.web;
 
-
 import com.javainuse.swaggertest.data.models.DicNomeFamilia;
 import com.javainuse.swaggertest.data.playloads.request.DicNomeFamiliaRequest;
 import com.javainuse.swaggertest.service.DicNomeFamiliaService;
@@ -10,7 +9,6 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -41,8 +39,7 @@ public class DicNomeFamiliaController {
             return null;
         }
     }
-    
-    
+
     @GetMapping(value = "/{idDicNomeFamilia}", name = "idDicNomeFamilia")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-familia-controller", value = "Recuperar Dicionario nome familia.")
@@ -60,31 +57,30 @@ public class DicNomeFamiliaController {
         }
     }
    
-	 @DeleteMapping("/{idDicNomeFamilia}")
-	 @ResponseStatus(HttpStatus.OK)
-	 @ApiOperation(tags = "dic-nome-familia-controller", value = "Deletar um nome familia da tabela.")
-	 public Boolean deleteDicNomeFamilia(
-	         @ApiParam(name = "idDicNomeFamilia",
+	@DeleteMapping("/{idDicNomeFamilia}")
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(tags = "dic-nome-familia-controller", value = "Deletar um nome familia da tabela.")
+	public Boolean deleteDicNomeFamilia(
+	     @ApiParam(name = "idDicNomeFamilia",
 	                 value = "Código de dic nome familia.",
 	                 example = "1",
 	                 required = true)
-	         @PathVariable(required = true) final Integer idDicNomeFamilia) throws Exception {
+	     @PathVariable(required = true) final Integer idDicNomeFamilia) throws Exception {
 	     return dicNomeFamiliaService.deleteById(idDicNomeFamilia);
-	 }
+    }
 
-	
     @PutMapping("/{idDicNomeFamilia}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-familia-controller", value = "Alterar os dados de uma DicNomeFamilia da tabela.")
-    Integer updateDepencia(
-    		@ApiParam(name = "idDicNomeFamilia",
-		            value = "Código de dic nome familia.",
+    public Integer updateDicNomeFamilia(
+    		@ApiParam(value = "Código de dic nome familia.",
 		            example = "1",
 		            required = true)
 		    @PathVariable(required = true) final Integer idDicNomeFamilia,
             @Valid @RequestBody DicNomeFamiliaRequest request) throws Exception {
         return dicNomeFamiliaService.update(idDicNomeFamilia, request);
     }
+
     /*
     @PostMapping("/")
     @ResponseStatus(HttpStatus.OK)
@@ -92,7 +88,6 @@ public class DicNomeFamiliaController {
     Integer insertPessoaContato(
             @Valid @RequestBody DicNomeFamiliaRequest request) throws Exception {
         return dicNomeFamiliaService.insert(request);
-    }
-*/
+    }*/
 
 }
