@@ -1,6 +1,7 @@
 package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.PessoaContato;
+import com.javainuse.swaggertest.data.playloads.request.PessoaContatoRequest;
 import com.javainuse.swaggertest.service.PessoaContatoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -8,11 +9,12 @@ import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
+
+
 
 @RestController
 @CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "*")
@@ -31,7 +33,7 @@ public class PessoaContatoController {
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "pessoa-contato-controller", value = "Listar todas as pessoas da tabela contato.")
-    public ArrayList<PessoaContato> listarPessoasConato() throws Exception {
+    public ArrayList<PessoaContato> listarPessoasContato() throws Exception {
         final Optional<ArrayList<PessoaContato>> lista = pessoaContatoService.getAll();
         if (lista.isPresent()) {
             return lista.get();
@@ -69,18 +71,18 @@ public class PessoaContatoController {
 	     return pessoaContatoService.deleteById(idPessoaContato);
 	 }
 //
-//    @PutMapping("/{idPessoaContato}")
-//    @ResponseStatus(HttpStatus.OK)
-//    @ApiOperation(tags = "pessoa-contato-controller", value = "Alterar os dados de um contato pessoas da tabela.")
-//    public Integer updatePessoaContato(
-//            @ApiParam(name = "idPessoaContato",
-//                    value = "Código de Pessoa Contato.",
-//                    example = "1",
-//                    required = true)
-//            @PathVariable(required = true) final Integer idPessoaContato,
-//            @Valid @RequestBody PessoaContatoRequest request) throws Exception {
-//        return pessoaContatoService.update(idPessoaContato, request);
-//    }
+	    @PutMapping("/{idPessoaContato}")
+	    @ResponseStatus(HttpStatus.OK)
+	    @ApiOperation(tags = "pessoa-contato-controller", value = "Alterar os dados de uma PessoaContato da tabela.")
+	    public Integer updatePessoaContato(
+	    		@ApiParam(value = "Código de Pessoa Contato.",
+			            example = "1",
+			            required = true)
+			    @PathVariable(required = true) final Integer idPessoaContato,
+	            @Valid @RequestBody PessoaContatoRequest request) throws Exception {
+	        return pessoaContatoService.update(idPessoaContato, request);
+	    }
+
 //
 //    @PostMapping
 //    @ResponseStatus(HttpStatus.OK)
