@@ -1,8 +1,10 @@
 package com.javainuse.swaggertest.web;
 
 import com.javainuse.swaggertest.data.models.DicNome;
+import com.javainuse.swaggertest.data.models.DicNomeFamilia;
 import com.javainuse.swaggertest.data.playloads.request.DicNomeRequest;
 import com.javainuse.swaggertest.data.playloads.request.PessoaRequest;
+import com.javainuse.swaggertest.service.DicNomeFamiliaService;
 import com.javainuse.swaggertest.service.DicNomeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,19 +28,19 @@ import java.util.Optional;
     })
 public class DicNomeController {
 	
-   private final DicNomeService dicNomeService;
+	   private final DicNomeService dicNomeService;
 
-   @GetMapping()
-   @ResponseStatus(HttpStatus.OK)
-   @ApiOperation(tags = "dic-nome-controller", value = "Listar todas Dicionario nome.")
-   public ArrayList<DicNome> listarDicNome() throws Exception {
-       final Optional<ArrayList<DicNome>> lista = dicNomeService.getAll();
-       if (lista.isPresent()) {
-           return lista.get();
-       } else {
-           return null;
-       }
-   }
+	    @GetMapping()
+	    @ResponseStatus(HttpStatus.OK)
+	    @ApiOperation(tags = "dic-nome-controller", value = "Listar todas as pessoas da tabela dic-nome-.")
+	    public ArrayList<DicNome> listarDicNomeFamilia() throws Exception {
+	        final Optional<ArrayList<DicNome>> lista = dicNomeService.getAll();
+	        if (lista.isPresent()) {
+	            return lista.get();
+	        } else {
+	            return null;
+	        }
+	    }
 
    @GetMapping(value = "/{idDicNome}", name = "idDicNome")
    @ResponseStatus(HttpStatus.OK)

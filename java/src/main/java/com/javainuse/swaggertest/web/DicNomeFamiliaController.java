@@ -31,7 +31,7 @@ public class DicNomeFamiliaController {
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(tags = "dic-nome-familia-controller", value = "Listar todas as pessoas da tabela dic-nome-familia.")
-    public ArrayList<DicNomeFamilia> listarPessoasConato() throws Exception {
+    public ArrayList<DicNomeFamilia> listarDicNomeFamilia() throws Exception {
         final Optional<ArrayList<DicNomeFamilia>> lista = dicNomeFamiliaService.getAll();
         if (lista.isPresent()) {
             return lista.get();

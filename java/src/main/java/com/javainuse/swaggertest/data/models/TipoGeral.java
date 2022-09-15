@@ -33,7 +33,7 @@ public class TipoGeral {
 	private String situacaoPadrao;
 
 	@Column (name="st_Ativo")
-	private String ativo;
+	private String  ativo;
 
 	@Column (name="tx_Parametro")
 	private String textoParametro;
