@@ -42,7 +42,7 @@ public class TipoGeralFiltroController {
 
     @GetMapping(value = "/{idTipoGeralFiltro}", name = "idTipoGeralFiltro")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(tags = "tipo-geral-filtro-controller", value = "Recuperar um  tipo geral filtro.")
+    @ApiOperation(tags = "tipo-geral-filtro-controller", value = "Recuperar tipo geral filtro.")
     public TipoGeralFiltro findById(
             @ApiParam(name = "idTipoGeralFiltro",
                     value = "Código de tipo geral filtro.",
